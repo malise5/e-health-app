@@ -18,7 +18,7 @@ public class Login extends HttpServlet {
 
   // PrintWriter print = resp.getWriter();
 
-  // print.print("");
+  // print.print("../auth/login.html");
 
   // }
 
@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
     if (username.equals("malise") && password.equals("malise123")) {
       print.println("<h1>Welcome to Afya Nursing Home</h1>");
     } else {
-      print.print("<h2>Wrong username and password <a href=\".\">Login again</a></h2>");
+      print.print("<html><body><h2>Wrong username and password <a href=\".\">Login again</a></h2></body></html>");
     }
 
   }
