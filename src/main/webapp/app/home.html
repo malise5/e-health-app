@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hospital Information</title>
+        <title>Hospital Information Dashboard</title>
         <style>
-            /* Apply styles to the H1 heading */
-            h1 {
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f3f3f3;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #3498db;
+                color: #fff;
                 text-align: center;
-                font-size: 24px;
-                margin-bottom: 20px;
+                padding: 20px 0;
             }
 
-            /* Apply styles to the table */
+            h1 {
+                font-size: 36px;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
             table {
-                width: 80%;
-                margin: 0 auto;
+                width: 100%;
                 border-collapse: collapse;
+                margin-top: 20px;
             }
 
-            /* Apply styles to table headers */
+            th,
+            td {
+                padding: 12px 15px;
+                text-align: left;
+            }
+
             th {
                 background-color: #3498db;
                 color: #fff;
-                text-align: left;
-                padding: 10px;
             }
 
-            /* Apply alternating row styles */
             tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
@@ -33,37 +54,34 @@
             tr:nth-child(odd) {
                 background-color: #e6e6e6;
             }
-
-            /* Apply styles to table data cells */
-            td {
-                padding: 10px;
-            }
         </style>
     </head>
     <body>
-        <h1>Hospital Information</h1>
+        <header>
+            <h1>Doctor Information Dashboard</h1>
+        </header>
 
-        <table border="1">
-            <tr>
-                <th>Hospital</th>
-                <th>Number of Doctors</th>
-                <th>Number of Beds</th>
-            </tr>
-            <tr>
-                <td>Kenyatta Hospital</td>
-                <td>50</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>Nairobi Hospital</td>
-                <td>30</td>
-                <td>150</td>
-            </tr>
-            <tr>
-                <td>Mathari Hospital C</td>
-                <td>40</td>
-                <td>180</td>
-            </tr>
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Specialization</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Halkano Malise</td>
+                    <td>malise@gmail.com</td>
+                    <td>Cardiologist</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mohammed Ali</td>
+                    <td>ali@gmail.com</td>
+                    <td>Vet</td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

@@ -21,4 +21,8 @@ public class Home extends HttpServlet {
 
   }
 
+  public String chartOfDoctors() {
+    return null;
+  }
+
 }
