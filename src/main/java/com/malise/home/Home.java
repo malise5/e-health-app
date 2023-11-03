@@ -2,8 +2,6 @@ package com.malise.home;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.malise.app.bean.DoctorBean;
+import com.malise.app.bean.DoctorBeanI;
 
 @WebServlet("/home")
 public class Home extends HttpServlet {
@@ -21,6 +20,8 @@ public class Home extends HttpServlet {
 
     // RequestDispatcher dispatcher = req.getRequestDispatcher("./app/home.html");
     // dispatcher.forward(req, resp);
+
+    DoctorBeanI doctorBean = new DoctorBean();
     PrintWriter print = resp.getWriter();
     print.write("<!DOCTYPE html>\n" + //
         "<html>\n" + //
@@ -86,7 +87,7 @@ public class Home extends HttpServlet {
         "        </header>\n" + //
         "\n" + //
         "        <div class=\"container\">\n");
-    print.write(new DoctorBean().chartOfDoctors());
+    print.write(doctorBean.chartOfDoctors());
     print.write(
         "            \n" + //
             "        </div>\n" + //

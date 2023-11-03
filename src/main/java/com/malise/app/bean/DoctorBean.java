@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.malise.app.model.Doctor;
 
-public class DoctorBean implements Serializable {
+public class DoctorBean implements DoctorBeanI, Serializable {
 
   public String chartOfDoctors() {
     List<Doctor> doctors = new ArrayList<>();
