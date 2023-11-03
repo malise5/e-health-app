@@ -4,16 +4,26 @@ import java.io.Serializable;
 
 public class Doctor implements Serializable {
 
-  private int index;
+  private String index;
   private String name;
   private String email;
   private String specialization;
 
-  public int getIndex() {
+  public String getIndex() {
     return index;
   }
 
-  public void setIndex(int index) {
+  public Doctor() {
+  }
+
+  public Doctor(String index, String name, String email, String specialization) {
+    this.index = index;
+    this.name = name;
+    this.email = email;
+    this.specialization = specialization;
+  }
+
+  public void setIndex(String index) {
     this.index = index;
   }
 
@@ -39,6 +49,19 @@ public class Doctor implements Serializable {
 
   public void setSpecialization(String specialization) {
     this.specialization = specialization;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder trBuilder = new StringBuilder();
+    trBuilder.append("<tr>");
+    trBuilder.append("<td>").append(getIndex().isBlank() ? "" : getIndex().trim()).append("</td>");
+    trBuilder.append("<td>").append(getName().isBlank() ? "" : getName().trim()).append("</td>");
+    trBuilder.append("<td>").append(getEmail().isBlank() ? "" : getEmail().trim()).append("</td>");
+    trBuilder.append("<td>").append(getSpecialization().isBlank() ? "" : getSpecialization().trim()).append("</td>");
+    trBuilder.append("<tr>");
+
+    return trBuilder.toString();
   }
 
 }
