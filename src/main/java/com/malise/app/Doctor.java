@@ -2,6 +2,8 @@ package com.malise.app;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Doctor implements Serializable {
 
   private String index;
@@ -55,10 +57,10 @@ public class Doctor implements Serializable {
   public String toString() {
     StringBuilder trBuilder = new StringBuilder();
     trBuilder.append("<tr>");
-    trBuilder.append("<td>").append(getIndex().isBlank() ? "" : getIndex().trim()).append("</td>");
-    trBuilder.append("<td>").append(getName().isBlank() ? "" : getName().trim()).append("</td>");
-    trBuilder.append("<td>").append(getEmail().isBlank() ? "" : getEmail().trim()).append("</td>");
-    trBuilder.append("<td>").append(getSpecialization().isBlank() ? "" : getSpecialization().trim()).append("</td>");
+    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getIndex())).append("</td>");
+    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getName())).append("</td>");
+    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getEmail())).append("</td>");
+    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getSpecialization())).append("</td>");
     trBuilder.append("<tr>");
 
     return trBuilder.toString();
