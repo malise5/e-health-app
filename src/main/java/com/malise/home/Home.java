@@ -5,14 +5,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.malise.app.Doctor;
+import com.malise.app.bean.DoctorBean;
 
 @WebServlet("/home")
 public class Home extends HttpServlet {
@@ -87,30 +86,13 @@ public class Home extends HttpServlet {
         "        </header>\n" + //
         "\n" + //
         "        <div class=\"container\">\n");
-    print.write(this.chartOfDoctors());
+    print.write(new DoctorBean().chartOfDoctors());
     print.write(
         "            \n" + //
             "        </div>\n" + //
             "    </body>\n" + //
             "</html>\n" + //
             "");
-
-  }
-
-  public String chartOfDoctors() {
-    List<Doctor> doctors = new ArrayList<>();
-
-    doctors.add(new Doctor("1", "Halkano Malise", "malise@gmail.com", "Cardiologist"));
-    doctors.add(new Doctor("2", "Mohammed Ali", "moha@gmail.com", "Gynaecologist"));
-
-    StringBuilder trBuilder = new StringBuilder();
-    trBuilder.append("<table><tr><th>Index</th><th>Name</th><th>Email</th><th>Specialization</th></tr>");
-
-    for (Doctor doctor : doctors) {
-      trBuilder.append(doctor.toString());
-    }
-    trBuilder.append("</table>");
-    return trBuilder.toString();
 
   }
 

@@ -18,6 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 public class Login extends HttpServlet {
 
   @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    resp.sendRedirect("./");
+  }
+
+  @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     String username = req.getParameter("username");
@@ -33,8 +38,11 @@ public class Login extends HttpServlet {
 
     } else {
       PrintWriter print = resp.getWriter();
-      print.print("<html><body><h2>Wrong username and password <a href=\".\">Login again</a></h2></body></html>");
+      print.print("<html><body><h2>Wrong username and password</h2>" +
+          "<a href=\"create_account.html\">Create New Account</a>" +
+          "<br><a href=\".\">Login again</a></body></html>");
     }
+
   }
 
 }

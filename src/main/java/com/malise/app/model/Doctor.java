@@ -1,4 +1,4 @@
-package com.malise.app;
+package com.malise.app.model;
 
 import java.io.Serializable;
 
