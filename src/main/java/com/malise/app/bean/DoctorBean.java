@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.malise.app.model.entity.Doctor;
+import com.malise.database.Database;
 
 public class DoctorBean implements DoctorBeanI, Serializable {
 
   public String chartOfDoctors() {
-    List<Doctor> doctors = new ArrayList<>();
+    List<Doctor> doctors = Database.getDbInstance().getDoctor();
 
-    doctors.add(new Doctor("1", "Halkano Malise", "malise@gmail.com", "Cardiologist"));
-    doctors.add(new Doctor("2", "Mohammed Ali", "moha@gmail.com", "Gynaecologist"));
+    // doctors.add(new Doctor("1", "Halkano Malise", "malise@gmail.com",
+    // "Cardiologist"));
+    // doctors.add(new Doctor("2", "Mohammed Ali", "moha@gmail.com",
+    // "Gynaecologist"));
 
     StringBuilder trBuilder = new StringBuilder();
     trBuilder.append("<table><tr><th>Index</th><th>Name</th><th>Email</th><th>Specialization</th></tr>");

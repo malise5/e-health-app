@@ -33,7 +33,7 @@ public class AppPage implements Serializable {
         "<body>" +
         "<nav class=\"navbar\">\n" + //
         " <div class=\"logo\">\n" + //
-        "   <h4>Welcome " + session.getAttribute("username") + "</h4>\n" + //
+        "   <h4>Welcome: " + session.getAttribute("username") + "</h4>\n" + //
         " </div>\n" + //
 
         new TopToolbar().menu(activeMenu) +

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.malise.app.model.entity.User;
+import com.malise.database.Database;
+
 @WebServlet(urlPatterns = "/login")
 public class Login extends HttpServlet {
 
@@ -34,34 +37,37 @@ public class Login extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    HttpSession httpSession = req.getSession(true);
-    httpSession.setAttribute("LoginId", "Admin");
-
-    ServletContext ctx = getServletContext();
-
     String username = req.getParameter("username");
     String password = req.getParameter("password");
 
+    // check if the user exists
+    Database database = Database.getDbInstance();
+
+    for (User user : database.getUsers()) {
+
+      if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+
+        HttpSession httpSession = req.getSession(true);
+        httpSession.setAttribute("LoginId", "Admin");
+
+        // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
+        // dispatcher.forward(req, resp);
+
+        httpSession.setAttribute("username", username);
+
+        resp.sendRedirect("./home");
+
+      }
+
+    }
+
     // if (username.equals(getInitParameter("username")) &&
     // password.equals(getInitParameter("password"))) for servletConfig
-    if (username.equals(ctx.getInitParameter("username")) && password.equals(ctx.getInitParameter("password"))) {
 
-      // to access within the web app
-      ctx.setAttribute("username", username);
-
-      // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
-      // dispatcher.forward(req, resp);
-
-      httpSession.setAttribute("username", username);
-
-      resp.sendRedirect("./home");
-
-    } else {
-      PrintWriter print = resp.getWriter();
-      print.print("<html><body><h2>Wrong username and password</h2>" +
-          "<a href=\"create_account.html\">Create New Account</a>" +
-          "<br><a href=\".\">Login again</a></body></html>");
-    }
+    PrintWriter print = resp.getWriter();
+    print.print("<html><body><h2>Wrong username and password</h2>" +
+        "<a href=\"create_account.html\">Create New Account</a>" +
+        "<br><a href=\".\">Login again</a></body></html>");
 
   }
 
