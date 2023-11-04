@@ -2,6 +2,7 @@ package com.malise.auth;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 // import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -50,6 +51,8 @@ public class Login extends HttpServlet {
 
       // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
       // dispatcher.forward(req, resp);
+
+      httpSession.setAttribute("username", username);
 
       resp.sendRedirect("./home");
 

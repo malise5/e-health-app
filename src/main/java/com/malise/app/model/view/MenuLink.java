@@ -9,6 +9,12 @@ public class MenuLink implements Serializable {
 
   private MenuLinkStatus status;
 
+  public MenuLink(String url, String label, MenuLinkStatus status) {
+    this.url = url;
+    this.label = label;
+    this.status = status;
+  }
+
   public String getLabel() {
     return label;
   }

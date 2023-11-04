@@ -1,15 +1,14 @@
 package com.malise.app.view.toolbar;
 
 import java.io.Serializable;
-import java.util.List;
 
-import com.malise.app.model.view.MenuLink;
+import org.apache.commons.lang3.StringUtils;
 
 public class BottomToolbar implements Serializable, Menu {
 
   @Override
-  public String menu(List<MenuLink> links) {
-    return "";
+  public String menu(int activeLinkIndex) {
+    return StringUtils.EMPTY;
   }
 
 }
