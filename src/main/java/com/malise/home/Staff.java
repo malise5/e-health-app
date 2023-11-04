@@ -13,15 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.malise.app.bean.DoctorBean;
-import com.malise.app.bean.DoctorBeanI;
-
-@WebServlet("/home")
-public class Home extends HttpServlet {
+@WebServlet(urlPatterns = "/staff")
+public class Staff extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     HttpSession httpSession = req.getSession();
 
     if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
@@ -29,8 +25,6 @@ public class Home extends HttpServlet {
       // RequestDispatcher dispatcher = req.getRequestDispatcher("./app/home.html");
       // dispatcher.forward(req, resp);
       ServletContext ctx = getServletContext();
-
-      DoctorBeanI doctorBean = new DoctorBean();
 
       PrintWriter print = resp.getWriter();
 
@@ -50,7 +44,7 @@ public class Home extends HttpServlet {
           "            display: flex;\n" + //
           "            justify-content: space-between;\n" + //
           "            align-items: center;\n" + //
-          "            background-color: #3498db;\n" + //
+          "            background-color: #3498db; /* Background color */\n" + //
           "            padding: 10px 20px;\n" + //
           "        }\n" + //
           "\n" + //
@@ -137,19 +131,19 @@ public class Home extends HttpServlet {
           "            <h4>User " + ctx.getAttribute("username") + "</h4>\n" + //
           "        </div>\n" + //
           "        <ul class=\"nav-links\">\n" + //
-          "            <li><a class=\"active\" href=\"./home\">Home</a></li>\n" + //
-          "            <li><a href=\"./staff\">Staff</a></li>\n" + //
+          "            <li><a href=\"./home\">Home</a></li>\n" + //
+          "            <li><a class=\"active\" href=\"./staff\">Staff</a></li>\n" + //
           "            <li><a href=\"#\">Word</a></li>\n" + //
           "            <li><a href=\"#\">Room</a></li>\n" + //
           "            <li><a href=\"#\">Bed</a></li>\n" + //
           "        </ul>\n" + //
           "    </nav>" +
           "        <header>\n" + //
-          "            <h1>Doctor Information Dashboard</h1>\n" + //
+          "            <h1>Staff Information</h1>\n" + //
           "        </header>\n" + //
           "\n" + //
           "        <div class=\"container\">\n");
-      print.write(doctorBean.chartOfDoctors());
+      print.write("Staff Members info will Appear Here");
       print.write("\n" + //
           "    </div>\n" + //
           "    </body>\n" + //
@@ -159,7 +153,6 @@ public class Home extends HttpServlet {
     } else {
       resp.sendRedirect("./");
     }
-
   }
 
 }
