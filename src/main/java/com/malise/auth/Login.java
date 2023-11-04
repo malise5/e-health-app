@@ -3,7 +3,7 @@ package com.malise.auth;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
+// import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
 @WebServlet(urlPatterns = "/login")
 public class Login extends HttpServlet {
 
@@ -19,7 +21,13 @@ public class Login extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     HttpSession httpSession = req.getSession();
-    resp.sendRedirect("./");
+
+    if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
+      resp.sendRedirect("./home");
+    } else {
+      resp.sendRedirect("./");
+    }
+
   }
 
   @Override
@@ -40,10 +48,10 @@ public class Login extends HttpServlet {
       // to access within the web app
       ctx.setAttribute("username", username);
 
-      RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
-      dispatcher.forward(req, resp);
+      // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
+      // dispatcher.forward(req, resp);
 
-      // ?resp.sendRedirect('./app/home.html') will include the path in the url
+      resp.sendRedirect("./home");
 
     } else {
       PrintWriter print = resp.getWriter();
