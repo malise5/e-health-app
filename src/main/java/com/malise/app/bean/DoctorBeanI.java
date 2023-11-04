@@ -1,6 +1,6 @@
 package com.malise.app.bean;
 
-import com.malise.app.model.Doctor;
+import com.malise.app.model.entity.Doctor;
 
 public interface DoctorBeanI {
 

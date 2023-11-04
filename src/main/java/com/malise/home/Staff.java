@@ -138,6 +138,7 @@ public class Staff extends HttpServlet {
           "            <li><a href=\"#\">Bed</a></li>\n" + //
           "        </ul>\n" + //
           "    </nav>" +
+          "<div><a href=\"./logout\" >Logout</a></div>\n" + //
           "        <header>\n" + //
           "            <h1>Staff Information</h1>\n" + //
           "        </header>\n" + //

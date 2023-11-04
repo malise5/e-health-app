@@ -88,7 +88,7 @@ public class Home extends HttpServlet {
           "                background-color: #3498db;\n" + //
           "                color: #fff;\n" + //
           "                text-align: center;\n" + //
-          "                margin: 20px 0;\n" + //
+          "                margin: 20px;\n" + //
           "                padding: 5px 0;\n" + //
           "            }\n" + //
           "\n" + //
@@ -144,6 +144,7 @@ public class Home extends HttpServlet {
           "            <li><a href=\"#\">Bed</a></li>\n" + //
           "        </ul>\n" + //
           "    </nav>" +
+          "<div><a href=\"./logout\" >Logout</a></div>\n" + //
           "        <header>\n" + //
           "            <h1>Doctor Information Dashboard</h1>\n" + //
           "        </header>\n" + //
