@@ -93,7 +93,7 @@ public class Home extends HttpServlet {
           "        </style>\n" + //
           "    </head>\n" + //
           "    <body>\n" +
-          "Logged in as : " + ctx.getAttribute("username") + "<br/>" +
+          "<div><h4>Current User: " + ctx.getAttribute("username") + "</h4><a href=\"./logout\" >Logout</a></div>\n" + //
           "        <header>\n" + //
           "            <h1>Doctor Information Dashboard</h1>\n" + //
           "        </header>\n" + //
@@ -101,7 +101,6 @@ public class Home extends HttpServlet {
           "        <div class=\"container\">\n");
       print.write(doctorBean.chartOfDoctors());
       print.write("\n" + //
-          "<a href=\"./logout\" >Logout</a>\n" + //
           "    </div>\n" + //
           "    </body>\n" + //
           "</html>\n" + //
