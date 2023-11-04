@@ -43,11 +43,11 @@ public class Home extends HttpServlet {
         "                background-color: #3498db;\n" + //
         "                color: #fff;\n" + //
         "                text-align: center;\n" + //
-        "                padding: 20px 0;\n" + //
+        "                padding: 5px 0;\n" + //
         "            }\n" + //
         "\n" + //
         "            h1 {\n" + //
-        "                font-size: 36px;\n" + //
+        "                font-size: 24px;\n" + //
         "            }\n" + //
         "\n" + //
         "            .container {\n" + //
@@ -86,7 +86,7 @@ public class Home extends HttpServlet {
         "        </style>\n" + //
         "    </head>\n" + //
         "    <body>\n" +
-        "Logged in as : " + ctx.getAttribute("username") + "\n" +
+        "Logged in as : " + ctx.getAttribute("username") + "<br/>" +
         "        <header>\n" + //
         "            <h1>Doctor Information Dashboard</h1>\n" + //
         "        </header>\n" + //
