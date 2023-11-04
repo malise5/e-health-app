@@ -13,9 +13,4 @@
     <param-name>password</param-name>
     <param-value>malise123</param-value>
   </context-param>
-
-  <context-param>
-    <param-name>AppName</param-name>
-    <param-value>Hospital Management</param-value>
-  </context-param>
 </web-app>
