@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/login", initParams = {
-    @WebInitParam(name = "username", value = "malise"),
-    @WebInitParam(name = "password", value = "malise123"),
-})
+@WebServlet(urlPatterns = "/login")
 public class Login extends HttpServlet {
 
   @Override
@@ -25,12 +23,18 @@ public class Login extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    ServletContext ctx = getServletContext();
+
     String username = req.getParameter("username");
     String password = req.getParameter("password");
 
-    if (username.equals(getInitParameter("username")) && password.equals(getInitParameter("password"))) {
+    // if (username.equals(getInitParameter("username")) &&
+    // password.equals(getInitParameter("password"))) for servletConfig
+    if (username.equals(ctx.getInitParameter("username")) && password.equals(ctx.getInitParameter("password"))) {
 
-      req.setAttribute("homeinfo", "welcome to E-Health Home page");
+      // to access within the web app
+      ctx.setAttribute("username", username);
+
       RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
       dispatcher.forward(req, resp);
 
