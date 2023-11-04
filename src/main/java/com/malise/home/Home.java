@@ -3,6 +3,7 @@ package com.malise.home;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,12 @@ public class Home extends HttpServlet {
 
     // RequestDispatcher dispatcher = req.getRequestDispatcher("./app/home.html");
     // dispatcher.forward(req, resp);
+    ServletContext ctx = getServletContext();
 
     DoctorBeanI doctorBean = new DoctorBean();
+
     PrintWriter print = resp.getWriter();
+
     print.write("<!DOCTYPE html>\n" + //
         "<html>\n" + //
         "    <head>\n" + //
@@ -81,7 +85,8 @@ public class Home extends HttpServlet {
         "            }\n" + //
         "        </style>\n" + //
         "    </head>\n" + //
-        "    <body>\n" + //
+        "    <body>\n" +
+        "Logged in as : " + ctx.getAttribute("username") + "\n" +
         "        <header>\n" + //
         "            <h1>Doctor Information Dashboard</h1>\n" + //
         "        </header>\n" + //
