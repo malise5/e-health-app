@@ -1,4 +1,4 @@
-package com.malise.home;
+package com.malise.action;
 
 import java.io.IOException;
 
