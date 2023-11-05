@@ -34,7 +34,28 @@ public class Home extends HttpServlet {
       DoctorBeanI doctorBean = new DoctorBean();
 
       new AppPage().renderHtml(req, resp, 0,
-          "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" + doctorBean.chartOfDoctors()
+          "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
+              "<h2>Add new Doctor</h2>\n" + //
+              "\n" + //
+              "            <form action=\"./doctor\" method=\"post\">\n" + //
+              "                    <label for=\"index\"><b>Index</b></label>\n" + //
+              "                    <input type=\"text\" placeholder=\"Enter Index\" name=\"index\" required>\n" + //
+              "\n" + //
+              "                    <label for=\"name\"><b>Name of the Doctor</b></label>\n" + //
+              "                    <input type=\"text\" id=\"name\" placeholder=\"Enter Name\" name=\"name\" required>\n"
+              + //
+              "\n" + //
+              "                    <label for=\"email\"><b>Email</b></label>\n" + //
+              "                    <input type=\"text\" id=\"email\" placeholder=\"Enter Email\" name=\"email\" required>\n"
+              + //
+              "\n" + //
+              "                    <label for=\"specialization\"><b>Specialization</b></label>\n" + //
+              "                    <input type=\"text\" placeholder=\"Enter Specialization\" name=\"specialization\" required>\n"
+              + //
+              "\n" + //
+              "                    <button type=\"submit\">Add Doctor</button>\n" + //
+              "            </form>"
+              + doctorBean.chartOfDoctors()
               + "</div>");
 
       // PrintWriter print = resp.getWriter();
