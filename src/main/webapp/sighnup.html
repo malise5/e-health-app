@@ -76,9 +76,9 @@
     </head>
     <body>
         <div class="login-container">
-            <h2>Hospital Management Software</h2>
+            <h2>Create Account</h2>
 
-            <form action="./login" method="post">
+            <form action="./user" method="post">
                 <div class="container">
                     <label for="username"><b>Username</b></label>
                     <input
@@ -96,15 +96,24 @@
                         required
                     />
 
-                    <button type="submit">Login</button>
+                    <label for="confirm_password"
+                        ><b>Confirm Password</b></label
+                    >
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        name="confirm_password"
+                        required
+                    />
+
+                    <button type="submit">Sign Up</button>
                 </div>
 
                 <div class="container-end">
                     <span class="psw"
-                        >Don't have an Account?
-                        <a href="./sighnup.html">Create New</a></span
+                        >have an Account?
+                        <a href="./index.html">Login here</a></span
                     >
-                    <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
             </form>
         </div>
