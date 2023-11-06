@@ -27,34 +27,111 @@ public class Home extends HttpServlet {
 
     if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
 
-      // RequestDispatcher dispatcher = req.getRequestDispatcher("./app/home.html");
-      // dispatcher.forward(req, resp);
-      // ServletContext ctx = getServletContext();
-
       DoctorBeanI doctorBean = new DoctorBean();
 
       new AppPage().renderHtml(req, resp, 0,
           "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
-              "<h2>Add new Doctor</h2>\n" + //
+          // "<h2>Add Doctor</h2>\n" + //
               "\n" + //
-              "            <form action=\"./doctor\" method=\"post\">\n" + //
-              "                    <label for=\"index\"><b>Index</b></label>\n" + //
-              "                    <input type=\"text\" placeholder=\"Enter Index\" name=\"index\" required>\n" + //
+              "<head>\n" + //
+              "    <style>\n" + //
+              "        /* Styles for the modal and form */\n" + //
+              "        .modal {\n" + //
+              "            display: none;\n" + //
+              "            position: fixed;\n" + //
+              "            z-index: 1;\n" + //
+              "            left: 0;\n" + //
+              "            top: 0;\n" + //
+              "            width: 100%;\n" + //
+              "            height: 100%;\n" + //
+              "            overflow: auto;\n" + //
+              "            background-color: rgba(0, 0, 0, 0.7);\n" + //
+              "        }\n" + //
               "\n" + //
-              "                    <label for=\"name\"><b>Name of the Doctor</b></label>\n" + //
-              "                    <input type=\"text\" id=\"name\" placeholder=\"Enter Name\" name=\"name\" required>\n"
+              "        .modal-content {\n" + //
+              "            background-color: #f4f4f4;\n" + //
+              "            margin: 15% auto;\n" + //
+              "            padding: 20px;\n" + //
+              "            border: 1px solid #888;\n" + //
+              "            width: 50%;\n" + //
+              "            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        .close {\n" + //
+              "            position: absolute;\n" + //
+              "            right: 10px;\n" + //
+              "            top: 10px;\n" + //
+              "            font-size: 20px;\n" + //
+              "            font-weight: bold;\n" + //
+              "            cursor: pointer;\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        form {\n" + //
+              "            text-align: center;\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        label {\n" + //
+              "            display: block;\n" + //
+              "            font-weight: bold;\n" + //
+              "            margin-top: 10px;\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        input {\n" + //
+              "            width: 80%;\n" + //
+              "            padding: 10px;\n" + //
+              "            margin: 5px 20px;\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        button {\n" + //
+              "            background-color: #0074cc;\n" + //
+              "            color: #fff;\n" + //
+              "            padding: 10px 20px;\n" + //
+              "            border: none;\n" + //
+              "            cursor: pointer;\n" + //
+              "        }\n" + //
+              "\n" + //
+              "        .close:hover {\n" + //
+              "            color: red;\n" + //
+              "        }\n" + //
+              "    </style>\n" + //
+              "</head>\n" + //
+              "<body>\n" + //
+              "\n" + //
+              "<button id=\"openModalButton\" onclick=\"openModal()\">Add Doctor</button>\n" + //
+              "\n" + //
+              "<div id=\"myModal\" class=\"modal\">\n" + //
+              "    <div class=\"modal-content\">\n" + //
+              "        <span class=\"close\" id=\"closeModal\" onclick=\"closeModal()\">&times;</span>\n" + //
+              "        <form action=\"./doctor\" method=\"post\">\n" + //
+              "            <label for=\"index\"><b>Index</b></label>\n" + //
+              "            <input type=\"text\" placeholder=\"Enter Index\" name=\"index\" required>\n" + //
+              "\n" + //
+              "            <label for=\"name\"><b>Name of the Doctor</b></label>\n" + //
+              "            <input type=\"text\" id=\"name\" placeholder=\"Enter Name\" name=\"name\" required>\n" + //
+              "\n" + //
+              "            <label for=\"email\"><b>Email</b></label>\n" + //
+              "            <input type=\"text\" id=\"email\" placeholder=\"Enter Email\" name=\"email\" required>\n" + //
+              "\n" + //
+              "            <label for=\"specialization\"><b>Specialization</b></label>\n" + //
+              "            <input type=\"text\" placeholder=\"Enter Specialization\" name=\"specialization\" required>\n"
               + //
               "\n" + //
-              "                    <label for=\"email\"><b>Email</b></label>\n" + //
-              "                    <input type=\"text\" id=\"email\" placeholder=\"Enter Email\" name=\"email\" required>\n"
-              + //
+              "            <button type=\"submit\">Add Doctor</button>\n" + //
+              "        </form>\n" + //
+              "    </div>\n" + //
+              "</div>\n" + //
               "\n" + //
-              "                    <label for=\"specialization\"><b>Specialization</b></label>\n" + //
-              "                    <input type=\"text\" placeholder=\"Enter Specialization\" name=\"specialization\" required>\n"
-              + //
+              "<script>\n" + //
+              "    function openModal() {\n" + //
+              "        document.getElementById(\"myModal\").style.display = \"block\";\n" + //
+              "    }\n" + //
               "\n" + //
-              "                    <button type=\"submit\">Add Doctor</button>\n" + //
-              "            </form>"
+              "    function closeModal() {\n" + //
+              "        document.getElementById(\"myModal\").style.display = \"none\";\n" + //
+              "    }\n" + //
+              "</script>\n" + //
+              "\n" + //
+              "</body>"
               + doctorBean.chartOfDoctors()
               + "</div>");
 

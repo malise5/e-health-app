@@ -61,12 +61,8 @@ public class Login extends HttpServlet {
 
     }
 
-    // if (username.equals(getInitParameter("username")) &&
-    // password.equals(getInitParameter("password"))) for servletConfig
-
     PrintWriter print = resp.getWriter();
     print.print("<html><body><h2>Wrong username and password</h2>" +
-        "<a href=\"create_account.html\">Create New Account</a>" +
         "<br><a href=\".\">Login again</a></body></html>");
 
   }
