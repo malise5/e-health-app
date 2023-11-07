@@ -1,6 +1,8 @@
 package com.malise.filter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -37,29 +39,39 @@ public class AuthFilter implements Filter {
     System.out.println("context path path " + httpRequest.getContextPath());
     System.out.println("context path uri " + httpRequest.getRequestURI());
 
+    // Check if the session is new
     if (httpSession.isNew()) {
 
+      // If it's a new session, invalidate it
       httpSession.invalidate();
 
+      // Check if the user is trying to access login or the home page
       if (servletPath.equals("/login") || servletPath.equals("/index.html") || servletPath.equals("/user")
           || servletPath.equals("/sighnup.html")) {
 
+        // Allow access to the requested page
         chain.doFilter(request, response);
 
       } else {
 
+        // Redirect to the home page
         httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
         response.getWriter().flush();
       }
 
     } else {
 
+      // If the session is not new, check if the user is authenticated
       if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
 
+        httpResponse.addHeader("AuthTime", DateFormat.getDateTimeInstance().format(new Date()));
+
+        // User is authenticated, allow access to requested pages
         chain.doFilter(request, response);
 
       } else {
 
+        // User is not authenticated, redirect to the home page
         httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
         response.getWriter().flush();
       }

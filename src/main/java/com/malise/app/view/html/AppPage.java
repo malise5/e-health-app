@@ -34,6 +34,7 @@ public class AppPage implements Serializable {
         "<nav class=\"navbar\">\n" + //
         " <div class=\"logo\">\n" + //
         "   <h4>Welcome: " + session.getAttribute("username") + "</h4>\n" + //
+        "   <p>Authenticated at: " + resp.getHeader("AuthTime") + "</p>\n" + //
         " </div>\n" + //
 
         new TopToolbar().menu(activeMenu) +
