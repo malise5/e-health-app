@@ -1,4 +1,4 @@
-package com.malise.action;
+package com.malise.app.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,7 +77,7 @@ public class Home extends HttpServlet {
               "        }\n" + //
               "\n" + //
               "        input {\n" + //
-              "            width: 80%;\n" + //
+              "            width: 90%;\n" + //
               "            padding: 10px;\n" + //
               "            margin: 5px 20px;\n" + //
               "        }\n" + //
