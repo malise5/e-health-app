@@ -22,8 +22,15 @@ public class DoctorBean implements DoctorBeanI, Serializable {
 
   }
 
-  public Doctor addDoctors(Doctor doctor) throws Exception {
-    return null;
+  // public Doctor addDoctors(Doctor doctor) throws Exception {
+  // return null;
+  // }
+  public Doctor addDoctors(Doctor doctor) {
+    Database database = Database.getDbInstance();
+
+    database.getDoctor().add(doctor);
+
+    return doctor;
   }
 
   public void deleteDoctor(Doctor account) {

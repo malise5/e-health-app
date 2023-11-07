@@ -6,7 +6,9 @@ public interface DoctorBeanI {
 
   String chartOfDoctors();
 
-  Doctor addDoctors(Doctor doctor) throws Exception;
+  Doctor addDoctors(Doctor doctor);
+
+  // Doctor addDoctors(Doctor doctor) throws Exception;
 
   void deleteDoctor(Doctor account);
 
