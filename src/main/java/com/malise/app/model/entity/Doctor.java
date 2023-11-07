@@ -10,6 +10,7 @@ public class Doctor implements Serializable {
   private String name;
   private String email;
   private String specialization;
+  // private String profile;
 
   public String getIndex() {
     return index;
@@ -23,6 +24,7 @@ public class Doctor implements Serializable {
     this.name = name;
     this.email = email;
     this.specialization = specialization;
+
   }
 
   public void setIndex(String index) {
@@ -53,17 +55,25 @@ public class Doctor implements Serializable {
     this.specialization = specialization;
   }
 
-  @Override
-  public String toString() {
-    StringBuilder trBuilder = new StringBuilder();
-    trBuilder.append("<tr>");
-    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getIndex())).append("</td>");
-    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getName())).append("</td>");
-    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getEmail())).append("</td>");
-    trBuilder.append("<td>").append(StringUtils.trimToEmpty(getSpecialization())).append("</td>");
-    trBuilder.append("<tr>");
+  // @Override
+  // public String toString() {
+  // StringBuilder trBuilder = new StringBuilder();
+  // trBuilder.append("<tr>");
+  // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getIndex())).append("</td>");
+  // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getName())).append("</td>");
+  // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getEmail())).append("</td>");
+  // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getSpecialization())).append("</td>");
+  // trBuilder.append("<tr>");
 
-    return trBuilder.toString();
-  }
+  // return trBuilder.toString();
+  // }
+
+  // public String getProfile() {
+  // return profile;
+  // }
+
+  // public void setProfile(String profile) {
+  // this.profile = profile;
+  // }
 
 }

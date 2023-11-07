@@ -95,6 +95,64 @@ public class AppCss implements Serializable {
       "            tr:nth-child(odd) {\n" + //
       "                background-color: #e6e6e6;\n" + //
       "            }\n" + //
+      "        /* Styles for the modal and form */\n" + //
+      "        .modal {\n" + //
+      "            display: none;\n" + //
+      "            position: fixed;\n" + //
+      "            z-index: 1;\n" + //
+      "            left: 0;\n" + //
+      "            top: 0;\n" + //
+      "            width: 100%;\n" + //
+      "            height: 100%;\n" + //
+      "            overflow: auto;\n" + //
+      "            background-color: rgba(0, 0, 0, 0.7);\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        .modal-content {\n" + //
+      "            background-color: #f4f4f4;\n" + //
+      "            margin: 15% auto;\n" + //
+      "            padding: 20px;\n" + //
+      "            border: 1px solid #888;\n" + //
+      "            width: 50%;\n" + //
+      "            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        .close {\n" + //
+      "            position: absolute;\n" + //
+      "            right: 10px;\n" + //
+      "            top: 10px;\n" + //
+      "            font-size: 20px;\n" + //
+      "            font-weight: bold;\n" + //
+      "            cursor: pointer;\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        form {\n" + //
+      "            text-align: center;\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        label {\n" + //
+      "            display: block;\n" + //
+      "            font-weight: bold;\n" + //
+      "            margin-top: 10px;\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        input {\n" + //
+      "            width: 90%;\n" + //
+      "            padding: 10px;\n" + //
+      "            margin: 5px 20px;\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        button {\n" + //
+      "            background-color: #0074cc;\n" + //
+      "            color: #fff;\n" + //
+      "            padding: 10px 20px;\n" + //
+      "            border: none;\n" + //
+      "            cursor: pointer;\n" + //
+      "        }\n" + //
+      "\n" + //
+      "        .close:hover {\n" + //
+      "            color: red;\n" + //
+      "        }\n" + //
       "        </style>"; //
 
   public String getStyle() {

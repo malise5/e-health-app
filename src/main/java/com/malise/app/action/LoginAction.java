@@ -1,4 +1,4 @@
-package com.malise.auth;
+package com.malise.app.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,18 +8,22 @@ import java.util.Date;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.malise.app.bean.AuthBean;
+import com.malise.app.bean.AuthBeanI;
 import com.malise.app.model.entity.User;
 import com.malise.database.Database;
 
 @WebServlet(urlPatterns = "/login")
-public class Login extends HttpServlet {
+public class LoginAction extends BaseAction {
+  // public class LoginAction extends HttpServlet {
+
+  AuthBeanI authBean = new AuthBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,29 +41,37 @@ public class Login extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    String username = req.getParameter("username");
-    String password = req.getParameter("password");
+    User loginUser = new User();
+    serializeForm(loginUser, req.getParameterMap());
+
+    // String username = req.getParameter("username");
+    // String password = req.getParameter("password");
 
     // check if the user exists
-    Database database = Database.getDbInstance();
+    // Database database = Database.getDbInstance();
 
-    for (User user : database.getUsers()) {
+    User userDetails = authBean.authenticate(loginUser);
 
-      if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+    // for (User user : database.getUsers()) {
 
-        HttpSession httpSession = req.getSession(true);
-        httpSession.setAttribute("LoginId", "Admin");
+    // if (username.equals(user.getUsername()) &&
+    // password.equals(user.getPassword())) {
+    if (userDetails != null) {
 
-        // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
-        // dispatcher.forward(req, resp);
+      HttpSession httpSession = req.getSession(true);
+      httpSession.setAttribute("LoginId", "Admin");
 
-        httpSession.setAttribute("username", username);
+      // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
+      // dispatcher.forward(req, resp);
 
-        resp.sendRedirect("./home");
+      // httpSession.setAttribute("username", username);
+      httpSession.setAttribute("username", loginUser.getUsername());
 
-      }
+      resp.sendRedirect("./home");
 
     }
+
+    // }
 
     PrintWriter print = resp.getWriter();
     print.print("<html><body><h2>Wrong username and password</h2>" +
