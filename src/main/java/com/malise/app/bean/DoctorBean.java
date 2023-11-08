@@ -1,8 +1,8 @@
 package com.malise.app.bean;
 
 import java.io.Serializable;
-import java.util.List;
-// import java.util.UUID;
+// import java.util.List;
+// import java.util.UUID
 
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.view.html.HtmlComponent;
@@ -32,10 +32,6 @@ public class DoctorBean implements DoctorBeanI, Serializable {
   public Doctor addDoctors(Doctor doctor) {
     Database database = Database.getDbInstance();
 
-    // String uniqueIdentifier = generateUniqueIdentifier();
-
-    // doctor.setIndex(uniqueIdentifier);
-
     database.getDoctor().add(doctor);
 
     return doctor;
@@ -44,10 +40,5 @@ public class DoctorBean implements DoctorBeanI, Serializable {
   public void deleteDoctor(Doctor account) {
 
   }
-
-  // // Generate a unique identifier using a combination of a counter and a UUID
-  // private String generateUniqueIdentifier() {
-  // return UUID.randomUUID().toString();
-  // }
 
 }

@@ -12,10 +12,10 @@ public class TopToolbar implements Menu, Serializable {
   private final List<MenuLink> links = new ArrayList<>();
 
   {
-    links.add(new MenuLink("./home", "Home", MenuLinkStatus.ACTIVE));
-    links.add(new MenuLink("./staff", "Staff", MenuLinkStatus.NOT_ACTIVE));
-    links.add(new MenuLink("./word", "Word", MenuLinkStatus.NOT_ACTIVE));
-    links.add(new MenuLink("./bed", "Bed", MenuLinkStatus.NOT_ACTIVE));
+    links.add(new MenuLink("./home", "Doctor", MenuLinkStatus.ACTIVE));
+    // links.add(new MenuLink("./staff", "Staff", MenuLinkStatus.NOT_ACTIVE));
+    links.add(new MenuLink("./ward", "Ward", MenuLinkStatus.NOT_ACTIVE));
+    links.add(new MenuLink("./apparatus", "Apparatus", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./logout", "Logout", MenuLinkStatus.NOT_ACTIVE));
   }
 

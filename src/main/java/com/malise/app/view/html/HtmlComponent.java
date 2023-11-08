@@ -21,7 +21,12 @@ public class HtmlComponent implements Serializable {
 
     trBuilder.append("<tr>");
     for (Field field : fields) {
-      trBuilder.append("<th>" + field.getName() + "</th>");
+      if (!field.isAnnotationPresent(AnnoTableHeader.class)) {
+        continue;
+      }
+
+      // trBuilder.append("<th>" + field.getName() + "</th>");
+      trBuilder.append("<th>" + field.getAnnotation(AnnoTableHeader.class).header() + "</th>");
     }
     trBuilder.append("</tr>");
 
@@ -30,6 +35,9 @@ public class HtmlComponent implements Serializable {
       trBuilder.append("<tr>");
 
       for (Field field : fields) {
+        if (!field.isAnnotationPresent(AnnoTableHeader.class)) {
+          continue;
+        }
         try {
           field.setAccessible(true);
           trBuilder.append("<td>").append(field.get(model).toString()).append("</td>");
@@ -51,16 +59,47 @@ public class HtmlComponent implements Serializable {
   }
 
   public static String form(Class<?> model) {
-    String htmlForm = "<br/>Add Doctor<br/><form action=\"./doctor\" method=\"post\">\n";
+
+    AnnoHtmlForm formsHtml = null;
+
+    if (model.isAnnotationPresent(AnnoHtmlForm.class))
+      formsHtml = model.getAnnotation(AnnoHtmlForm.class);
+
+    if (formsHtml == null)
+      return StringUtils.EMPTY;
+
+    String htmlForm = "<header><h1>" + " Add" + formsHtml.label() + "</h1></header> "
+        + "<br/>Add" + formsHtml.label() + "<br/><form action=\"" + formsHtml.url() + "\" method=\""
+        + formsHtml.Methodhttp() + "\">\n";
+    // String htmlForm = "<br/>Add Doctor<br/><form action=\"./doctor\"
+    // method=\"post\">\n";
 
     Field[] fields = model.getDeclaredFields();
 
     for (Field field : fields) {
+      if (!field.isAnnotationPresent(AnnoHtmlFormField.class)) {
+        continue;
+      }
+
+      AnnoHtmlFormField formField = field.getAnnotation(AnnoHtmlFormField.class);
+
       String fieldName = field.getName();
 
-      htmlForm += "<label for=\"" + fieldName + "\"><b>" + fieldName + "</b></label><br/>";
-      htmlForm += " <input type=\"text\" id=\"" + fieldName + "\" placeholder=\"Enter Index\" name=\"" + fieldName
-          + "\" required>\n";
+      // htmlForm += "<label for=\"" + fieldName + "\"><b>" + fieldName +
+      // "</b></label><br/>";
+      // htmlForm += " <input type=\"text\" id=\"" + fieldName + "\"
+      // placeholder=\"Type here\" name=\"" + fieldName
+      // + "\">\n";
+      htmlForm += "<label for=\"" + (StringUtils.isBlank(formField.labelFor()) ? fieldName
+          : formField.labelFor()) + "\"><b>"
+          + (StringUtils.isBlank(formField.label()) ? fieldName
+              : formField.label())
+          + "</b></label><br/>";
+      htmlForm += " <input type=\"text\" id=\"" + (StringUtils.isBlank(formField.idTag()) ? fieldName
+          : formField.idTag()) + "\" placeholder=\"Type here\" name=\""
+          + (StringUtils.isBlank(formField.name()) ? fieldName
+              : formField.name())
+          + "\">\n";
 
     }
 

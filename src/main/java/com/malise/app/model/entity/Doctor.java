@@ -2,13 +2,27 @@ package com.malise.app.model.entity;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import com.malise.app.view.html.AnnoHtmlForm;
+import com.malise.app.view.html.AnnoHtmlFormField;
+import com.malise.app.view.html.AnnoTableHeader;
 
+@AnnoHtmlForm(label = "Doctor", url = "./doctor")
 public class Doctor implements Serializable {
 
+  @AnnoTableHeader(header = "index")
+  @AnnoHtmlFormField(label = "index")
   private String index;
+
+  @AnnoTableHeader(header = "Name of Doctor")
+  @AnnoHtmlFormField(label = "Name")
   private String name;
+
+  @AnnoTableHeader(header = "Email")
+  @AnnoHtmlFormField(label = "Email-Address")
   private String email;
+
+  @AnnoTableHeader(header = "Specialization")
+  @AnnoHtmlFormField(label = "specialization")
   private String specialization;
   // private String profile;
 

@@ -33,6 +33,7 @@ public class HomeAction extends HttpServlet {
 
     new AppPage().renderHtml(req, resp, 0,
         "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
+            "<div class=container>" +
             "\n" + //
             "<body>\n" + //
             "\n" + //
