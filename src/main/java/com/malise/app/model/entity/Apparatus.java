@@ -19,6 +19,15 @@ public class Apparatus {
   @AnnoHtmlFormField(label = "quantity")
   private int quantity;
 
+  public Apparatus() {
+  }
+
+  public Apparatus(int apparatusId, String apparatusName, int quantity) {
+    this.apparatusId = apparatusId;
+    this.apparatusName = apparatusName;
+    this.quantity = quantity;
+  }
+
   public int getApparatusId() {
     return apparatusId;
   }

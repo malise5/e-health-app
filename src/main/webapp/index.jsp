@@ -1,3 +1,7 @@
+<%-- <%! String appHeader ="<h2>Hospital Management Software</h2>"; %> --%>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -76,9 +80,10 @@
     </head>
     <body>
         <div class="login-container">
-            <h2>Create Account</h2>
+            <%-- <h2>Hospital Management Software</h2> --%>
+            <h2><%= application.getInitParameter("AppName") %></h2>
 
-            <form action="./user" method="post">
+            <form action="./login" method="post">
                 <div class="container">
                     <label for="username"><b>Username</b></label>
                     <input
@@ -96,26 +101,20 @@
                         required
                     />
 
-                    <label for="confirm_password"
-                        ><b>Confirm Password</b></label
-                    >
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        name="confirm_password"
-                        required
-                    />
-
-                    <button type="submit">Sign Up</button>
+                    <button type="submit">Login</button>
                 </div>
 
                 <div class="container-end">
                     <span class="psw"
-                        >have an Account?
-                        <a href="./index.html">Login here</a></span
+                        >Don't have an Account?
+                        <a href="./signup.jsp">Create New</a></span
                     >
+                    <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
             </form>
         </div>
+
+        <br />
+        <br />
     </body>
 </html>

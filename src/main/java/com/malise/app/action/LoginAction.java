@@ -2,10 +2,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
-// import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.malise.app.bean.AuthBean;
 import com.malise.app.bean.AuthBeanI;
 import com.malise.app.model.entity.User;
-import com.malise.database.Database;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginAction extends BaseAction {
-  // public class LoginAction extends HttpServlet {
 
   AuthBeanI authBean = new AuthBean();
 
@@ -44,34 +39,17 @@ public class LoginAction extends BaseAction {
     User loginUser = new User();
     serializeForm(loginUser, req.getParameterMap());
 
-    // String username = req.getParameter("username");
-    // String password = req.getParameter("password");
-
-    // check if the user exists
-    // Database database = Database.getDbInstance();
-
     User userDetails = authBean.authenticate(loginUser);
-
-    // for (User user : database.getUsers()) {
-
-    // if (username.equals(user.getUsername()) &&
-    // password.equals(user.getPassword())) {
     if (userDetails != null) {
 
       HttpSession httpSession = req.getSession(true);
       httpSession.setAttribute("LoginId", "Admin");
-
-      // RequestDispatcher dispatcher = req.getRequestDispatcher("./home");
-      // dispatcher.forward(req, resp);
-
-      // httpSession.setAttribute("username", username);
       httpSession.setAttribute("username", loginUser.getUsername());
+      // httpSession.setAttribute("activeMenu", 0);
 
       resp.sendRedirect("./home");
 
     }
-
-    // }
 
     PrintWriter print = resp.getWriter();
     print.print("<html><body><h2>Wrong username and password</h2>" +

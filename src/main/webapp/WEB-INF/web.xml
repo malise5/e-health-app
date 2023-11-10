@@ -6,6 +6,6 @@
   <display-name>Hospital Management Web Application</display-name>
   <context-param>
     <param-name>AppName</param-name>
-    <param-value>Hospital Management App</param-value>
+    <param-value>Hospital App</param-value>
   </context-param>
 </web-app>

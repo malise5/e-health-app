@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.malise.app.model.entity.Apparatus;
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.User;
+import com.malise.app.model.entity.Ward;
 
 public class Database implements Serializable {
 
@@ -14,6 +16,10 @@ public class Database implements Serializable {
   private List<User> users = new ArrayList<>();
 
   private List<Doctor> doctor = new ArrayList<>();
+
+  private List<Ward> ward = new ArrayList<>();
+
+  private List<Apparatus> apparatus = new ArrayList<>();
 
   private static Database dbInstance;
 
@@ -42,6 +48,26 @@ public class Database implements Serializable {
 
   public void setDoctor(List<Doctor> doctor) {
     this.doctor = doctor;
+  }
+
+  public List<Ward> getWard() {
+    return ward;
+  }
+
+  public void setWard(List<Ward> ward) {
+    this.ward = ward;
+  }
+
+  public List<Apparatus> getApparatus() {
+    return apparatus;
+  }
+
+  public void setApparatus(List<Apparatus> apparatus) {
+    this.apparatus = apparatus;
+  }
+
+  public static void setDbInstance(Database dbInstance) {
+    Database.dbInstance = dbInstance;
   }
 
   public String getDatabaseCreateAt() {

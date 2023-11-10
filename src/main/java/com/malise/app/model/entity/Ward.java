@@ -10,7 +10,7 @@ import com.malise.app.view.html.AnnoTableHeader;
 @AnnoHtmlForm(label = "Ward", url = "./ward")
 public class Ward implements Serializable {
 
-  @AnnoTableHeader(header = "Ward Name")
+  @AnnoTableHeader(header = "Ward-Name")
   @AnnoHtmlFormField(label = "Name")
   private String wardName;
 
@@ -21,6 +21,15 @@ public class Ward implements Serializable {
   @AnnoTableHeader(header = "currentOccupancy")
   @AnnoHtmlFormField
   private int currentOccupancy;
+
+  public Ward() {
+  }
+
+  public Ward(String wardName, int capacity, int currentOccupancy) {
+    this.wardName = wardName;
+    this.capacity = capacity;
+    this.currentOccupancy = currentOccupancy;
+  }
 
   public String getWardName() {
     return wardName;

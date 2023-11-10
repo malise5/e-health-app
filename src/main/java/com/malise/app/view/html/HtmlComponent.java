@@ -44,9 +44,6 @@ public class HtmlComponent implements Serializable {
         } catch (IllegalArgumentException | IllegalAccessException e) {
           e.printStackTrace();
         }
-        // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getName())).append("</td>");
-        // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getEmail())).append("</td>");
-        // trBuilder.append("<td>").append(StringUtils.trimToEmpty(getSpecialization())).append("</td>");
 
       }
       trBuilder.append("</tr");
@@ -71,8 +68,6 @@ public class HtmlComponent implements Serializable {
     String htmlForm = "<header><h1>" + " Add" + formsHtml.label() + "</h1></header> "
         + "<br/>Add" + formsHtml.label() + "<br/><form action=\"" + formsHtml.url() + "\" method=\""
         + formsHtml.Methodhttp() + "\">\n";
-    // String htmlForm = "<br/>Add Doctor<br/><form action=\"./doctor\"
-    // method=\"post\">\n";
 
     Field[] fields = model.getDeclaredFields();
 
@@ -85,11 +80,6 @@ public class HtmlComponent implements Serializable {
 
       String fieldName = field.getName();
 
-      // htmlForm += "<label for=\"" + fieldName + "\"><b>" + fieldName +
-      // "</b></label><br/>";
-      // htmlForm += " <input type=\"text\" id=\"" + fieldName + "\"
-      // placeholder=\"Type here\" name=\"" + fieldName
-      // + "\">\n";
       htmlForm += "<label for=\"" + (StringUtils.isBlank(formField.labelFor()) ? fieldName
           : formField.labelFor()) + "\"><b>"
           + (StringUtils.isBlank(formField.label()) ? fieldName
@@ -107,21 +97,6 @@ public class HtmlComponent implements Serializable {
     htmlForm += " </form>\n";//
 
     return htmlForm;
-
-    // "\n" + //
-    // " <label for=\"name\"><b>Name of the Doctor</b></label>\n" + //
-    // " <input type=\"text\" id=\"name\" placeholder=\"Enter Name\" name=\"name\"
-    // required>\n" + //
-    // "\n" + //
-    // " <label for=\"email\"><b>Email</b></label>\n" + //
-    // " <input type=\"text\" id=\"email\" placeholder=\"Enter Email\"
-    // name=\"email\" required>\n" + //
-    // "\n" + //
-    // " <label for=\"specialization\"><b>Specialization</b></label>\n" + //
-    // " <input type=\"text\" placeholder=\"Enter Specialization\"
-    // name=\"specialization\" required>\n"
-    // + //
-    // "\n" + //
 
   }
 
