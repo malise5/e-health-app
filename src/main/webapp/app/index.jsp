@@ -1,5 +1,9 @@
 <%@ page isELIgnored="false"%>
 <%@ page import="com.malise.app.view.toolbar.TopToolbar" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/formatting" %>
+
+
 
 <!DOCTYPE html>
 <html>

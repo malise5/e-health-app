@@ -1,3 +1,6 @@
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -75,7 +78,10 @@
         </style>
     </head>
     <body>
+       
+
         <div class="login-container">
+         <h2>${initParam.AppName}</h2>
             <h2>Create Account</h2>
 
             <form action="./user" method="post">

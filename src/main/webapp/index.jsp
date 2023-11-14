@@ -1,5 +1,5 @@
 <%@ page isELIgnored="false"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -80,8 +80,12 @@
     </head>
     <body>
         <div class="login-container">
-            <%-- <h2>Hospital Management Software</h2> --%>
-            <h2><%= application.getInitParameter("AppName") %></h2>
+            <%-- <h2>Hospital App</h2> --%>
+            <%-- <h2><%= application.getInitParameter("AppName") %></h2> --%>
+            <h2>${initParam.AppName}</h2>
+            <c:set var="appName" scope="application" value="${initParam.AppName}" />
+            <c:out value="${appName}"/>
+
 
             <form action="./login" method="post">
 
@@ -90,10 +94,11 @@
                 <div class="container">
                     <label for="username"><b>Username</b></label>
                     <%-- <input type="text" placeholder="Enter Username" name="username" required /> --%>
-                    <input type="text" placeholder="<jsp:getProperty name="loginForm" property="usernamePlaceHolder"/>" name="username" required />
+                    <input type="text" placeholder="${loginForm.usernamePlaceHolder}" name="username" required />
 
                     <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required />
+                    <%-- <input type="password" placeholder="Enter Password" name="password" required /> --%>
+                    <input type="password" placeholder="${loginForm.passwordPlaceHolder}" name="password" required />
 
                     <button type="submit">Login</button>
                 </div>
