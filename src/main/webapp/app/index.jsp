@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false"%>
 <%@ page import="com.malise.app.view.toolbar.TopToolbar" %>
 
 <!DOCTYPE html>
@@ -8,13 +9,17 @@
     <body>
         <nav class="navbar">
             <div class="logo">
-            <h3>Welcome: <%= session.getAttribute("username") %> </h3>
+            <%-- <h3>Welcome: <%= session.getAttribute("username") %> </h3> --%>
+            <h3>Welcome: ${sessionScope.username}</h3>
               <%= response.getHeader("AuthTime") %>
             </div>
-            <%= new TopToolbar().menu((int)request.getAttribute("activeMenu")) %>
+            <jsp:useBean id="navBar" class="com.malise.app.view.toolbar.TopToolbar" />
+            <jsp:setProperty name="navBar" property="activeLink"  value='${requestScope.activeMenu}'/>
+            ${navBar.menu}
         </nav>
-        <%= request.getAttribute("content") %>
+        ${requestScope.content}
         
       <a href="./logout">Logout</a>
     </body>
 </html>
+

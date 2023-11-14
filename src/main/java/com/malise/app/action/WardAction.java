@@ -55,7 +55,25 @@ public class WardAction extends BaseAction {
         "\n" + //
         "</body>"
         // + doctorBean.chartOfDoctors() contents go here
-        + HtmlComponent.table(new ArrayList<Ward>())
+        +
+        "            <table>\n" + //
+        "                <tr>\n" + //
+        "                    <th>Name</th>\n" + //
+        "                    <th>Capacity</th>\n" + //
+        "                    <th>currentOccupancy</th>\n" + ////
+        "                </tr>\n" + //
+        "                <tr>\n" + //
+        "                    <td>ward1</td>\n" + //
+        "                    <td>20</td>\n" + //
+        "                    <td>8</td>\n" + //
+        "                </tr>\n" + //
+        "                <tr>\n" + //
+        "                    <td>ward2</td>\n" + //
+        "                    <td>12</td>\n" + //
+        "                    <td>5</td>\n" + ///
+        "                </tr>\n" + //
+        "            </table>\n"
+        // + HtmlComponent.table(new ArrayList<Ward>())
         + "</div>");
   }
 

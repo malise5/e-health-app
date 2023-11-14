@@ -811,3 +811,58 @@ public static String form(Class<?> model) {
     // dispatcher.forward(req, resp);
 
     // new AppPage().renderHtml(req, resp, 0);
+
+## app/index.jsp
+
+<%@ page isELIgnored="false"%>
+<%@ page import="com.malise.app.view.toolbar.TopToolbar" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <jsp:include page="../style/style.jsp" />
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+            <%-- <h3>Welcome: <%= session.getAttribute("username") %> </h3> --%>
+            <h3>Welcome: ${session.username}</h3>
+              <%= response.getHeader("AuthTime") %>
+            </div>
+            <jsp:useBean id="navBar" class="com.malise.app.view.toolbar" />
+            <jsp:setProperty name="navBar" property="activeLink"  value="<%=request.getAttribute("activeMenu")%>/>
+            <jsp:getProperty name="navBar" property="menu" />
+            <%= new TopToolbar().menu((int)request.getAttribute("activeMenu")) %>
+        </nav>
+        <%= request.getAttribute("content") %>
+        
+      <a href="./logout">Logout</a>
+    </body>
+</html>
+
+part 2
+
+<%@ page isELIgnored="false"%>
+<%@ page import="com.malise.app.view.toolbar.TopToolbar" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <jsp:include page="../style/style.jsp" />
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+            <%-- <h3>Welcome: <%= session.getAttribute("username") %> </h3> --%>
+            <h3>Welcome: ${session.username}</h3>
+              <%= response.getHeader("AuthTime") %>
+            </div>
+            <jsp:useBean id="navBar" class="com.malise.app.view.toolbar.TopToolbar" />
+            <jsp:setProperty name="navBar" property="activeLink"  value='<%=request.getAttribute("activeMenu")%>'/>
+            <jsp:getProperty name="navBar" property="menu" />
+        </nav>
+        ${request.content} %>
+        
+      <a href="./logout">Logout</a>
+    </body>
+</html>

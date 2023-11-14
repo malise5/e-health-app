@@ -1,4 +1,4 @@
-<%-- <%! String appHeader ="<h2>Hospital Management Software</h2>"; %> --%>
+<%@ page isELIgnored="false"%>
 
 
 

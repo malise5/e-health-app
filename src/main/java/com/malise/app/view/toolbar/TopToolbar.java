@@ -9,6 +9,10 @@ import com.malise.app.model.view.MenuLinkStatus;
 
 public class TopToolbar implements Menu, Serializable {
 
+  private String menu;
+
+  private int activeLink;
+
   private final List<MenuLink> links = new ArrayList<>();
 
   {
@@ -19,9 +23,24 @@ public class TopToolbar implements Menu, Serializable {
     links.add(new MenuLink("./logout", "Logout", MenuLinkStatus.NOT_ACTIVE));
   }
 
-  @Override
-  public String menu(int activeLinkIndex) {
-    this.activateLink(activeLinkIndex);
+  // @Override
+  // public String menu(int activeLinkIndex) {
+  // this.activateLink(activeLinkIndex);
+
+  // String menuBar = "<ul class=\"nav-links\">";
+
+  // for (MenuLink link : links)
+  // menuBar += "<li><a " + (link.getStatus() == MenuLinkStatus.ACTIVE ?
+  // "class=\"active\"" : "")
+  // + " href=\"" + link.getUrl() + "\">" + link.getLabel() + "</a></li>";
+
+  // menuBar += "</ul>";
+
+  // return menuBar;
+  // }
+
+  public String getMenu() {
+    this.activateLink(getActiveLink());
 
     String menuBar = "<ul class=\"nav-links\">";
 
@@ -34,6 +53,10 @@ public class TopToolbar implements Menu, Serializable {
     return menuBar;
   }
 
+  public void setMenu(String menu) {
+    this.menu = menu;
+  }
+
   private void activateLink(int linkIndex) {
     for (int index = 0; index < links.size(); index++) {
       if (index == linkIndex)
@@ -42,6 +65,24 @@ public class TopToolbar implements Menu, Serializable {
         links.get(index).setStatus(MenuLinkStatus.NOT_ACTIVE);
     }
 
+  }
+
+  public List<MenuLink> getLinks() {
+    return links;
+  }
+
+  public int getActiveLink() {
+    return activeLink;
+  }
+
+  public void setActiveLink(int activeLink) {
+    this.activeLink = activeLink;
+  }
+
+  @Override
+  public String menu(int activeLinkIndex) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'menu'");
   }
 
 }
