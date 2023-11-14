@@ -11,17 +11,7 @@ import com.malise.database.Database;
 public class DoctorBean implements DoctorBeanI, Serializable {
 
   public String chartOfDoctors() {
-    // List<Doctor> doctors = Database.getDbInstance().getDoctor();
-
-    // StringBuilder trBuilder = new StringBuilder();
-    // trBuilder.append(HtmlComponent.table(doctors));
-
-    // trBuilder.append("<table><tr><th>Index</th><th>Name</th><th>Email</th><th>Specialization</th></tr>");
-
-    // for (Doctor doctor : doctors) {
-    // trBuilder.append(doctor.toString());
-    // }
-    // trBuilder.append("</table>");
+    
     return HtmlComponent.table(Database.getDbInstance().getDoctor());
 
   }

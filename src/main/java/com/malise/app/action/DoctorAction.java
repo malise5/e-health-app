@@ -20,9 +20,9 @@ import com.malise.app.model.entity.Doctor;
 @WebServlet("/doctor")
 public class DoctorAction extends BaseAction {
 
-  private Doctor doctor = new Doctor();
+  // private Doctor doctor = new Doctor();
 
-  private DoctorBeanI doctorBean = new DoctorBean();
+  // private DoctorBeanI doctorBean = new DoctorBean();
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,6 +34,9 @@ public class DoctorAction extends BaseAction {
     // database.getDoctor().add(new Doctor(req.getParameter("index"),
     // req.getParameter("name"),
     // req.getParameter("email"), req.getParameter("specialization")));
+    Doctor doctor = new Doctor();
+
+    DoctorBeanI doctorBean = new DoctorBean();
 
     serializeForm(doctor, req.getParameterMap());
 
