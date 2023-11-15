@@ -6,17 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.malise.app.bean.ApparatusBean;
+import com.malise.app.bean.ApparatusBeanI;
 import com.malise.app.model.entity.Apparatus;
+import com.malise.app.model.entity.Ward;
 import com.malise.app.view.html.HtmlComponent;
 
-@WebServlet(urlPatterns = "/apparatus")
+@WebServlet("/apparatus")
 public class ApparatusAction extends BaseAction {
+
+  ApparatusBeanI apparatusBean = new ApparatusBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     // HttpSession httpSession = req.getSession();
 
-    renderPage(req, resp, 2, "<header><h1>Apparatus Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 2, "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //
@@ -52,8 +58,21 @@ public class ApparatusAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        // + doctorBean.chartOfDoctors() content goes here
+        + apparatusBean.chartOfApparatus()
         + "</div>");
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Apparatus apparatus = new Apparatus();
+
+    ApparatusBeanI apparatusBean = new ApparatusBean();
+
+    serializeForm(apparatus, req.getParameterMap());
+
+    apparatusBean.addApparatus(apparatus);
+
+    resp.sendRedirect("./apparatus");
   }
 
 }

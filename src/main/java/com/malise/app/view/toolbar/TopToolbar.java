@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.malise.app.model.view.MenuLink;
-import com.malise.app.model.view.MenuLinkStatus;
+import com.malise.app.view.html.MenuLink;
+import com.malise.app.view.html.MenuLinkStatus;
 
 public class TopToolbar implements Menu, Serializable {
 
@@ -17,7 +17,7 @@ public class TopToolbar implements Menu, Serializable {
 
   {
     // links.add(new MenuLink("./home", "Home", MenuLinkStatus.NOT_ACTIVE));
-    links.add(new MenuLink("./home", "Doctor", MenuLinkStatus.ACTIVE));
+    links.add(new MenuLink("./doctor", "Doctor", MenuLinkStatus.ACTIVE));
     links.add(new MenuLink("./ward", "Ward", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./apparatus", "Apparatus", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./logout", "Logout", MenuLinkStatus.NOT_ACTIVE));

@@ -2,8 +2,6 @@ package com.malise.app.bean;
 
 import java.io.Serializable;
 
-import javax.servlet.http.HttpSession;
-
 import com.malise.app.model.entity.User;
 import com.malise.database.Database;
 

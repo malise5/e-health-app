@@ -7,11 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.malise.app.bean.WardBean;
+import com.malise.app.bean.WardBeanI;
+import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.Ward;
 import com.malise.app.view.html.HtmlComponent;
 
 @WebServlet(urlPatterns = "/ward")
 public class WardAction extends BaseAction {
+
+  WardBeanI wardBean = new WardBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,27 +60,21 @@ public class WardAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        // + doctorBean.chartOfDoctors() contents go here
-        +
-        "            <table>\n" + //
-        "                <tr>\n" + //
-        "                    <th>Name</th>\n" + //
-        "                    <th>Capacity</th>\n" + //
-        "                    <th>currentOccupancy</th>\n" + ////
-        "                </tr>\n" + //
-        "                <tr>\n" + //
-        "                    <td>ward1</td>\n" + //
-        "                    <td>20</td>\n" + //
-        "                    <td>8</td>\n" + //
-        "                </tr>\n" + //
-        "                <tr>\n" + //
-        "                    <td>ward2</td>\n" + //
-        "                    <td>12</td>\n" + //
-        "                    <td>5</td>\n" + ///
-        "                </tr>\n" + //
-        "            </table>\n"
-        // + HtmlComponent.table(new ArrayList<Ward>())
+        + wardBean.chartofWards()
         + "</div>");
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Ward ward = new Ward();
+
+    WardBeanI wardBean = new WardBean();
+
+    serializeForm(ward, req.getParameterMap());
+
+    wardBean.addWard(ward);
+
+    resp.sendRedirect("./ward");
   }
 
 }

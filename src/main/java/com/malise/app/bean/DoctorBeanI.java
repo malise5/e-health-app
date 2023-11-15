@@ -6,6 +6,8 @@ public interface DoctorBeanI {
 
   String chartOfDoctors();
 
+  // List<Doctor> list();
+
   Doctor addDoctors(Doctor doctor);
 
   // Doctor addDoctors(Doctor doctor) throws Exception;

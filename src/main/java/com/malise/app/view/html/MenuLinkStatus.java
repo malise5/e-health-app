@@ -1,4 +1,4 @@
-package com.malise.app.model.view;
+package com.malise.app.view.html;
 
 public enum MenuLinkStatus {
 
