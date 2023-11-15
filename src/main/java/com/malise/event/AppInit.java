@@ -31,9 +31,10 @@ public class AppInit implements ServletContextListener {
     database.getWard().add(new Ward("Ward 2", 9, 10));
     database.getWard().add(new Ward("Ward 3", 9, 10));
 
-    database.getApparatus().add(new Apparatus(1, "Flasks", 15));
+    database.getApparatus().add(new Apparatus(1, "Defibrillators", 5));
     database.getApparatus().add(new Apparatus(2, "Gloves", 12));
-    database.getApparatus().add(new Apparatus(3, "Syrange", 20));
+    database.getApparatus().add(new Apparatus(3, "Weighing Scales", 7));
+    database.getApparatus().add(new Apparatus(4, "Patient Monitors.", 10));
 
   }
 
