@@ -16,8 +16,8 @@ public class TopToolbar implements Menu, Serializable {
   private final List<MenuLink> links = new ArrayList<>();
 
   {
+    // links.add(new MenuLink("./home", "Home", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./home", "Doctor", MenuLinkStatus.ACTIVE));
-    // links.add(new MenuLink("./staff", "Staff", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./ward", "Ward", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./apparatus", "Apparatus", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./logout", "Logout", MenuLinkStatus.NOT_ACTIVE));
@@ -81,8 +81,7 @@ public class TopToolbar implements Menu, Serializable {
 
   @Override
   public String menu(int activeLinkIndex) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'menu'");
+    return null;
   }
 
 }

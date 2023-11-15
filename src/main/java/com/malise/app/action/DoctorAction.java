@@ -24,16 +24,14 @@ public class DoctorAction extends BaseAction {
 
   // private DoctorBeanI doctorBean = new DoctorBean();
 
+  // @Override
+  // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
+  // ServletException, IOException {
+  // super.doGet(req, resp);
+  // }
+
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // HttpSession httpSession = req.getSession();
-
-    // if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
-
-    // Database database = Database.getDbInstance();
-    // database.getDoctor().add(new Doctor(req.getParameter("index"),
-    // req.getParameter("name"),
-    // req.getParameter("email"), req.getParameter("specialization")));
     Doctor doctor = new Doctor();
 
     DoctorBeanI doctorBean = new DoctorBean();
@@ -42,15 +40,7 @@ public class DoctorAction extends BaseAction {
 
     doctorBean.addDoctors(doctor);
 
-    // doctorBean.addDoctors(new Doctor(req.getParameter("index"),
-    // req.getParameter("name"), req.getParameter("email"),
-    // req.getParameter("specialization")));
-
     resp.sendRedirect("./home");
-
-    // } else {
-    // resp.sendRedirect("./");
-    // }
 
   }
 
