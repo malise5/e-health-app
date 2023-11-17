@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 // import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 // import org.apache.commons.beanutils.BeanUtils;
 // import org.apache.commons.lang3.StringUtils;
@@ -20,16 +19,6 @@ import com.malise.app.view.html.HtmlComponent;
 
 @WebServlet("/doctor")
 public class DoctorAction extends BaseAction {
-
-  // private Doctor doctor = new Doctor();
-
-  // private DoctorBeanI doctorBean = new DoctorBean();
-
-  // @Override
-  // protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
-  // ServletException, IOException {
-  // super.doGet(req, resp);
-  // }
 
   DoctorBeanI doctorBean = new DoctorBean();
 

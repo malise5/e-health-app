@@ -83,8 +83,8 @@
             <%-- <h2>Hospital App</h2> --%>
             <%-- <h2><%= application.getInitParameter("AppName") %></h2> --%>
             <h2>${initParam.AppName}</h2>
-            <c:set var="appName" scope="application" value="${initParam.AppName}" />
-            <c:out value="${appName}"/>
+            <%-- <c:set var="appName" scope="application" value="${initParam.AppName}" />
+            <c:out value="${appName}"/> --%>
 
 
             <form action="./login" method="post">

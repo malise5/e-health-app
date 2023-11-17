@@ -24,7 +24,7 @@ public class AppInit implements ServletContextListener {
 
     database.getDoctor().add(new Doctor("1", "Halkano Malise", "malise@gmail.com", "Cardiologist"));
     database.getDoctor().add(new Doctor("2", "Mohammed Ali", "moha@gmail.com", "Gynaecologist"));
-    database.getDoctor().add(new Doctor("3", "Linux mint", "linux@gmail.com", "Denstist"));
+    database.getDoctor().add(new Doctor("3", "Linus ", "linux@gmail.com", "Denstist"));
     database.getDoctor().add(new Doctor("4", "Ben Carson", "linux@gmail.com", "Pediatrics"));
 
     database.getWard().add(new Ward("Ward 1", 5, 10));

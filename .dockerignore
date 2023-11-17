@@ -1,1 +1,32 @@
+# .dockerignore
+
+# Ignore build-related files and directories
+target/
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Ignore unnecessary source files
+*.java
+
+# Ignore version control files and directories
+.git/
+.gitignore
+
+# Ignore Maven build-related files
+.mvn/
+mvnw
+mvnw.cmd
+
+# Ignore Docker-related files if they are not needed in the image
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Ignore temporary and cache files
+*.log
+*.tmp
+*.swp
+*.DS_Store
 *.md

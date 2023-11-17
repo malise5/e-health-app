@@ -24,12 +24,12 @@ public class WardAction extends BaseAction {
 
     // HttpSession httpSession = req.getSession();
 
-    renderPage(req, resp, 1, "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 1, "<header><h1>Ward Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //
         "\n" + //
-        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Doctor</button>\n" + //
+        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Ward</button>\n" + //
         "\n" + //
         "<div id=\"myModal\" class=\"modal\">\n" + //
         "    <div class=\"modal-content\">\n" + //
