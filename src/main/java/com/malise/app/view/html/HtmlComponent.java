@@ -28,6 +28,7 @@ public class HtmlComponent implements Serializable {
       // trBuilder.append("<th>" + field.getName() + "</th>");
       trBuilder.append("<th>" + field.getAnnotation(AnnoTableHeader.class).header() + "</th>");
     }
+    trBuilder.append("<th>Actions</th>"); // Add a column for Actions button
     trBuilder.append("</tr>");
 
     for (Object model : models) {
@@ -46,6 +47,14 @@ public class HtmlComponent implements Serializable {
         }
 
       }
+      // Add edit and delete buttons for each row
+      // Inside your Java code where you generate the HTML
+      trBuilder.append("<td class=\"action-buttons\">");
+      trBuilder.append("<button class=\"edit-button\" onclick=\"editRow('" + model.toString() + "')\">Edit</button>");
+      trBuilder
+          .append("<button class=\"delete-button\" onclick=\"deleteRow('" + model.toString() + "')\">Delete</button>");
+      trBuilder.append("</td>");
+
       trBuilder.append("</tr");
       trBuilder.append("<br/>");
 

@@ -157,4 +157,29 @@
         .close:hover {
             color: red;
         }
+
+         /* Add this CSS in your style/style.jsp or in a separate CSS file */
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-buttons button {
+            padding: 8px 12px;
+            margin: 4px;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+        }
+
+        .delete-button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+        }
+
       </style>

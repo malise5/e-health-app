@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.malise.app.bean.ApparatusBean;
 import com.malise.app.bean.ApparatusBeanI;
 import com.malise.app.model.entity.Apparatus;
-import com.malise.app.model.entity.Ward;
 import com.malise.app.view.html.HtmlComponent;
 
 @WebServlet("/apparatus")
@@ -58,7 +57,7 @@ public class ApparatusAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + apparatusBean.chartOfApparatus()
+        + apparatusBean.getApparatusTableHTML()
         + "</div>");
   }
 

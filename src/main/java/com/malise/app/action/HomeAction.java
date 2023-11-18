@@ -2,7 +2,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+// import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +62,7 @@ public class HomeAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + doctorBean.chartOfDoctors()
+        + doctorBean.getDoctorTableHTML()
         + "</div>");
 
   }

@@ -1,10 +1,14 @@
 package com.malise.app.bean;
 
+import java.util.List;
+
 import com.malise.app.model.entity.Ward;
 
 public interface WardBeanI {
 
-  String chartofWards();
+  List<Ward> getListOfWArd();
+
+  String getWardTableHTML();
 
   Ward addWard(Ward ward);
 

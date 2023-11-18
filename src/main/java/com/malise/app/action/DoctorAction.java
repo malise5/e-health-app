@@ -61,7 +61,7 @@ public class DoctorAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + doctorBean.chartOfDoctors()
+        + doctorBean.getDoctorTableHTML()
         + "</div>");
   }
 

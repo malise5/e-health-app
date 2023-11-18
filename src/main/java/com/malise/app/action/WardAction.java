@@ -60,7 +60,7 @@ public class WardAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + wardBean.chartofWards()
+        + wardBean.getWardTableHTML()
         + "</div>");
   }
 
