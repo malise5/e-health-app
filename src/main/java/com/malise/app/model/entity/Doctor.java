@@ -5,22 +5,29 @@ import java.io.Serializable;
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
+import com.malise.database.helper.DbTable;
+import com.malise.database.helper.DbTableColumn;
 
+@DbTable(nameOfTable = "doctors")
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
 public class Doctor implements Serializable {
 
+  @DbTableColumn(name = "doctor_index")
   @AnnoTableHeader(header = "index")
   @AnnoHtmlFormField(label = "index")
   private String index;
 
+  @DbTableColumn(name = "doctor_name")
   @AnnoTableHeader(header = "Name of Doctor")
   @AnnoHtmlFormField(label = "Name")
   private String name;
 
+  @DbTableColumn(name = "doctor_email")
   @AnnoTableHeader(header = "Email")
   @AnnoHtmlFormField(label = "Email-Address")
   private String email;
 
+  @DbTableColumn(name = "specialization")
   @AnnoTableHeader(header = "Specialization")
   @AnnoHtmlFormField(label = "specialization")
   private String specialization;

@@ -2,6 +2,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,21 +40,27 @@ public class LoginAction extends BaseAction {
     User loginUser = new User();
     serializeForm(loginUser, req.getParameterMap());
 
-    User userDetails = authBean.authenticate(loginUser);
-    if (userDetails != null) {
+    User userDetails;
+    try {
+      userDetails = authBean.authenticate(loginUser);
+      if (userDetails != null) {
 
-      HttpSession httpSession = req.getSession(true);
-      httpSession.setAttribute("LoginId", "Admin");
-      httpSession.setAttribute("username", loginUser.getUsername());
-      // httpSession.setAttribute("activeMenu", 0);
+        HttpSession httpSession = req.getSession(true);
+        httpSession.setAttribute("LoginId", "Admin");
+        httpSession.setAttribute("username", loginUser.getUsername());
+        // httpSession.setAttribute("activeMenu", 0);
 
-      resp.sendRedirect("./home");
+        // resp.sendRedirect("./home");
+        resp.sendRedirect("./doctor");
 
+      }
+
+      PrintWriter print = resp.getWriter();
+      print.print(
+          "<html><body><h2>Wrong username and password</h2>" + "<br><a href=\".\">Login again</a></body></html>");
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
-
-    PrintWriter print = resp.getWriter();
-    print.print("<html><body><h2>Wrong username and password</h2>" +
-        "<br><a href=\".\">Login again</a></body></html>");
 
   }
 

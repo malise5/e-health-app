@@ -2,12 +2,19 @@ package com.malise.app.model.entity;
 
 import java.io.Serializable;
 
+import com.malise.database.helper.DbTable;
+import com.malise.database.helper.DbTableColumn;
+
+@DbTable(nameOfTable = "users")
 public class User implements Serializable {
 
+  @DbTableColumn(name = "id", defination = "int")
   private Long id;
 
+  @DbTableColumn(name = "username")
   private String username;
 
+  @DbTableColumn(name = "password")
   private String password;
 
   private String confirm_password;

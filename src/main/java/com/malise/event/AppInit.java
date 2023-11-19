@@ -1,5 +1,11 @@
 package com.malise.event;
 
+import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -8,7 +14,9 @@ import com.malise.app.model.entity.Apparatus;
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.User;
 import com.malise.app.model.entity.Ward;
-import com.malise.database.Database;
+import com.malise.database.MysqlDb;
+import com.malise.database.helper.DbTable;
+import com.malise.database.helper.DbTableColumn;
 
 @WebListener
 public class AppInit implements ServletContextListener {
@@ -17,31 +25,54 @@ public class AppInit implements ServletContextListener {
   public void contextInitialized(ServletContextEvent sce) {
     System.out.println("***********Initializing Database*************");
 
-    Database database = Database.getDbInstance();
-    database.getData().add(new User(0L, "Malise", "123"));
-    database.getData().add(new User(0L, "Abdi", "123"));
-    database.getData().add(new User(0L, "Sule", "123"));
+    try {
+      Connection conn = MysqlDb.getInstance().getConnection();
 
-    database.getData().add(new Doctor("1", "Halkano Malise", "malise@gmail.com", "Cardiologist"));
-    database.getData().add(new Doctor("2", "Mohammed Ali", "moha@gmail.com", "Gynaecologist"));
-    database.getData().add(new Doctor("3", "Linus ", "linux@gmail.com", "Denstist"));
-    // database.getDoctor().add(new Doctor("4", "Ben Carson", "linux@gmail.com",
-    // "Pediatrics"));
+      List<Class<?>> entities = new ArrayList<>();
+      entities.add(User.class);
+      entities.add(Doctor.class);
+      entities.add(Ward.class);
+      entities.add(Apparatus.class);
 
-    database.getData().add(new Ward("Ward 1", 5, 10));
-    database.getData().add(new Ward("Ward 2", 9, 10));
-    database.getData().add(new Ward("Ward 3", 9, 10));
+      for (Class<?> clazz : entities) {
+        if (!clazz.isAnnotationPresent(DbTable.class)) {
+          continue;
+        }
+        DbTable dbTable = clazz.getAnnotation(DbTable.class);
+        StringBuilder sqlBuilder = new StringBuilder();
 
-    database.getData().add(new Apparatus(1, "Defibrillators", 5));
-    database.getData().add(new Apparatus(2, "Gloves", 12));
-    database.getData().add(new Apparatus(3, "Weighing Scales", 7));
-    // database.getApparatus().add(new Apparatus(4, "Patient Monitors.", 10));
+        sqlBuilder.append("create table if not exists ").append(dbTable.nameOfTable()).append("(");
+        for (Field field : clazz.getDeclaredFields()) {
+          if (!field.isAnnotationPresent(DbTableColumn.class)) {
+            continue;
+          }
+          DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
+          sqlBuilder.append(dbTableColumn.name()).append(" ").append(dbTableColumn.defination()).append(",");
+
+        }
+        sqlBuilder.append(")");
+
+        conn.prepareStatement(sqlBuilder.toString().replace(",)", ")")).executeUpdate();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
   }
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
     System.out.println("Application has been destroyed/undeployed");
+
+    try {
+      MysqlDb database = MysqlDb.getInstance();
+
+      if (database.getConnection() != null) {
+        database.getConnection().close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
 }

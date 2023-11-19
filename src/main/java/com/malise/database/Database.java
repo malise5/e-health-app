@@ -1,6 +1,7 @@
 package com.malise.database;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,8 @@ public class Database implements Serializable {
   private String databaseCreateAt;
 
   private static Database dbInstance;
+
+  // private Connection connection;
 
   private List<Object> data = new ArrayList<>();
 
@@ -35,6 +38,31 @@ public class Database implements Serializable {
     }
 
     return dbInstance;
+  }
+
+  public List<Object> getData() {
+    return data;
+  }
+
+  public void setData(List<Object> data) {
+    this.data = data;
+  }
+
+  public List<Object> getData(Class<?> clazz) {
+
+    return data
+        .stream()
+        .filter(clazz::isInstance)
+        .collect(Collectors.toList());
+
+  }
+
+  public String getDatabaseCreateAt() {
+    return databaseCreateAt;
+  }
+
+  public void setDatabaseCreateAt(String databaseCreateAt) {
+    this.databaseCreateAt = databaseCreateAt;
   }
 
   // public List<User> getUsers() {
@@ -72,30 +100,5 @@ public class Database implements Serializable {
   // public static void setDbInstance(Database dbInstance) {
   // Database.dbInstance = dbInstance;
   // }
-
-  public List<Object> getData() {
-    return data;
-  }
-
-  public void setData(List<Object> data) {
-    this.data = data;
-  }
-
-  public List<Object> getData(Class<?> clazz) {
-
-    return data
-        .stream()
-        .filter(clazz::isInstance)
-        .collect(Collectors.toList());
-
-  }
-
-  public String getDatabaseCreateAt() {
-    return databaseCreateAt;
-  }
-
-  public void setDatabaseCreateAt(String databaseCreateAt) {
-    this.databaseCreateAt = databaseCreateAt;
-  }
 
 }
