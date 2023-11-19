@@ -79,4 +79,9 @@ public class DoctorAction extends BaseAction {
 
   }
 
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    
+  }
+
 }

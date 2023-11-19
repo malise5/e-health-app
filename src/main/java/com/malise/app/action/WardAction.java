@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.malise.app.bean.WardBean;
 import com.malise.app.bean.WardBeanI;
-import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.Ward;
 import com.malise.app.view.html.HtmlComponent;
 
@@ -75,6 +74,31 @@ public class WardAction extends BaseAction {
     wardBean.add(ward);
 
     resp.sendRedirect("./ward");
+  }
+
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    // String wardIdToDelete = req.getParameter("wardId");
+
+    // if (wardIdToDelete != null && !wardIdToDelete.isEmpty()) {
+    // // Convert wardId to an integer (you might want to add error handling)
+    // int wardId = Integer.parseInt(wardIdToDelete);
+
+    // // Create a dummy Ward object with the given wardId
+    // Ward wardToDelete = new Ward();
+    // wardToDelete.setId(wardId); // Assuming Ward class has a setId method
+
+    // // Perform the delete operation
+    // wardBean.delete(wardToDelete);
+
+    // // Redirect back to the ward page
+    // resp.sendRedirect("./ward");
+    // } else {
+    // resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    // resp.getWriter().write("Invalid wardId for deletion");
+    // }
+
   }
 
 }

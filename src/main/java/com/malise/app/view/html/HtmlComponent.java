@@ -50,7 +50,8 @@ public class HtmlComponent implements Serializable {
       // Add edit and delete buttons for each row
       // Inside your Java code where you generate the HTML
       trBuilder.append("<td class=\"action-buttons\">");
-      trBuilder.append("<button class=\"edit-button\" onclick=\"editRow('" + model.toString() + "')\">Edit</button>");
+      // trBuilder.append("<button class=\"edit-button\" onclick=\"editRow('" +
+      // model.toString() + "')\">Edit</button>");
       trBuilder
           .append("<button class=\"delete-button\" onclick=\"deleteRow('" + model.toString() + "')\">Delete</button>");
       trBuilder.append("</td>");

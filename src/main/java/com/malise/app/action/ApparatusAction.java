@@ -74,4 +74,9 @@ public class ApparatusAction extends BaseAction {
     resp.sendRedirect("./apparatus");
   }
 
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+  }
+
 }

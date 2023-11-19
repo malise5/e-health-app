@@ -1,6 +1,10 @@
 package com.malise.app.bean;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.malise.app.model.entity.Ward;
 import com.malise.database.Database;
 
 public class GenericBean<T> implements GenericBeanI<T> {
