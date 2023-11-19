@@ -1,7 +1,5 @@
 package com.malise.app.bean;
 
-import java.util.List;
-
 import com.malise.app.model.entity.Doctor;
 
 public interface DoctorBeanI extends GenericBeanI<Doctor> {
