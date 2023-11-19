@@ -69,7 +69,7 @@ public class ApparatusAction extends BaseAction {
 
     serializeForm(apparatus, req.getParameterMap());
 
-    apparatusBean.addApparatus(apparatus);
+    apparatusBean.add(apparatus);
 
     resp.sendRedirect("./apparatus");
   }

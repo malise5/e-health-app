@@ -5,33 +5,32 @@ import java.util.List;
 
 import com.malise.app.model.entity.Ward;
 import com.malise.app.view.html.HtmlComponent;
-import com.malise.database.Database;
 
-public class WardBean implements WardBeanI, Serializable {
+public class WardBean extends GenericBean<Ward> implements WardBeanI, Serializable {
 
-  @Override
-  public List<Ward> getListOfWArd() {
-    return Database.getDbInstance().getWard();
-  }
+  // @Override
+  // public List<Ward> getListOfWArd() {
+  // return Database.getDbInstance().getWard();
+  // }
 
   @Override
   public String getWardTableHTML() {
-    List<Ward> ward = getListOfWArd();
+    List<Ward> ward = getList(Ward.class);
     return HtmlComponent.table(ward);
   }
 
-  @Override
-  public Ward addWard(Ward ward) {
-    Database database = Database.getDbInstance();
+  // @Override
+  // public Ward addWard(Ward ward) {
+  // Database database = Database.getDbInstance();
 
-    database.getWard().add(ward);
+  // database.getWard().add(ward);
 
-    return ward;
-  }
+  // return ward;
+  // }
 
-  @Override
-  public void deleteWard(Ward ward) {
+  // @Override
+  // public void deleteWard(Ward ward) {
 
-  }
+  // }
 
 }

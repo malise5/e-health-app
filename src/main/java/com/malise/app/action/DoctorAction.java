@@ -73,7 +73,7 @@ public class DoctorAction extends BaseAction {
 
     serializeForm(doctor, req.getParameterMap());
 
-    doctorBean.addDoctors(doctor);
+    doctorBean.add(doctor);
 
     resp.sendRedirect("./doctor");
 

@@ -5,30 +5,29 @@ import java.util.List;
 
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.view.html.HtmlComponent;
-import com.malise.database.Database;
 
-public class DoctorBean implements DoctorBeanI, Serializable {
+public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI, Serializable {
 
-  @Override
-  public List<Doctor> getListOfDoctors() {
-    return Database.getDbInstance().getDoctor();
-  }
+  // @Override
+  // public List<Doctor> getListOfDoctors() {
+  // return Database.getDbInstance().getDoctor();
+  // }
 
   public String getDoctorTableHTML() {
-    List<Doctor> doctors = getListOfDoctors();
+    List<Doctor> doctors = getList(Doctor.class);
     return HtmlComponent.table(doctors);
   }
 
-  public Doctor addDoctors(Doctor doctor) {
-    Database database = Database.getDbInstance();
+  // public Doctor addDoctors(Doctor doctor) {
+  // Database database = Database.getDbInstance();
 
-    database.getDoctor().add(doctor);
+  // database.getDoctor().add(doctor);
 
-    return doctor;
-  }
+  // return doctor;
+  // }
 
-  public void deleteDoctor(Doctor account) {
+  // public void deleteDoctor(Doctor account) {
 
-  }
+  // }
 
 }

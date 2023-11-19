@@ -72,7 +72,7 @@ public class WardAction extends BaseAction {
 
     serializeForm(ward, req.getParameterMap());
 
-    wardBean.addWard(ward);
+    wardBean.add(ward);
 
     resp.sendRedirect("./ward");
   }

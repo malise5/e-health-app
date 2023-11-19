@@ -4,14 +4,14 @@ import java.util.List;
 
 import com.malise.app.model.entity.Doctor;
 
-public interface DoctorBeanI {
+public interface DoctorBeanI extends GenericBeanI<Doctor> {
 
-  List<Doctor> getListOfDoctors();
+  // List<Doctor> getListOfDoctors();
 
-  String getDoctorTableHTML();
+  String getDoctorTableHTML(); // only this
 
-  Doctor addDoctors(Doctor doctor);
+  // Doctor addDoctors(Doctor doctor);
 
-  void deleteDoctor(Doctor account);
+  // void deleteDoctor(Doctor account);
 
 }
