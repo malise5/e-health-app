@@ -8,12 +8,12 @@ import com.malise.database.helper.DbTableColumn;
 
 @DbTable(nameOfTable = "apparatus")
 @AnnoHtmlForm(label = "Apparatus", url = "./apparatus")
-public class Apparatus {
+public class Apparatus extends BaseEntity {
 
-  @DbTableColumn(name = "id", defination = "int")
-  @AnnoTableHeader(header = "Id")
-  @AnnoHtmlFormField(label = "id")
-  private int apparatusId;
+  // @DbTableColumn(name = "id", defination = "int")
+  // @AnnoTableHeader(header = "Id")
+  // @AnnoHtmlFormField(label = "id")
+  // private int apparatusId;
 
   @DbTableColumn(name = "apparatus_name")
   @AnnoTableHeader(header = "Apparatus Name")
@@ -29,18 +29,19 @@ public class Apparatus {
   }
 
   public Apparatus(int apparatusId, String apparatusName, int quantity) {
-    this.apparatusId = apparatusId;
+    // this.apparatusId = apparatusId;
+    // setId(apparatusId);
     this.apparatusName = apparatusName;
     this.quantity = quantity;
   }
 
-  public int getApparatusId() {
-    return apparatusId;
-  }
+  // public int getApparatusId() {
+  // return apparatusId;
+  // }
 
-  public void setApparatusId(int apparatusId) {
-    this.apparatusId = apparatusId;
-  }
+  // public void setApparatusId(int apparatusId) {
+  // this.apparatusId = apparatusId;
+  // }
 
   public String getApparatusName() {
     return apparatusName;

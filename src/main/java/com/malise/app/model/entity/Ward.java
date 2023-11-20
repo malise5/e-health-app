@@ -11,7 +11,7 @@ import com.malise.database.helper.DbTableColumn;
 // @WebServlet("ward")
 @DbTable(nameOfTable = "wards")
 @AnnoHtmlForm(label = "Ward", url = "./ward")
-public class Ward implements Serializable {
+public class Ward extends BaseEntity {
 
   @DbTableColumn(name = "ward_name")
   @AnnoTableHeader(header = "Ward-Name")

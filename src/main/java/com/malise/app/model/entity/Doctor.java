@@ -10,12 +10,12 @@ import com.malise.database.helper.DbTableColumn;
 
 @DbTable(nameOfTable = "doctors")
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
-public class Doctor implements Serializable {
+public class Doctor extends BaseEntity {
 
-  @DbTableColumn(name = "doctor_index")
-  @AnnoTableHeader(header = "index")
-  @AnnoHtmlFormField(label = "index")
-  private String index;
+  // @DbTableColumn(name = "doctor_index")
+  // @AnnoTableHeader(header = "index")
+  // @AnnoHtmlFormField(label = "index")
+  // private String index;
 
   @DbTableColumn(name = "doctor_name")
   @AnnoTableHeader(header = "Name of Doctor")
@@ -33,24 +33,24 @@ public class Doctor implements Serializable {
   private String specialization;
   // private String profile;
 
-  public String getIndex() {
-    return index;
-  }
-
   public Doctor() {
   }
 
   public Doctor(String index, String name, String email, String specialization) {
-    this.index = index;
+    // this.index = index;
     this.name = name;
     this.email = email;
     this.specialization = specialization;
 
   }
 
-  public void setIndex(String index) {
-    this.index = index;
-  }
+  // public String getIndex() {
+  // return index;
+  // }
+
+  // public void setIndex(String index) {
+  // this.index = index;
+  // }
 
   public String getName() {
     return name;

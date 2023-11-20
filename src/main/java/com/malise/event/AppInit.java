@@ -4,59 +4,79 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-
-import com.malise.app.model.entity.Apparatus;
-import com.malise.app.model.entity.Doctor;
-import com.malise.app.model.entity.User;
-import com.malise.app.model.entity.Ward;
 import com.malise.database.MysqlDb;
-import com.malise.database.helper.DbTable;
-import com.malise.database.helper.DbTableColumn;
 
 @WebListener
 public class AppInit implements ServletContextListener {
 
   @Override
   public void contextInitialized(ServletContextEvent sce) {
-    System.out.println("***********Initializing Database*************");
 
-    try {
-      Connection conn = MysqlDb.getInstance().getConnection();
+    MysqlDb.updateSchema();
+    // System.out.println("***********Initializing Database*************");
 
-      List<Class<?>> entities = new ArrayList<>();
-      entities.add(User.class);
-      entities.add(Doctor.class);
-      entities.add(Ward.class);
-      entities.add(Apparatus.class);
+    // try {
+    // Connection conn = MysqlDb.getInstance().getConnection();
 
-      for (Class<?> clazz : entities) {
-        if (!clazz.isAnnotationPresent(DbTable.class)) {
-          continue;
-        }
-        DbTable dbTable = clazz.getAnnotation(DbTable.class);
-        StringBuilder sqlBuilder = new StringBuilder();
+    // List<Class<?>> entities = new ArrayList<>();
+    // entities.add(User.class);
+    // entities.add(Doctor.class);
+    // entities.add(Ward.class);
+    // entities.add(Apparatus.class);
 
-        sqlBuilder.append("create table if not exists ").append(dbTable.nameOfTable()).append("(");
-        for (Field field : clazz.getDeclaredFields()) {
-          if (!field.isAnnotationPresent(DbTableColumn.class)) {
-            continue;
-          }
-          DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
-          sqlBuilder.append(dbTableColumn.name()).append(" ").append(dbTableColumn.defination()).append(",");
+    // for (Class<?> clazz : entities) {
+    // if (!clazz.isAnnotationPresent(DbTable.class)) {
+    // continue;
+    // }
 
-        }
-        sqlBuilder.append(")");
+    // System.out.println("**********************************************************");
+    // System.out.println("Creating table for: " + clazz.getSimpleName());
+    // System.out.println("**********************************************************");
 
-        conn.prepareStatement(sqlBuilder.toString().replace(",)", ")")).executeUpdate();
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    // DbTable dbTable = clazz.getAnnotation(DbTable.class);
+
+    // StringBuilder sqlBuilder = new StringBuilder();
+
+    // sqlBuilder.append("create table if not exists
+    // ").append(dbTable.nameOfTable()).append("(");
+
+    // List<Field> fields = new
+    // ArrayList<>(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
+    // fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+
+    // for (Field field : fields) {
+    // if (!field.isAnnotationPresent(DbTableColumn.class)) {
+    // continue;
+    // }
+
+    // DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
+    // sqlBuilder.append(dbTableColumn.name()).append(" ")
+    // .append(dbTableColumn.defination())
+    // .append(field.isAnnotationPresent(DbTableId.class) ? " NOT NULL
+    // AUTO_INCREMENT PRIMARY KEY" : "")
+    // .append(",");
+
+    // }
+
+    // sqlBuilder.append(")");
+
+    // String tableCreationSql = sqlBuilder.toString().replace(",)", ")");
+
+    // System.out.println("**********************************************************");
+    // System.out.println("Creating table: " + tableCreationSql);
+    // System.out.println("**********************************************************");
+
+    // conn.prepareStatement(tableCreationSql).executeUpdate();
+    // }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
 
   }
 

@@ -15,6 +15,8 @@ public class UserBean implements UserBeanI, Serializable {
   public boolean register(User user) throws SQLException {
 
     if (user.getPassword().equals(user.getConfirm_password())) {
+
+      MysqlDb.insert(user);
       // MysqlDb database =
 
       // database.getData().add(new User(200L, user.getUsername(),
@@ -23,18 +25,18 @@ public class UserBean implements UserBeanI, Serializable {
       // Connection conn = database.getConnection();
 
       // Create a PreparedStatement with parameterized SQL
-      PreparedStatement statement = MysqlDb.getInstance().getConnection()
-          .prepareStatement("INSERT INTO users(id, username, password) VALUES (?, ?, ?)");
+      // PreparedStatement statement = MysqlDb.getInstance().getConnection()
+      // .prepareStatement("INSERT INTO users(username, password) VALUES (?, ?)");
 
-      // Generated random number
-      int randomId = (int) (Math.random() * 1000);
+      // // Generated random number
+      // // int randomId = (int) (Math.random() * 1000);
 
-      // Set values for the placeholders
-      statement.setInt(1, randomId);
-      statement.setString(2, user.getUsername());
-      statement.setString(3, user.getPassword());
+      // // // Set values for the placeholders
+      // // statement.setInt(1, randomId);
+      // statement.setString(1, user.getUsername());
+      // statement.setString(2, user.getPassword());
 
-      statement.executeUpdate();
+      // statement.executeUpdate();
 
       return true;
     }

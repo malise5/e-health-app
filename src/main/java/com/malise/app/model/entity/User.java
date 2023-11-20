@@ -6,10 +6,10 @@ import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 
 @DbTable(nameOfTable = "users")
-public class User implements Serializable {
+public class User extends BaseEntity {
 
-  @DbTableColumn(name = "id", defination = "int")
-  private Long id;
+  // @DbTableColumn(name = "id", defination = "int")
+  // private Long id;
 
   @DbTableColumn(name = "username")
   private String username;
@@ -23,18 +23,19 @@ public class User implements Serializable {
   }
 
   public User(Long id, String username, String password) {
-    this.id = id;
+    // this.id = id;
+    setId(id);
     this.username = username;
     this.password = password;
   }
 
-  public Long getId() {
-    return id;
-  }
+  // public Long getId() {
+  // return id;
+  // }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+  // public void setId(Long id) {
+  // this.id = id;
+  // }
 
   public String getUsername() {
     return username;

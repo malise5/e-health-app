@@ -9,10 +9,6 @@ import java.lang.annotation.Target;
 @Inherited
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DbTableColumn {
-
-  String name();
-
-  String defination() default "varchar(255)";
+public @interface DbTableId {
 
 }

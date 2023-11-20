@@ -2,6 +2,7 @@ package com.malise.app.bean;
 
 import java.util.List;
 import com.malise.database.Database;
+import com.malise.database.MysqlDb;
 
 public class GenericBean<T> implements GenericBeanI<T> {
 
@@ -19,6 +20,8 @@ public class GenericBean<T> implements GenericBeanI<T> {
 
   @Override
   public void add(T entity) {
+
+    MysqlDb.insert(entity);
     // Database database = Database.getDbInstance();
 
     // if (entity instanceof Doctor) {
@@ -39,8 +42,8 @@ public class GenericBean<T> implements GenericBeanI<T> {
 
     // return entity;
 
-    Database database = Database.getDbInstance();
-    database.getData().add(entity);
+    // Database database = Database.getDbInstance();
+    // database.getData().add(entity);
   }
 
   @Override
