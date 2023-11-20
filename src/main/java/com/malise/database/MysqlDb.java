@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 public class MysqlDb implements Serializable {
 
-  private static final String URL = "jdbc:mysql://localhost:3306/DbHospital";
+  private static final String URL = "jdbc:mysql://localhost:3306/hospital";
 
   private static final String USER = "root";
 
@@ -19,7 +21,12 @@ public class MysqlDb implements Serializable {
 
   private MysqlDb() throws SQLException {
 
-    connection = DriverManager.getConnection(URL, USER, PASSWORD);
+    MysqlDataSource datasource = new MysqlDataSource();
+    datasource.setUrl(URL);
+    datasource.setUser(USER);
+    datasource.setPassword(PASSWORD);
+
+    connection = datasource.getConnection();
 
   }
 

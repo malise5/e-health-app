@@ -43,11 +43,12 @@ public class LoginAction extends BaseAction {
     User userDetails;
     try {
       userDetails = authBean.authenticate(loginUser);
-      if (userDetails != null) {
+      if (userDetails != null && StringUtils.isNotEmpty(userDetails.getUsername())) {
 
         HttpSession httpSession = req.getSession(true);
         httpSession.setAttribute("LoginId", "Admin");
-        httpSession.setAttribute("username", loginUser.getUsername());
+        // httpSession.setAttribute("username", loginUser.getUsername());
+        httpSession.setAttribute("username", userDetails.getUsername());
         // httpSession.setAttribute("activeMenu", 0);
 
         // resp.sendRedirect("./home");
