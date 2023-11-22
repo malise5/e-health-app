@@ -9,6 +9,7 @@ target/
 
 # Ignore unnecessary source files
 *.java
+*.github
 
 # Ignore version control files and directories
 .git/

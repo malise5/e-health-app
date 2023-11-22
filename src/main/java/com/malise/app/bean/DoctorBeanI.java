@@ -6,7 +6,7 @@ public interface DoctorBeanI extends GenericBeanI<Doctor> {
 
   // List<Doctor> getListOfDoctors();
 
-  String getDoctorTableHTML(); // only this
+  // String getDoctorTableHTML(); // only this
 
   // Doctor addDoctors(Doctor doctor);
 

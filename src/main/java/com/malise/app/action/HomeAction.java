@@ -1,6 +1,7 @@
 package com.malise.app.action;
 
 import java.io.IOException;
+import java.util.List;
 
 // import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ public class HomeAction extends BaseAction {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     HttpSession httpSession = req.getSession();
+    List<Doctor> doctors = doctorBean.getList(Doctor.class);
+    String tables = HtmlComponent.table(doctors);
 
     // from base action
     renderPage(req, resp, 0, "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
@@ -62,7 +65,8 @@ public class HomeAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + doctorBean.getDoctorTableHTML()
+        // + doctorBean.getDoctorTableHTML()
+        + tables
         + "</div>");
 
   }

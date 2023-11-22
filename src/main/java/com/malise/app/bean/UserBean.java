@@ -1,46 +1,37 @@
 package com.malise.app.bean;
 
-import java.io.Serializable;
-import java.sql.PreparedStatement;
+// import java.io.Serializable;
+// import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.malise.app.model.entity.User;
-import com.malise.database.MysqlDb;
+// import com.malise.database.MysqlDb;
 
-public class UserBean implements UserBeanI, Serializable {
+public class UserBean extends GenericBean<User> implements UserBeanI {
 
   // Database database = Database.getDbInstance();
 
   @Override
   public boolean register(User user) throws SQLException {
 
-    if (user.getPassword().equals(user.getConfirm_password())) {
+    // if (user.getPassword().equals(user.getConfirm_password())) {
 
-      MysqlDb.insert(user);
-      // MysqlDb database =
+    // MysqlDb.insert(user);
 
-      // database.getData().add(new User(200L, user.getUsername(),
-      // user.getPassword()));
+    // return true;
+    // }
 
-      // Connection conn = database.getConnection();
+    // return false;
 
-      // Create a PreparedStatement with parameterized SQL
-      // PreparedStatement statement = MysqlDb.getInstance().getConnection()
-      // .prepareStatement("INSERT INTO users(username, password) VALUES (?, ?)");
-
-      // // Generated random number
-      // // int randomId = (int) (Math.random() * 1000);
-
-      // // // Set values for the placeholders
-      // // statement.setInt(1, randomId);
-      // statement.setString(1, user.getUsername());
-      // statement.setString(2, user.getPassword());
-
-      // statement.executeUpdate();
-
-      return true;
+    if (!user.getPassword().equals(user.getConfirm_password())) {
+      throw new RuntimeException("Password & confirm password do not match");
     }
 
+    // 1. check if username already exist
+    // 2. hash password
+    // 3. initiate event to send email ...Observer design pattern
+
+    getDao().add(user);
     return false;
   }
 

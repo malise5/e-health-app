@@ -2,6 +2,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 // import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +21,15 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet("/doctor")
 public class DoctorAction extends BaseAction {
 
-  DoctorBeanI doctorBean = new DoctorBean();
+  private final DoctorBeanI doctorBean = new DoctorBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    List<Doctor> doctors = doctorBean.getList(Doctor.class);
+
+    String doctorTables = HtmlComponent.table(doctors);
+
     // from base action
     renderPage(req, resp, 0, "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
@@ -61,7 +67,8 @@ public class DoctorAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + doctorBean.getDoctorTableHTML()
+        // + doctorBean.getDoctorTableHTML()
+        + doctorTables
         + "</div>");
   }
 
@@ -81,7 +88,7 @@ public class DoctorAction extends BaseAction {
 
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    
+
   }
 
 }

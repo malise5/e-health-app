@@ -1,15 +1,9 @@
 package com.malise.database;
 
 import java.io.Serializable;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.malise.app.model.entity.Apparatus;
-import com.malise.app.model.entity.Doctor;
-import com.malise.app.model.entity.User;
-import com.malise.app.model.entity.Ward;
 
 public class Database implements Serializable {
 

@@ -1,9 +1,9 @@
-package com.malise.app.bean;
+package com.malise.app.dao;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface GenericBeanI<T> extends Serializable {
+public interface GenericDaoI<T> extends Serializable {
 
   List<T> getList(Class<?> entity);
 

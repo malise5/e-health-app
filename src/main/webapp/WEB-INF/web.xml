@@ -6,6 +6,6 @@
   <display-name>Hospital Management Web Application</display-name>
   <context-param>
     <param-name>AppName</param-name>
-    <param-value>Hospital App</param-value>
+    <param-value>Moyale Nursing Home</param-value>
   </context-param>
 </web-app>

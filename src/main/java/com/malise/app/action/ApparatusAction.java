@@ -1,6 +1,8 @@
 package com.malise.app.action;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +16,14 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet("/apparatus")
 public class ApparatusAction extends BaseAction {
 
-  ApparatusBeanI apparatusBean = new ApparatusBean();
+  private final ApparatusBeanI apparatusBean = new ApparatusBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    List<Apparatus> apparatus = apparatusBean.getList(Apparatus.class);
+
+    String apparatusTables = HtmlComponent.table(apparatus);
 
     // HttpSession httpSession = req.getSession();
 
@@ -57,7 +63,8 @@ public class ApparatusAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + apparatusBean.getApparatusTableHTML()
+        // + apparatusBean.getApparatusTableHTML()
+        + apparatusTables
         + "</div>");
   }
 

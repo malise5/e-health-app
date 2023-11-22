@@ -2,6 +2,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +17,16 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet(urlPatterns = "/ward")
 public class WardAction extends BaseAction {
 
-  WardBeanI wardBean = new WardBean();
+  private final WardBeanI wardBean = new WardBean();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     // HttpSession httpSession = req.getSession();
+
+    List<Ward> ward = wardBean.getList(Ward.class);
+
+    String wardTables = HtmlComponent.table(ward);
 
     renderPage(req, resp, 1, "<header><h1>Ward Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
@@ -59,7 +64,8 @@ public class WardAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        + wardBean.getWardTableHTML()
+        // + wardBean.getWardTableHTML()
+        + wardTables
         + "</div>");
   }
 
