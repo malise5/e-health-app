@@ -8,11 +8,10 @@ WORKDIR /app
 # Copy the entire current directory (.) into the container at /app
 COPY . .
 
+
 # Run Maven to clean, build, and install the project, skipping tests
 RUN mvn clean install -DskipTests -X
 
-# # Remove Maven and its dependencies
-RUN apk --no-cache del maven
 
 # Use the WildFly image with JDK 17 as the deployment environment
 FROM quay.io/wildfly/wildfly:26.1.3.Final-jdk17 AS deploy
@@ -31,12 +30,8 @@ RUN mkdir -p /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 COPY --from=build /app/module.xml /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 COPY --from=build /app/mysql-connector-j-8.2.0.jar /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 
-
-# Optional: Clear WildFly deployments directory
-RUN rm -rf /opt/jboss/wildfly/standalone/deployments/*.war
-
 # Expose port 8080 for the application
-EXPOSE 8080
+EXPOSE 8081
 
 # Set the default command to start WildFly and bind it to all network interfaces
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]

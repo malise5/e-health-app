@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+    mysqld:
+        image: mysql:latest
+        container_name: hospital-db
+        restart: always
+        env_file:
+            - .env
+        volumes:
+            - mysql-data:/var/lib/mysql
+
+    e-health-app:
+        image: malise/e-health-app:v5
+        ports:
+            - "8081:8081"
+        depends_on:
+            - mysqld
+        environment:
+            MYSQL_HOST: mysqld
+
+volumes:
+    mysql-data:
