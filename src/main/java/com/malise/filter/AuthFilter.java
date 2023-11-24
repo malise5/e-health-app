@@ -1,3 +1,7 @@
+/**
+ * The AuthFilter class is a Java servlet filter that checks if a user is authenticated before allowing
+ * access to certain pages, and redirects to the home page if not authenticated.
+ */
 package com.malise.filter;
 
 import java.io.IOException;

@@ -14,5 +14,9 @@
             "database": "hospital",
             "username": "root"
         }
-    ]
+    ],
+    "docwriter.style": "Auto-detect",
+    "docwriter.progress.trackClasses": true,
+    "docwriter.progress.trackTypes": true,
+    "docwriter.progress.trackFunctions": true
 }

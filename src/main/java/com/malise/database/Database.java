@@ -1,3 +1,6 @@
+/**
+ * The `Database` class is a singleton class that represents a database and stores a list of objects.
+ */
 package com.malise.database;
 
 import java.io.Serializable;
