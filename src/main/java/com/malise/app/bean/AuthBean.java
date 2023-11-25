@@ -5,29 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import com.malise.app.model.entity.User;
 import com.malise.database.MysqlDb;
 
+@Stateless
+@Remote
 public class AuthBean implements AuthBeanI, Serializable {
 
   // Database database = Database.getDbInstance();
 
   public User authenticate(User loginUser) throws SQLException {
-
-    // User userDetails = null;
-
-    // for (User user : database.getUsers()) {
-    // if (loginUser.getUsername().equals(user.getUsername()) &&
-    // loginUser.getPassword().equals(user.getPassword())) {
-    // userDetails = user;
-
-    // break;
-
-    // }
-
-    // }
-
-    // return userDetails;
 
     PreparedStatement statement = MysqlDb.getInstance().getConnection()
         .prepareStatement("SELECT id,username from users WHERE username=? and password=?");
@@ -45,13 +35,6 @@ public class AuthBean implements AuthBeanI, Serializable {
     }
 
     return user;
-
-    // return (User) database.getData(User.class)
-    // .stream()
-    // .filter(user -> ((User) user).getUsername().equals(loginUser.getUsername())
-    // && ((User) user).getPassword().equals(loginUser.getPassword()))
-    // .findAny()
-    // .orElse(null);
   }
 
 }

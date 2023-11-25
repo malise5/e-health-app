@@ -3,6 +3,7 @@ package com.malise.app.action;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,8 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet("/apparatus")
 public class ApparatusAction extends BaseAction {
 
-  private final ApparatusBeanI apparatusBean = new ApparatusBean();
+  @EJB
+  private ApparatusBeanI apparatusBean;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

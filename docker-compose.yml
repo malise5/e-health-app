@@ -1,3 +1,4 @@
+# The code you provided is a Docker Compose file. It is used to define and manage multiple Docker containers as a single application.
 version: "3"
 
 services:

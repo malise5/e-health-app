@@ -3,12 +3,11 @@ package com.malise.app.action;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.malise.app.bean.UserBean;
 import com.malise.app.bean.UserBeanI;
 import com.malise.app.model.entity.User;
 
@@ -16,7 +15,8 @@ import com.malise.app.model.entity.User;
 // public class UserAction extends HttpServlet {
 public class UserAction extends BaseAction {
 
-  UserBeanI userBean = new UserBean();
+  @EJB
+  UserBeanI userBean;
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

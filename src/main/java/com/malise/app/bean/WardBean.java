@@ -1,17 +1,12 @@
 package com.malise.app.bean;
 
-// import java.io.Serializable;
-// import java.util.List;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 import com.malise.app.model.entity.Ward;
-// import com.malise.app.view.html.HtmlComponent;
 
+@Stateless
+@Remote
 public class WardBean extends GenericBean<Ward> implements WardBeanI {
-
-  // @Override
-  // public String getWardTableHTML() {
-  // List<Ward> ward = getList(Ward.class);
-  // return HtmlComponent.table(ward);
-  // }
 
 }

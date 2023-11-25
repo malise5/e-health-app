@@ -2,8 +2,13 @@ package com.malise.app.bean;
 
 import java.sql.SQLException;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import com.malise.app.model.entity.User;
 
+@Stateless
+@Remote
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
   @Override

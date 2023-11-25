@@ -7,7 +7,7 @@ import com.malise.app.dao.GenericDaoI;
 // import com.malise.database.Database;
 import com.malise.database.MysqlDb;
 
-public class GenericBean<T> implements GenericBeanI<T> {
+public abstract class GenericBean<T> implements GenericBeanI<T> {
 
   private final GenericDaoI<T> genericDao = new GenericDao<>();
 

@@ -18,5 +18,6 @@
     "docwriter.style": "Auto-detect",
     "docwriter.progress.trackClasses": true,
     "docwriter.progress.trackTypes": true,
-    "docwriter.progress.trackFunctions": true
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackMethods": true
 }

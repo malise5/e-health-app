@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +18,14 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet(urlPatterns = "/ward")
 public class WardAction extends BaseAction {
 
-  private final WardBeanI wardBean = new WardBean();
+  // The `@EJB` annotation is used to inject an instance of the `WardBeanI`
+  // interface into the
+  // `WardAction` class.
+  @EJB
+  private WardBeanI wardBean;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    // HttpSession httpSession = req.getSession();
 
     List<Ward> ward = wardBean.getList(Ward.class);
 
@@ -71,6 +74,9 @@ public class WardAction extends BaseAction {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // The code snippet is handling the POST request in the `doPost` method of the
+    // `WardAction` class.
+    // Here's what it does:
     Ward ward = new Ward();
 
     WardBeanI wardBean = new WardBean();
