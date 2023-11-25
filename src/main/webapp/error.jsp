@@ -26,6 +26,9 @@
                 width: 50%;
                 max-width: 400px;
             }
+            h3{
+              color: red;
+            }
 
             input[type="text"],
             input[type="password"] {
@@ -79,6 +82,7 @@
         </style>
     </head>
     <body>
+    
         <div class="login-container">
             <%-- <h2>Hospital App</h2> --%>
             <%-- <h2><%= application.getInitParameter("AppName") %></h2> --%>
@@ -92,6 +96,7 @@
             <jsp:useBean id="loginForm" class="com.malise.app.userBean.LoginForm" />
 
                 <div class="container">
+                <h3>Ooops!! Wrong Credetials Try again!!!</h3
                     <label for="username"><b>Username</b></label>
                     <%-- <input type="text" placeholder="Enter Username" name="username" required /> --%>
                     <input type="text" placeholder="${loginForm.usernamePlaceHolder}" name="username" required />
@@ -105,7 +110,7 @@
 
                 <div class="container-end">
                     <span class="psw" >Don't have an Account? <a href="./signup.jsp">Create New</a></span >
-                    <%-- <span class="psw">Forgot <a href="#">password?</a></span> --%>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
                 
             </form>

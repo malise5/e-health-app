@@ -1,9 +1,13 @@
+/**
+ * The LoginAction class is a Java servlet that handles the login functionality for a web application.
+ */
 package com.malise.app.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +31,7 @@ public class LoginAction extends BaseAction {
     HttpSession httpSession = req.getSession();
 
     if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
-      resp.sendRedirect("./home");
+      resp.sendRedirect("./doctor");
     } else {
       resp.sendRedirect("./");
     }
@@ -40,6 +44,8 @@ public class LoginAction extends BaseAction {
     User loginUser = new User();
     serializeForm(loginUser, req.getParameterMap());
 
+    // This code block is responsible for authenticating the user's login
+    // credentials.
     User userDetails;
     try {
       userDetails = authBean.authenticate(loginUser);
@@ -47,7 +53,6 @@ public class LoginAction extends BaseAction {
 
         HttpSession httpSession = req.getSession(true);
         httpSession.setAttribute("LoginId", "Admin");
-        // httpSession.setAttribute("username", loginUser.getUsername());
         httpSession.setAttribute("username", userDetails.getUsername());
         // httpSession.setAttribute("activeMenu", 0);
 
@@ -55,10 +60,8 @@ public class LoginAction extends BaseAction {
         resp.sendRedirect("./doctor");
 
       }
-
-      PrintWriter print = resp.getWriter();
-      print.print(
-          "<html><body><h2>Wrong username and password</h2>" + "<br><a href=\".\">Login again</a></body></html>");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/error.jsp");
+      dispatcher.forward(req, resp);
     } catch (SQLException e) {
       e.printStackTrace();
     }

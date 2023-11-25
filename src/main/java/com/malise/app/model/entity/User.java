@@ -1,7 +1,5 @@
 package com.malise.app.model.entity;
 
-import java.io.Serializable;
-
 import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 
