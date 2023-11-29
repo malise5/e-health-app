@@ -1,40 +1,40 @@
-package com.malise.event;
+// package com.malise.event;
 
-import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+// import java.lang.reflect.Field;
+// import java.sql.Connection;
+// import java.sql.SQLException;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.List;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import com.malise.database.MysqlDb;
+// import javax.servlet.ServletContextEvent;
+// import javax.servlet.ServletContextListener;
+// import javax.servlet.annotation.WebListener;
+// import com.malise.database.MysqlDb;
 
-@WebListener
-public class AppInit implements ServletContextListener {
+// @WebListener
+// public class AppInit implements ServletContextListener {
 
-  @Override
-  public void contextInitialized(ServletContextEvent sce) {
+// @Override
+// public void contextInitialized(ServletContextEvent sce) {
 
-    MysqlDb.updateSchema();
+// MysqlDb.updateSchema();
 
-  }
+// }
 
-  @Override
-  public void contextDestroyed(ServletContextEvent sce) {
-    System.out.println("Application has been destroyed/undeployed");
+// @Override
+// public void contextDestroyed(ServletContextEvent sce) {
+// System.out.println("Application has been destroyed/undeployed");
 
-    try {
-      MysqlDb database = MysqlDb.getInstance();
+// try {
+// MysqlDb database = MysqlDb.getInstance();
 
-      if (database.getConnection() != null) {
-        database.getConnection().close();
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
+// if (database.getConnection() != null) {
+// database.getConnection().close();
+// }
+// } catch (SQLException e) {
+// e.printStackTrace();
+// }
+// }
 
-}
+// }

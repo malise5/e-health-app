@@ -20,24 +20,8 @@ public class TopToolbar implements Menu, Serializable {
     links.add(new MenuLink("./doctor", "Doctor", MenuLinkStatus.ACTIVE));
     links.add(new MenuLink("./ward", "Ward", MenuLinkStatus.NOT_ACTIVE));
     links.add(new MenuLink("./apparatus", "Apparatus", MenuLinkStatus.NOT_ACTIVE));
-    links.add(new MenuLink("./logout", "Logout", MenuLinkStatus.NOT_ACTIVE));
+    links.add(new MenuLink("./logout", "SignOut", MenuLinkStatus.NOT_ACTIVE));
   }
-
-  // @Override
-  // public String menu(int activeLinkIndex) {
-  // this.activateLink(activeLinkIndex);
-
-  // String menuBar = "<ul class=\"nav-links\">";
-
-  // for (MenuLink link : links)
-  // menuBar += "<li><a " + (link.getStatus() == MenuLinkStatus.ACTIVE ?
-  // "class=\"active\"" : "")
-  // + " href=\"" + link.getUrl() + "\">" + link.getLabel() + "</a></li>";
-
-  // menuBar += "</ul>";
-
-  // return menuBar;
-  // }
 
   public String getMenu() {
     this.activateLink(getActiveLink());

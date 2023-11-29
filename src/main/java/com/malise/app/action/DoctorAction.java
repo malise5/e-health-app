@@ -107,8 +107,6 @@ public class DoctorAction extends BaseAction {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     Doctor doctor = new Doctor();
 
-    DoctorBeanI doctorBean = new DoctorBean();
-
     serializeForm(doctor, req.getParameterMap());
 
     doctorBean.add(doctor);

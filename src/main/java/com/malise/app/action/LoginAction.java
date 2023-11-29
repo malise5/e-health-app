@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,8 @@ import com.malise.app.model.entity.User;
 @WebServlet(urlPatterns = "/login")
 public class LoginAction extends BaseAction {
 
-  AuthBeanI authBean = new AuthBean();
+  @EJB
+  AuthBeanI authBean;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

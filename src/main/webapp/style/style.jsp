@@ -64,7 +64,7 @@
 
         /* Styles for the container */
         .container {
-            max-width: 800px;
+            max-width: 1080px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;

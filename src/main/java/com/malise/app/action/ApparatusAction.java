@@ -8,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.malise.app.bean.ApparatusBean;
 import com.malise.app.bean.ApparatusBeanI;
 import com.malise.app.model.entity.Apparatus;
 import com.malise.app.view.html.HtmlComponent;
@@ -73,8 +71,6 @@ public class ApparatusAction extends BaseAction {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     Apparatus apparatus = new Apparatus();
-
-    ApparatusBeanI apparatusBean = new ApparatusBean();
 
     serializeForm(apparatus, req.getParameterMap());
 

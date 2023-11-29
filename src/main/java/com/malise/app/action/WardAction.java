@@ -79,8 +79,6 @@ public class WardAction extends BaseAction {
     // Here's what it does:
     Ward ward = new Ward();
 
-    WardBeanI wardBean = new WardBean();
-
     serializeForm(ward, req.getParameterMap());
 
     wardBean.add(ward);

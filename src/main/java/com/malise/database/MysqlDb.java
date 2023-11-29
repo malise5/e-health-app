@@ -5,25 +5,21 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.converters.DateConverter;
-
 import com.malise.app.model.entity.Apparatus;
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.User;
@@ -31,55 +27,32 @@ import com.malise.app.model.entity.Ward;
 import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 import com.malise.database.helper.DbTableId;
-import com.mysql.cj.jdbc.MysqlDataSource;
-import com.mysql.cj.util.StringUtils;
 
+@Singleton
+@Startup()
 public class MysqlDb implements Serializable {
 
-  // private static final String URL = "jdbc:mysql://localhost:3306/hospital";
-
-  // private static final String USER = "root";
-
-  // private static final String PASSWORD = "root";
-
-  private static MysqlDb database;
+  // private static MysqlDb database;
 
   private Connection connection;
 
-  private MysqlDb() throws SQLException, NamingException {
+  @PostConstruct
+  private void init() throws SQLException, NamingException {
 
     Context ctx = new InitialContext();
     DataSource dataSource = (DataSource) ctx.lookup("java:jboss/datasources/hospital");
     connection = dataSource.getConnection();
 
-    // MysqlDataSource datasource = new MysqlDataSource();
-    // datasource.setUrl(URL);
-    // datasource.setUser(USER);
-    // datasource.setPassword(PASSWORD);
-    // connection = datasource.getConnection();
+    this.updateSchema();
 
   }
 
-  public static MysqlDb getInstance() {
-    if (database == null) {
-      try {
-        database = new MysqlDb();
-
-      } catch (SQLException | NamingException e) {
-        e.printStackTrace();
-      }
-
-    }
-
-    return database;
-  }
-
-  public static void updateSchema() {
+  public void updateSchema() {
 
     System.out.println("***********Updating Database Schema*************");
 
     try {
-      Connection conn = MysqlDb.getInstance().getConnection();
+      // Connection conn = MysqlDb.getInstance().getConnection();
 
       List<Class<?>> entities = new ArrayList<>();
       entities.add(User.class);
@@ -126,7 +99,7 @@ public class MysqlDb implements Serializable {
         System.out.println("Creating table: " + tableCreationSql);
         System.out.println("**********************************************************");
 
-        conn.prepareStatement(tableCreationSql).executeUpdate();
+        connection.prepareStatement(tableCreationSql).executeUpdate();
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -134,78 +107,12 @@ public class MysqlDb implements Serializable {
 
   }
 
-  // saveorupdate
-  // public static void insert(Object entity) {
-
-  // try {
-
-  // Class<?> clazz = entity.getClass();
-  // if (!clazz.isAnnotationPresent(DbTable.class))
-  // return;
-
-  // DbTable dbTable = clazz.getAnnotation(DbTable.class);
-
-  // List<Field> fields = new
-  // ArrayList<>(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
-  // fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
-
-  // StringBuilder columnBuilder = new StringBuilder();
-  // StringBuilder paramPlaceHolderBuilder = new StringBuilder();
-  // List<Object> parameters = new ArrayList<>();
-
-  // for (Field field : fields) {
-  // if (!field.isAnnotationPresent(DbTableColumn.class) ||
-  // field.isAnnotationPresent(DbTableId.class))
-  // continue;
-
-  // field.setAccessible(true);
-  // if (field.get(entity) == null)
-  // continue;
-
-  // DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
-
-  // columnBuilder.append(dbTableColumn.name()).append(",");
-  // paramPlaceHolderBuilder.append("?").append(",");
-  // parameters.add(field.get(entity));
-
-  // }
-
-  // String queryBuilder = "insert into " +
-  // dbTable.nameOfTable() +
-  // "(" +
-  // columnBuilder +
-  // ")" +
-  // " values(" +
-  // paramPlaceHolderBuilder +
-  // ")";
-
-  // String query = queryBuilder.replace(",)", ")");
-  // System.out.println("***************************************************");
-  // System.out.println("Query: " + query);
-  // System.out.println("***************************************************");
-
-  // PreparedStatement sqlStmt = MysqlDb.getInstance().getConnection()
-  // .prepareStatement(query);
-
-  // int paramIdx = 1;
-  // for (Object param : parameters) {
-  // if (param.getClass().isAssignableFrom(BigDecimal.class))
-  // sqlStmt.setBigDecimal(paramIdx++, (BigDecimal) param);
-  // else if (param.getClass().isAssignableFrom(Long.class))
-  // sqlStmt.setLong(paramIdx++, (long) param);
-  // else
-  // sqlStmt.setString(paramIdx++, (String) param);
-  // }
-
-  // sqlStmt.executeUpdate();
-
-  // } catch (Exception e) {
   // e.printStackTrace();
   // }
   // }
 
   // demo
-  public static void insert(Object entity) {
+  public void insert(Object entity) {
     try {
       Class<?> clazz = entity.getClass();
       if (!clazz.isAnnotationPresent(DbTable.class))
@@ -249,7 +156,7 @@ public class MysqlDb implements Serializable {
       System.out.println("Query: " + query);
       System.out.println("***************************************************");
 
-      PreparedStatement sqlStmt = MysqlDb.getInstance().getConnection().prepareStatement(query);
+      PreparedStatement sqlStmt = connection.prepareStatement(query);
 
       int paramIdx = 1;
       for (Object param : parameters) {
@@ -267,7 +174,7 @@ public class MysqlDb implements Serializable {
     }
   }
 
-  private static Object convertType(Object value, Class<?> targetType) {
+  private Object convertType(Object value, Class<?> targetType) {
     if (targetType.isAssignableFrom(BigDecimal.class)) {
       return new BigDecimal(value.toString());
     } else if (targetType.isAssignableFrom(Long.class)) {
@@ -279,7 +186,7 @@ public class MysqlDb implements Serializable {
 
   // demo
   // part3
-  public static <T> List<T> select(Class<T> filter) {
+  public <T> List<T> select(Class<T> filter) {
     try {
       Class<?> clazz = filter;
 
@@ -290,8 +197,8 @@ public class MysqlDb implements Serializable {
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("SELECT * FROM ")
           .append(dbTable.nameOfTable()).append(";");
-      Connection conn = MysqlDb.getInstance().getConnection();
-      PreparedStatement preparedStatement = conn.prepareStatement(stringBuilder.toString());
+      // Connection conn = MysqlDb.getInstance().getConnection();
+      PreparedStatement preparedStatement = connection.prepareStatement(stringBuilder.toString());
       ResultSet resultSet = preparedStatement.executeQuery();
       List<T> result = new ArrayList<>();
 
@@ -346,117 +253,6 @@ public class MysqlDb implements Serializable {
     return value;
   }
 
-  // part 2
-  // public static <T> List<T> select(T entity) {
-
-  // List<T> resultList = new ArrayList<T>();
-
-  // try {
-
-  // Class<?> clazz = entity.getClass();
-
-  // if (!clazz.isAnnotationPresent(DbTable.class)) {
-  // return resultList;
-  // }
-
-  // DbTable dbTable = clazz.getAnnotation(DbTable.class);
-
-  // String tableAlias = dbTable.nameOfTable().charAt(0) + "_e_";
-  // System.out.println("table alias " + tableAlias);
-
-  // List<Field> fields = new
-  // ArrayList<>(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
-  // fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
-
-  // StringBuilder columnBuilder = new StringBuilder();
-  // StringBuilder paramPlaceHolderBuilder = new StringBuilder();
-  // List<Object> whereParams = new ArrayList<>();
-
-  // DateConverter converter = new DateConverter(null);
-  // converter.setPattern("yyyy-mm-dd");
-  // ConvertUtils.register(converter, Date.class);
-
-  // for (Field field : fields) {
-
-  // if (!field.isAnnotationPresent(DbTableColumn.class) ||
-  // field.isAnnotationPresent(DbTableId.class)) {
-  // continue;
-  // }
-  // DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
-
-  // columnBuilder.append(tableAlias).append(".").append(dbTableColumn.name()).append(",");
-
-  // field.setAccessible(true);
-  // if (field.get(entity) != null) {
-  // paramPlaceHolderBuilder
-  // .append(whereParams.isEmpty() ? "" : " and ")
-  // .append(tableAlias).append(".").append(dbTableColumn.name()).append("=?");
-  // whereParams.add(field.get(entity));
-  // }
-
-  // }
-
-  // String queryBuilder = "select " +
-  // columnBuilder +
-  // " from " +
-  // dbTable.nameOfTable() + " " + tableAlias +
-  // (whereParams.isEmpty() &&
-  // org.apache.commons.lang3.StringUtils.isBlank(paramPlaceHolderBuilder) ? ""
-  // : " where " + paramPlaceHolderBuilder);
-
-  // String query = queryBuilder.replace(", from", " from");
-  // System.out.println("Query: " + query);
-
-  // PreparedStatement sqlStatement =
-  // MysqlDb.getInstance().getConnection().prepareStatement(query);
-
-  // int paramIdx = 1;
-  // for (Object whereParam : whereParams) {
-  // if (whereParam.getClass().isAssignableFrom(BigDecimal.class)) {
-  // sqlStatement.setBigDecimal(paramIdx++, (BigDecimal) whereParam);
-  // } else if (whereParam.getClass().isAssignableFrom(Long.class)) {
-  // sqlStatement.setLong(paramIdx++, (long) whereParam);
-  // } else
-  // sqlStatement.setString(paramIdx++, (String) whereParam);
-
-  // }
-
-  // ResultSet resultSet = sqlStatement.executeQuery();
-  // ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-  // int resultSetMetaDataCnt = resultSetMetaData.getColumnCount();
-
-  // while (resultSet.next()) {
-  // T bean = (T) entity.getClass().getDeclaredConstructor().newInstance();
-
-  // for (int i = 0; i <= resultSetMetaDataCnt; i++) {
-  // String colName = resultSetMetaData.getColumnName(i);
-  // for (Field field : fields) {
-  // if (!field.isAnnotationPresent(DbTableColumn.class) ||
-  // field.isAnnotationPresent(DbTableId.class)) {
-  // continue;
-  // }
-  // DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
-
-  // field.setAccessible(true);
-  // if (dbTableColumn.name().equals(colName)) {
-  // BeanUtils.setProperty(bean, field.getName(), resultSet.getObject(i));
-  // break;
-  // }
-  // }
-
-  // }
-  // resultList.add(bean);
-
-  // }
-
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // }
-
-  // return resultList;
-
-  // }
-
   public Connection getConnection() {
     return connection;
   }
@@ -466,10 +262,3 @@ public class MysqlDb implements Serializable {
   }
 
 }
-
-// public static String sanitizeValue(Object value) {
-// if (value.getClass().isAssignableFrom(String.class)) {
-// return "'" + value + "'";
-// }
-// return value.toString(); // or + ""
-// }

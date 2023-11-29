@@ -1,3 +1,7 @@
+/**
+ * The BaseAction class is a Java servlet that provides methods for serializing form data into objects
+ * and rendering pages with specified content.
+ */
 package com.malise.app.action;
 
 import java.io.IOException;

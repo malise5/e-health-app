@@ -24,8 +24,9 @@
         </nav>
         ${requestScope.content}
         
-      <a href="./logout">Logout</a>
-      <script type="text/javascript" src="../javaScript/index.js"></script>
+      <%-- <a href="./logout">Logout</a> --%>
+      <%-- <script type="text/javascript" src="../javaScript/index.js"></script> --%>
+      <jsp:include page="../javaScript/index.jsp" />
     </body>
 </html>
 

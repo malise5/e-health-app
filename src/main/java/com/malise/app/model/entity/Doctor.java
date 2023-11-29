@@ -12,10 +12,10 @@ import com.malise.database.helper.DbTableColumn;
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
 public class Doctor extends BaseEntity {
 
-  // @DbTableColumn(name = "doctor_index")
-  // @AnnoTableHeader(header = "index")
   // @AnnoHtmlFormField(label = "index")
-  // private String index;
+  @DbTableColumn(name = "doctor_index")
+  @AnnoTableHeader(header = "service_number")
+  private String index;
 
   @DbTableColumn(name = "doctor_name")
   @AnnoTableHeader(header = "Name of Doctor")
@@ -31,26 +31,26 @@ public class Doctor extends BaseEntity {
   @AnnoTableHeader(header = "Specialization")
   @AnnoHtmlFormField(label = "specialization")
   private String specialization;
-  // private String profile;
+  private String profile;
 
   public Doctor() {
   }
 
   public Doctor(String index, String name, String email, String specialization) {
-    // this.index = index;
+    this.index = index;
     this.name = name;
     this.email = email;
     this.specialization = specialization;
 
   }
 
-  // public String getIndex() {
-  // return index;
-  // }
+  public String getIndex() {
+    return index;
+  }
 
-  // public void setIndex(String index) {
-  // this.index = index;
-  // }
+  public void setIndex(String index) {
+    this.index = index;
+  }
 
   public String getName() {
     return name;
