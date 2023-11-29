@@ -18,15 +18,15 @@ public class Ward extends BaseEntity {
   @AnnoHtmlFormField(label = "Name")
   private String wardName;
 
-  @DbTableColumn(name = "ward_capacity")
-  @AnnoTableHeader(header = "Capacity")
-  @AnnoHtmlFormField
-  private int capacity;
-
   @DbTableColumn(name = "ward_currentOccupancy")
   @AnnoTableHeader(header = "currentOccupancy")
   @AnnoHtmlFormField
   private int currentOccupancy;
+
+  @DbTableColumn(name = "ward_capacity")
+  @AnnoTableHeader(header = "Maximum_Capacity")
+  // @AnnoHtmlFormField
+  private int capacity;
 
   public Ward() {
   }

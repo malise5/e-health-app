@@ -17,10 +17,6 @@ public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI {
   // overiding
   @Override // add or update
   public void add(Doctor doctor) {
-    if (doctor.getName() == null) {
-      throw new RuntimeException("Name needed");
-    }
-
     doctor.setIndex(doctorNo.generate("P"));
     getDao().add(doctor);
   }
