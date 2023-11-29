@@ -36,6 +36,9 @@ public class MysqlDb implements Serializable {
 
   private Connection connection;
 
+  /**
+   * The function initializes a connection to a database and updates its schema.
+   */
   @PostConstruct
   private void init() throws SQLException, NamingException {
 
@@ -47,6 +50,11 @@ public class MysqlDb implements Serializable {
 
   }
 
+  /**
+   * The function `updateSchema()` creates database tables based on the
+   * annotations present in the
+   * specified entity classes.
+   */
   public void updateSchema() {
 
     System.out.println("***********Updating Database Schema*************");
@@ -112,6 +120,8 @@ public class MysqlDb implements Serializable {
   // }
 
   // demo
+  // The below code is a method called "insert" that inserts an object into a
+  // database table.
   public void insert(Object entity) {
     try {
       Class<?> clazz = entity.getClass();
@@ -186,6 +196,9 @@ public class MysqlDb implements Serializable {
 
   // demo
   // part3
+  // The below code is a method called "select" that retrieves data from a
+  // database table based on a
+  // given filter class.
   public <T> List<T> select(Class<T> filter) {
     try {
       Class<?> clazz = filter;
@@ -194,12 +207,16 @@ public class MysqlDb implements Serializable {
         return new ArrayList<>();
 
       DbTable dbTable = clazz.getAnnotation(DbTable.class);
+
       StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append("SELECT * FROM ")
-          .append(dbTable.nameOfTable()).append(";");
+
+      stringBuilder.append("SELECT * FROM ").append(dbTable.nameOfTable()).append(";");
+
       // Connection conn = MysqlDb.getInstance().getConnection();
       PreparedStatement preparedStatement = connection.prepareStatement(stringBuilder.toString());
+
       ResultSet resultSet = preparedStatement.executeQuery();
+
       List<T> result = new ArrayList<>();
 
       System.out.println("****************************************************************");
@@ -251,6 +268,37 @@ public class MysqlDb implements Serializable {
     // Add other type conversions as needed
 
     return value;
+  }
+
+  /**
+   * The function deletes a record from a database table based on the provided
+   * filter class and ID.
+   * 
+   * @param filter The "filter" parameter is a Class object that represents the
+   *               type of the entity that
+   *               needs to be deleted from the database. It is used to retrieve
+   *               the annotation information from the
+   *               class.
+   * @param id     The "id" parameter is of type Long and represents the unique
+   *               identifier of the record to
+   *               be deleted from the database table.
+   */
+  public <T> void deleteById(Class<T> filter, Long id) {
+    try {
+      if (!filter.isAnnotationPresent(DbTable.class)) {
+        return;
+      }
+
+      DbTable dbTable = filter.getAnnotation(DbTable.class);
+      String deleteSQL = "DELETE FROM " + dbTable.nameOfTable() + " WHERE id = ?";
+
+      try (PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
+        preparedStatement.setLong(1, id);
+        preparedStatement.executeUpdate();
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public Connection getConnection() {
