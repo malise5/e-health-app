@@ -31,7 +31,7 @@ COPY --from=build /app/module.xml /opt/jboss/wildfly/modules/system/layers/base/
 COPY --from=build /app/mysql-connector-j-8.2.0.jar /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 
 # Expose port 8080 for the application
-EXPOSE 8081
+EXPOSE 8087
 
 # Set the default command to start WildFly and bind it to all network interfaces
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]

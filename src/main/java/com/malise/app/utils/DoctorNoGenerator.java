@@ -8,11 +8,11 @@ public class DoctorNoGenerator implements NoGenerator {
 
   private static final String PREFIX = "MYLNH";
 
-  public String generate(String customerId) {
+  public String generate(String doctorId) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy");
 
     // Append customer identifier and a random number
-    return PREFIX + customerId + "-" + dateFormat.format(new Date()) + "-"
+    return PREFIX + doctorId + "-" + dateFormat.format(new Date()) + "-"
         + ThreadLocalRandom.current().nextInt(1000, 2000 + 1);
   }
 

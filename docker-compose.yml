@@ -1,4 +1,3 @@
-# The code you provided is a Docker Compose file. It is used to define and manage multiple Docker containers as a single application.
 version: "3"
 
 services:
@@ -6,15 +5,20 @@ services:
         image: mysql:latest
         container_name: hospital-db
         restart: always
-        env_file:
-            - .env
+        # env_file:
+        #     - .env
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: hospital
+            MYSQL_USER: root
+            MYSQL_PORT: 3306
         volumes:
             - mysql-data:/var/lib/mysql
 
     e-health-app:
-        image: malise/e-health-app:v5
+        image: malise/hospital-app:latest
         ports:
-            - "8081:8081"
+            - "8087:8087"
         depends_on:
             - mysqld
         environment:
