@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class DoctorNoGenerator implements NoGenerator {
+@DoctorNo
+public class DoctorNoGenerator implements DoctorNoI {
 
   private static final String PREFIX = "MYLNH";
 

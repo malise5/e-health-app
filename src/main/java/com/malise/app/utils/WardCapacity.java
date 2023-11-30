@@ -1,6 +1,7 @@
 package com.malise.app.utils;
 
-public class WardCapacity {
+@WardMaxCap
+public class WardCapacity implements WardMaxI {
   public int capacityNo() {
     return 20;
   }

@@ -13,6 +13,9 @@
                 align-items: center;
                 height: 100vh;
                 margin: 0;
+                background-image: url(https://images.pexels.com/photos/3376790/pexels-photo-3376790.jpeg); 
+                background-size: cover;
+                background-position: center;
             }
 
             .login-container {

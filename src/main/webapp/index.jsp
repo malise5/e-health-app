@@ -14,6 +14,9 @@
                 align-items: center;
                 height: 100vh;
                 margin: 0;
+                background-image: url(https://images.pexels.com/photos/3376790/pexels-photo-3376790.jpeg); 
+                background-size: cover;
+                background-position: center;
             }
 
             .login-container {
@@ -83,8 +86,6 @@
             <%-- <h2>Hospital App</h2> --%>
             <%-- <h2><%= application.getInitParameter("AppName") %></h2> --%>
             <h2>${initParam.AppName}</h2>
-            <%-- <c:set var="appName" scope="application" value="${initParam.AppName}" />
-            <c:out value="${appName}"/> --%>
 
 
             <form action="./login" method="post">

@@ -14,6 +14,9 @@
                 align-items: center;
                 height: 100vh;
                 margin: 0;
+                background-image: url(https://images.pexels.com/photos/3376790/pexels-photo-3376790.jpeg); 
+                background-size: cover;
+                background-position: center;
             }
 
             .login-container {
@@ -110,7 +113,7 @@
 
                 <div class="container-end">
                     <span class="psw" >Don't have an Account? <a href="./signup.jsp">Create New</a></span >
-                    <span class="psw">Forgot <a href="#">password?</a></span>
+                    <%-- <span class="psw">Forgot <a href="#">password?</a></span> --%>
                 </div>
                 
             </form>

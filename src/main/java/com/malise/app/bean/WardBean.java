@@ -4,14 +4,16 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.malise.app.model.entity.Doctor;
 import com.malise.app.model.entity.Ward;
 import com.malise.app.utils.WardCapacity;
+import com.malise.app.utils.WardMaxCap;
 
 @Stateless
 @Remote
 public class WardBean extends GenericBean<Ward> implements WardBeanI {
+
   @Inject
+  @WardMaxCap
   private WardCapacity wardcapacity;
 
   // overiding

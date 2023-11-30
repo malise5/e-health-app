@@ -1,5 +1,5 @@
 package com.malise.app.utils;
 
-public interface NoGenerator {
+public interface DoctorNoI {
   String generate(String customerId);
 }

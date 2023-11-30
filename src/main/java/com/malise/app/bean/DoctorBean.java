@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.malise.app.model.entity.Doctor;
+import com.malise.app.utils.DoctorNo;
 import com.malise.app.utils.DoctorNoGenerator;
 
 @Stateless
@@ -12,6 +13,7 @@ import com.malise.app.utils.DoctorNoGenerator;
 public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI {
 
   @Inject
+  @DoctorNo
   private DoctorNoGenerator doctorNo;
 
   // overiding
