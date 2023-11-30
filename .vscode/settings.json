@@ -19,5 +19,6 @@
     "docwriter.progress.trackClasses": true,
     "docwriter.progress.trackTypes": true,
     "docwriter.progress.trackFunctions": true,
-    "docwriter.progress.trackMethods": true
+    "docwriter.progress.trackMethods": true,
+    "ansible.python.interpreterPath": "/bin/python"
 }

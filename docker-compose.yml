@@ -3,22 +3,19 @@ version: "3"
 services:
     mysqld:
         image: mysql:latest
-        container_name: hospital-db
+        container_name: hospital-mysql
         restart: always
-        # env_file:
-        #     - .env
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: hospital
-            MYSQL_USER: root
             MYSQL_PORT: 3306
         volumes:
             - mysql-data:/var/lib/mysql
 
     e-health-app:
-        image: malise/hospital-app:latest
+        image: malise/hospital:v1
         ports:
-            - "8087:8087"
+            - "8081:8081"
         depends_on:
             - mysqld
         environment:
@@ -26,3 +23,31 @@ services:
 
 volumes:
     mysql-data:
+# version: "3"
+
+# services:
+#     mysqld:
+#         image: mysql:latest
+#         container_name: hospital-db
+#         restart: always
+#         # env_file:
+#         #     - .env
+#         environment:
+#             MYSQL_ROOT_PASSWORD: root
+#             MYSQL_DATABASE: hospital
+#             MYSQL_USER: root
+#             MYSQL_PORT: 3306
+#         volumes:
+#             - mysql-data:/var/lib/mysql
+
+#     e-health-app:
+#         image: malise/hospital:v1
+#         ports:
+#             - "8087:8087"
+#         depends_on:
+#             - mysqld
+#         environment:
+#             MYSQL_HOST: mysqld
+
+# volumes:
+#     mysql-data:

@@ -1,5 +1,5 @@
 ---
-- name: Run Docker Compose from GitHub
+- name: Run Docker Compose
   hosts: all
   become: true
   tasks:
@@ -66,19 +66,6 @@
             owner: kudez
         become: true
 
-      # - name: Scan the host keys-generate key in the server and copy the pb-key to GitHub
-      #   shell: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-
-      # - name: Clone GitHub repository
-      #   git:
-      # key_file: ~/.ssh/id_rsa
-      #       repo: git@github.com:malise5/e-health-app.git
-      #       dest: /home/kudez/Hospital
-      #       version: main
-      #       update: yes
-      #       force: yes
-      #       accept_hostkey: yes
-
       - name: Copy Docker Compose file
         copy:
             src: /home/kudez/Engineer/java/e-health-app/docker-compose.yml # path on my local machine
@@ -90,3 +77,21 @@
 
       - name: Start Docker Compose
         command: docker-compose -f /home/kudez/Hospital/docker-compose.yml up -d
+
+        #
+        #
+        #
+        #
+        #
+        # - name: Scan the host keys-generate key in the server and copy the pb-key to GitHub
+      #   shell: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+      # - name: Clone GitHub repository
+      #   git:
+      # key_file: ~/.ssh/id_rsa
+      #       repo: git@github.com:malise5/e-health-app.git
+      #       dest: /home/kudez/Hospital
+      #       version: main
+      #       update: yes
+      #       force: yes
+      #       accept_hostkey: yes
