@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import com.malise.app.model.entity.Ward;
 import com.malise.app.utils.WardCapacity;
-import com.malise.app.utils.WardMaxCap;
+// import com.malise.app.utils.WardMaxCap;
 
 @Stateless
 @Remote
