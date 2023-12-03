@@ -3,6 +3,7 @@ package com.malise.app.bean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.malise.app.model.entity.Ward;
 import com.malise.app.utils.WardCapacity;
@@ -13,7 +14,8 @@ import com.malise.app.utils.WardMaxCap;
 public class WardBean extends GenericBean<Ward> implements WardBeanI {
 
   @Inject
-  @WardMaxCap
+  // @WardMaxCap
+  @Named("maximumCapacity")
   private WardCapacity wardcapacity;
 
   // overiding

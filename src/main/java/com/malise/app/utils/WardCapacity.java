@@ -1,6 +1,9 @@
 package com.malise.app.utils;
 
-@WardMaxCap
+import javax.inject.Named;
+
+@Named("maximumCapacity")
+// @WardMaxCap
 public class WardCapacity implements WardMaxI {
   public int capacityNo() {
     return 20;

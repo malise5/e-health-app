@@ -13,7 +13,7 @@ services:
             - mysql-data:/var/lib/mysql
 
     e-health-app:
-        image: malise/hospital:v1
+        image: malise/hospital:latest
         ports:
             - "8081:8081"
         depends_on:

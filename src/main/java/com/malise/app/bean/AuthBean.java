@@ -12,38 +12,27 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.malise.app.model.entity.User;
-import com.malise.app.utils.HashText;
+import com.malise.app.utils.EncryptSha256;
+import com.malise.app.utils.EncryptTextI;
 import com.malise.database.MysqlDb;
 
 @Stateless
 @Remote
 public class AuthBean implements AuthBeanI, Serializable {
 
-  // Database database = Database.getDbInstance();
   @EJB
   MysqlDb database;
 
   @Inject
-  private HashText hashText;
+  private EncryptTextI hashText;
 
   public User authenticate(User loginUser) throws SQLException {
 
-    // if (database == null) {
-    // System.out.println("=======================================================================");
-    // System.out.println("===========================No database
-    // passing============================================");
-    // System.out.println("=======================================================================");
-    // }
+    loginUser.setPassword(hashText.hash(loginUser.getPassword()));
 
-    try {
-      loginUser.setPassword(hashText.hash(loginUser.getPassword()));
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    }
-
-    System.out.println("=======================================================================");
-    System.out.println(loginUser.getPassword());
-    System.out.println("=======================================================================");
+    // System.out.println("=======================================================================");
+    // System.out.println(loginUser.getPassword());
+    // System.out.println("=======================================================================");
 
     PreparedStatement statement = database.getConnection()
         .prepareStatement("SELECT id,username from users WHERE username=? and password=?");

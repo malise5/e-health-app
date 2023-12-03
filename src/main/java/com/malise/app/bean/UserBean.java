@@ -8,14 +8,15 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.malise.app.model.entity.User;
-import com.malise.app.utils.HashText;
+import com.malise.app.utils.EncryptSha256;
+import com.malise.app.utils.EncryptTextI;
 
 @Stateless
 @Remote
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
   @Inject
-  private HashText hashText;
+  private EncryptTextI hashText;
 
   @Override
   public boolean register(User user) throws SQLException {
