@@ -33,7 +33,7 @@ public class DoctorAction extends BaseAction {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    List<Doctor> doctors = doctorBean.getList(Doctor.class);
+    List<Doctor> doctors = doctorBean.getList(new Doctor());
 
     String doctorTables = HtmlComponent.table(doctors);
 

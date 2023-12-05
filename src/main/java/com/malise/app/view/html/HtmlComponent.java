@@ -53,7 +53,8 @@ public class HtmlComponent implements Serializable {
       // trBuilder.append("<button class=\"edit-button\" onclick=\"editRow('" +
       // model.toString() + "')\">Edit</button>");
       trBuilder
-          .append("<button class=\"delete-button\" onclick=\"deleteRow('" + model.toString() + "')\">Delete</button>");
+          .append("<button class=\"delete-button\" onclick=\"deleteRow('" + model.getClass()
+              + "')\">Delete</button>");
       trBuilder.append("</td>");
 
       trBuilder.append("</tr");

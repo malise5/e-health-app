@@ -27,7 +27,7 @@ public class WardAction extends BaseAction {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    List<Ward> ward = wardBean.getList(Ward.class);
+    List<Ward> ward = wardBean.getList(new Ward());
 
     String wardTables = HtmlComponent.table(ward);
 

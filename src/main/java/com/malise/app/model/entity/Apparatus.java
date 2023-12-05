@@ -1,12 +1,18 @@
 package com.malise.app.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
 import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 
-@DbTable(nameOfTable = "apparatus")
+@Entity
+// @DbTable(nameOfTable = "apparatus")
+@Table(name = "apparatus")
 @AnnoHtmlForm(label = "Apparatus", url = "./apparatus")
 public class Apparatus extends BaseEntity {
 
@@ -15,12 +21,14 @@ public class Apparatus extends BaseEntity {
   // @AnnoHtmlFormField(label = "id")
   // private int apparatusId;
 
-  @DbTableColumn(name = "apparatus_name")
+  // @DbTableColumn(name = "apparatus_name")
+  @Column(name = "apparatus_name")
   @AnnoTableHeader(header = "Apparatus Name")
   @AnnoHtmlFormField(label = "apparatus-Name")
   private String apparatusName;
 
-  @DbTableColumn(name = "quantity")
+  // @DbTableColumn(name = "quantity")
+  @Column(name = "quantity")
   @AnnoTableHeader(header = "Quantity")
   @AnnoHtmlFormField(label = "quantity")
   private int quantity;

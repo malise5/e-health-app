@@ -6,14 +6,18 @@ import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.malise.app.model.entity.User;
-import com.malise.app.utils.EncryptSha256;
 import com.malise.app.utils.EncryptTextI;
 
 @Stateless
 @Remote
 public class UserBean extends GenericBean<User> implements UserBeanI {
+
+  @PersistenceContext
+  private EntityManager em;
 
   @Inject
   private EncryptTextI hashText;
@@ -36,7 +40,8 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
       throw new RuntimeException(e.getMessage());
     }
 
-    getDao().add(user);
+    // getDao().add(user);
+    em.merge(user);
     return false;
   }
 

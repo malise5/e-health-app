@@ -72,8 +72,12 @@
             dest: /home/kudez/Hospital/docker-compose.yml # Replace with the destination path on the remote server
             owner: kudez
             group: kudez
-            mode: 0755 # Adjust the file permissions as needed
+            mode: 0755 # Adjusting the file permissions as needed
         become: true
 
       - name: Start Docker Compose
         command: docker-compose -f /home/kudez/Hospital/docker-compose.yml up -d
+#monitoring like new relic
+# traces
+# logs
+# metric

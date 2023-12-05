@@ -21,7 +21,7 @@ public class ApparatusAction extends BaseAction {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    List<Apparatus> apparatus = apparatusBean.getList(Apparatus.class);
+    List<Apparatus> apparatus = apparatusBean.getList(new Apparatus());
 
     String apparatusTables = HtmlComponent.table(apparatus);
 

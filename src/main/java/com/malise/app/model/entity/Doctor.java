@@ -2,36 +2,46 @@ package com.malise.app.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
 import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 
-@DbTable(nameOfTable = "doctors")
+// @DbTable(nameOfTable = "doctors")
+@Entity
+@Table(name = "doctors")
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
 public class Doctor extends BaseEntity {
 
   // @AnnoHtmlFormField(label = "index")
-  @DbTableColumn(name = "doctor_index")
+  // @DbTableColumn(name = "doctor_index")
+  @Column(name = "service_id", nullable = false, unique = true)
   @AnnoTableHeader(header = "service_number")
   private String index;
 
-  @DbTableColumn(name = "doctor_name")
+  // @DbTableColumn(name = "doctor_name")
+  @Column(name = "doctor_name")
   @AnnoTableHeader(header = "Name of Doctor")
   @AnnoHtmlFormField(label = "Name")
   private String name;
 
-  @DbTableColumn(name = "doctor_email")
+  // @DbTableColumn(name = "doctor_email")
+  @Column(name = "doctor_email")
   @AnnoTableHeader(header = "Email")
   @AnnoHtmlFormField(label = "Email-Address")
   private String email;
 
-  @DbTableColumn(name = "specialization")
+  // @DbTableColumn(name = "specialization")
+  @Column(name = "specialization")
   @AnnoTableHeader(header = "Specialization")
   @AnnoHtmlFormField(label = "specialization")
   private String specialization;
-  private String profile;
+  // private String profile;
 
   public Doctor() {
   }

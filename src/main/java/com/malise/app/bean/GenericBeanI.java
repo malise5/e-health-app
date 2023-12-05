@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface GenericBeanI<T> extends Serializable {
 
-  List<T> getList(Class<?> entity);
+  List<T> getList(T entity);
 
   void add(T entity);
 

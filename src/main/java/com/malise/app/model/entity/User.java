@@ -1,20 +1,30 @@
 package com.malise.app.model.entity;
 
-import com.malise.database.helper.DbTable;
-import com.malise.database.helper.DbTableColumn;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@DbTable(nameOfTable = "users")
+// import com.malise.database.helper.DbTable;
+// import com.malise.database.helper.DbTableColumn;
+
+// @DbTable(nameOfTable = "users")
+@Entity
+@Table(name = "users")
 public class User extends BaseEntity {
 
   // @DbTableColumn(name = "id", defination = "int")
   // private Long id;
 
-  @DbTableColumn(name = "username")
+  // @DbTableColumn(name = "username")
+  @Column(name = "username")
   private String username;
 
-  @DbTableColumn(name = "password")
+  // @DbTableColumn(name = "password")
+  @Column(name = "password")
   private String password;
 
+  @Transient
   private String confirm_password;
 
   public User() {

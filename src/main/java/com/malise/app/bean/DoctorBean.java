@@ -6,8 +6,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.malise.app.model.entity.Doctor;
-// import com.malise.app.utils.DoctorNo;
-import com.malise.app.utils.DoctorNoGenerator;
 import com.malise.app.utils.DoctorNoI;
 
 @Stateless

@@ -1,5 +1,5 @@
 [server1]
-34.42.208.253
+35.184.117.45
 [server1:vars]
 ansible_ssh_private_key_file=~/.ssh/id_rsa
 ansible_user=kudez

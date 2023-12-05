@@ -3,18 +3,22 @@ package com.malise.app.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.malise.database.MysqlDb;
+import javax.persistence.EntityManager;
+
+// import com.malise.database.MysqlDb;
 
 public interface GenericDaoI<T> extends Serializable {
 
-  List<T> getList(Class<?> entity);
+  List<T> getList(T entity);
 
   void add(T entity);
 
   void delete(T entity);
 
-  MysqlDb getDatabase();
+  // MysqlDb getDatabase();
+  EntityManager getEm();
 
-  void setDatabase(MysqlDb database);
+  // void setDatabase(MysqlDb database);
+  void setEm(EntityManager em);
 
 }

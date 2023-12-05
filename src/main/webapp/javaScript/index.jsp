@@ -1,5 +1,27 @@
 <script>
 
+function deleteRow(id) {
+        var deleteUrl = "./doctor?id" + id;  // Change this URL to your actual delete endpoint
+
+        var confirmation = confirm('Are you sure you want to delete this record?');
+        if (confirmation) {
+            fetch(deleteUrl + '?id=' + id, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log("Deleted successfully");
+                // You may want to update the table here or reload the page
+                // Example: window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+
+//=========================
+
         function deleteEntity(id, deleteUrl) {
                     var confirmation = confirm('Are you sure you want to delete this record?');
               <%-- deleteUrl = "./admin-tours?action=delete"  --%>

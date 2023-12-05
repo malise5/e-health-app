@@ -14,7 +14,6 @@ import com.malise.app.utils.WardCapacity;
 public class WardBean extends GenericBean<Ward> implements WardBeanI {
 
   @Inject
-  // @WardMaxCap
   @Named("maximumCapacity")
   private WardCapacity wardcapacity;
 
