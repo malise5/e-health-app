@@ -1,5 +1,7 @@
 package com.malise.app.bean;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -23,6 +25,17 @@ public class WardBean extends GenericBean<Ward> implements WardBeanI {
 
     ward.setCapacity(wardcapacity.capacityNo());
     getDao().add(ward);
+  }
+
+  @Override
+  public Ward getWardByID(int id) {
+    List<Ward> allWard = getDao().getList(new Ward());
+    for (Ward ward : allWard) {
+      if (ward.getId() == id) {
+        return ward;
+      }
+    }
+    return null;
   }
 
 }

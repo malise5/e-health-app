@@ -1,6 +1,7 @@
 package com.malise.app.action;
 
 import java.io.IOException;
+// import java.io.PrintWriter;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,6 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+
+// import com.malise.app.bean.ApparatusBean;
 import com.malise.app.bean.ApparatusBeanI;
 import com.malise.app.model.entity.Apparatus;
 import com.malise.app.view.html.HtmlComponent;
@@ -20,6 +25,28 @@ public class ApparatusAction extends BaseAction {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    String type = StringUtils.trimToEmpty(req.getParameter("type"));
+    String mode = StringUtils.trimToEmpty(req.getParameter("mode"));
+    // PrintWriter printWriter = resp.getWriter();
+
+    if (type.equals("apparatus") && mode.equals("remove")) {
+      // get the id that has been passede
+      if (StringUtils.isNotBlank(req.getParameter("apparatusID"))) {
+        int apparatusID = Integer.parseInt(req.getParameter("apparatusID"));
+        // remove by the id
+        // get the product by ID
+        Apparatus apparatus = apparatusBean.getApparatusByID(apparatusID);
+        System.out.println("############## Apparatus Name " + apparatus.getApparatusName());
+
+        apparatusBean.delete(apparatus);
+        try {
+          Thread.sleep(2000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
 
     List<Apparatus> apparatus = apparatusBean.getList(new Apparatus());
 

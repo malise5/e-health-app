@@ -1,5 +1,7 @@
 package com.malise.app.bean;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,6 +24,17 @@ public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI {
   public void add(Doctor doctor) {
     doctor.setIndex(doctorNo.generate());
     getDao().add(doctor);
+  }
+
+  @Override
+  public Doctor getDoctorById(int id) {
+    List<Doctor> allDoctor = getDao().getList(new Doctor());
+    for (Doctor doctor : allDoctor) {
+      if (doctor.getId() == id) {
+        return doctor;
+      }
+    }
+    return null;
   }
 
 }

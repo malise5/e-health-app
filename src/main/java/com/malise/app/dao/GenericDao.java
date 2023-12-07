@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-// import com.malise.database.MysqlDb;
-// import java.lang.reflect.Field;
-
 public class GenericDao<T> implements GenericDaoI<T> {
 
   // @EJB
@@ -34,7 +31,7 @@ public class GenericDao<T> implements GenericDaoI<T> {
 
   @Override
   public void delete(T entity) {
-    em.detach(entity);
+    em.remove(em.contains(entity) ? entity : em.merge(entity));
   }
 
   @Override

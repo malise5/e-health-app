@@ -15,11 +15,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 // import org.apache.commons.beanutils.BeanUtils;
 // import org.apache.commons.lang3.StringUtils;
 
 import com.malise.app.bean.DoctorBean;
 import com.malise.app.bean.DoctorBeanI;
+import com.malise.app.model.entity.Apparatus;
 import com.malise.app.model.entity.Doctor;
 import com.malise.app.view.html.HtmlComponent;
 
@@ -32,6 +35,28 @@ public class DoctorAction extends BaseAction {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    String type = StringUtils.trimToEmpty(req.getParameter("type"));
+    String mode = StringUtils.trimToEmpty(req.getParameter("mode"));
+    // PrintWriter printWriter = resp.getWriter();
+
+    if (type.equals("doctor") && mode.equals("remove")) {
+      // get the id that has been passede
+      if (StringUtils.isNotBlank(req.getParameter("doctorID"))) {
+        int doctorID = Integer.parseInt(req.getParameter("doctorID"));
+        // remove by the id
+        // get the product by ID
+        Doctor doctor = doctorBean.getDoctorById(doctorID);
+        System.out.println("############## Doctor Name " + doctor.getName());
+
+        doctorBean.delete(doctor);
+        try {
+          Thread.sleep(2000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
 
     List<Doctor> doctors = doctorBean.getList(new Doctor());
 
@@ -111,6 +136,12 @@ public class DoctorAction extends BaseAction {
 
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    Doctor doctor = new Doctor();
+
+    doctorBean.delete(doctor);
+
+    resp.sendRedirect("./doctor");
 
   }
 

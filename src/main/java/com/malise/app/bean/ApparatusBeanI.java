@@ -6,4 +6,6 @@ public interface ApparatusBeanI extends GenericBeanI<Apparatus> {
 
   // String getApparatusTableHTML();
 
+  Apparatus getApparatusByID(int id);
+
 }

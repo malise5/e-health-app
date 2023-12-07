@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
+import com.malise.app.view.html.HtmlTable;
 import com.malise.database.helper.DbTable;
 import com.malise.database.helper.DbTableColumn;
 
@@ -17,6 +18,7 @@ import com.malise.database.helper.DbTableColumn;
 // @DbTable(nameOfTable = "wards")
 @Table(name = "wards")
 @AnnoHtmlForm(label = "Ward", url = "./ward")
+@HtmlTable(addUrl = "./ward", deleteUrl = "./ward?type=ward&mode=remove&wardID=")
 public class Ward extends BaseEntity {
 
   // @DbTableColumn(name = "ward_name")

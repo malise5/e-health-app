@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.malise.app.bean.WardBean;
 import com.malise.app.bean.WardBeanI;
 import com.malise.app.model.entity.Ward;
@@ -18,14 +20,31 @@ import com.malise.app.view.html.HtmlComponent;
 @WebServlet(urlPatterns = "/ward")
 public class WardAction extends BaseAction {
 
-  // The `@EJB` annotation is used to inject an instance of the `WardBeanI`
-  // interface into the
-  // `WardAction` class.
   @EJB
   private WardBeanI wardBean;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    String type = StringUtils.trimToEmpty(req.getParameter("type"));
+    String mode = StringUtils.trimToEmpty(req.getParameter("mode"));
+
+    if (type.equals("ward") && mode.equals("remove")) {
+      if (StringUtils.isNotBlank(req.getParameter("wardID"))) {
+        int wardID = Integer.parseInt(req.getParameter("wardID"));
+
+        Ward ward = wardBean.getWardByID(wardID);
+        System.out.println("############# Ward Name " + ward.getWardName());
+
+        wardBean.delete(ward);
+        try {
+          Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
 
     List<Ward> ward = wardBean.getList(new Ward());
 

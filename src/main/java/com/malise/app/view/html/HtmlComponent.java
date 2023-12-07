@@ -2,6 +2,9 @@ package com.malise.app.view.html;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +17,9 @@ public class HtmlComponent implements Serializable {
       return StringUtils.EMPTY;
     }
 
-    Field[] fields = models.get(0).getClass().getDeclaredFields();
+    // Field[] fields = models.get(0).getClass().getDeclaredFields();
+    List<Field> fields = new ArrayList<>(Arrays.asList(models.get(0).getClass().getSuperclass().getDeclaredFields()));
+    fields.addAll(Arrays.asList(models.get(0).getClass().getDeclaredFields()));
 
     StringBuilder trBuilder = new StringBuilder();
     trBuilder.append("<table>");
@@ -33,6 +38,15 @@ public class HtmlComponent implements Serializable {
 
     for (Object model : models) {
 
+      Object id = null;
+      try {
+        id = models.get(0).getClass().getMethod("getId").invoke(model);
+        System.out.println("The id is " + id);
+      } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+          | NoSuchMethodException | SecurityException e) {
+        e.printStackTrace();
+      }
+
       trBuilder.append("<tr>");
 
       for (Field field : fields) {
@@ -47,15 +61,20 @@ public class HtmlComponent implements Serializable {
         }
 
       }
+
       // Add edit and delete buttons for each row
       // Inside your Java code where you generate the HTML
       trBuilder.append("<td class=\"action-buttons\">");
       // trBuilder.append("<button class=\"edit-button\" onclick=\"editRow('" +
       // model.toString() + "')\">Edit</button>");
-      trBuilder
-          .append("<button class=\"delete-button\" onclick=\"deleteRow('" + model.getClass()
-              + "')\">Delete</button>");
-      trBuilder.append("</td>");
+      if (models.get(0).getClass().isAnnotationPresent(HtmlTable.class)) {
+        HtmlTable htmltable = models.get(0).getClass().getAnnotation(HtmlTable.class);
+        trBuilder
+            .append(
+                "<button class=\"delete-button\" onclick=\"window.location.href=('" + htmltable.deleteUrl() + "" + id
+                    + "')\">Delete</button>");
+        trBuilder.append("</td>");
+      }
 
       trBuilder.append("</tr");
       trBuilder.append("<br/>");

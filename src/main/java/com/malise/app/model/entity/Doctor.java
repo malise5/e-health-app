@@ -9,13 +9,15 @@ import javax.persistence.Table;
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
-import com.malise.database.helper.DbTable;
-import com.malise.database.helper.DbTableColumn;
+import com.malise.app.view.html.HtmlTable;
+// import com.malise.database.helper.DbTable;
+// import com.malise.database.helper.DbTableColumn;
 
 // @DbTable(nameOfTable = "doctors")
 @Entity
 @Table(name = "doctors")
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
+@HtmlTable(addUrl = "./doctor", deleteUrl = "./doctor?type=doctor&mode=remove&doctorID=")
 public class Doctor extends BaseEntity {
 
   @Column(name = "service_id", nullable = false, unique = true)

@@ -1,9 +1,11 @@
 package com.malise.app.bean;
+
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import com.malise.app.model.entity.Apparatus;
-
 
 @Stateless
 @Remote
@@ -15,6 +17,17 @@ public class ApparatusBean extends GenericBean<Apparatus> implements ApparatusBe
       throw new RuntimeException("Name needed");
     }
     getDao().add(apparatus);
+  }
+
+  @Override
+  public Apparatus getApparatusByID(int id) {
+    List<Apparatus> allApparatus = getDao().getList(new Apparatus());
+    for (Apparatus apparatus : allApparatus) {
+      if (apparatus.getId() == id) {
+        return apparatus;
+      }
+    }
+    return null;
   }
 
 }
