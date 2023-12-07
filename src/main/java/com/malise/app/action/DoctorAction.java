@@ -37,12 +37,6 @@ public class DoctorAction extends BaseAction {
 
     String doctorTables = HtmlComponent.table(doctors);
 
-    // from base action
-    // The `renderPage` method is a custom method that is used to render the HTML
-    // page that will be
-    // displayed to the user. It takes several parameters, including the
-    // `HttpServletRequest` and
-    // `HttpServletResponse` objects, the page title, and the page content.
     renderPage(req, resp, 0, "<header><h1>Doctor Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //

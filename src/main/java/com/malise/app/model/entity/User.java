@@ -16,11 +16,9 @@ public class User extends BaseEntity {
   // @DbTableColumn(name = "id", defination = "int")
   // private Long id;
 
-  // @DbTableColumn(name = "username")
   @Column(name = "username")
   private String username;
 
-  // @DbTableColumn(name = "password")
   @Column(name = "password")
   private String password;
 

@@ -2,12 +2,12 @@ package com.malise.app.dao;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+// import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 // import com.malise.database.MysqlDb;
-import java.lang.reflect.Field;
+// import java.lang.reflect.Field;
 
 public class GenericDao<T> implements GenericDaoI<T> {
 

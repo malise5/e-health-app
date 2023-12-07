@@ -18,25 +18,20 @@ import com.malise.database.helper.DbTableColumn;
 @AnnoHtmlForm(label = "Doctor", url = "./doctor")
 public class Doctor extends BaseEntity {
 
-  // @AnnoHtmlFormField(label = "index")
-  // @DbTableColumn(name = "doctor_index")
   @Column(name = "service_id", nullable = false, unique = true)
   @AnnoTableHeader(header = "service_number")
   private String index;
 
-  // @DbTableColumn(name = "doctor_name")
   @Column(name = "doctor_name")
   @AnnoTableHeader(header = "Name of Doctor")
   @AnnoHtmlFormField(label = "Name")
   private String name;
 
-  // @DbTableColumn(name = "doctor_email")
   @Column(name = "doctor_email")
   @AnnoTableHeader(header = "Email")
   @AnnoHtmlFormField(label = "Email-Address")
   private String email;
 
-  // @DbTableColumn(name = "specialization")
   @Column(name = "specialization")
   @AnnoTableHeader(header = "Specialization")
   @AnnoHtmlFormField(label = "specialization")

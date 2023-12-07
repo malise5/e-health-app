@@ -21,13 +21,11 @@ public class Apparatus extends BaseEntity {
   // @AnnoHtmlFormField(label = "id")
   // private int apparatusId;
 
-  // @DbTableColumn(name = "apparatus_name")
   @Column(name = "apparatus_name")
   @AnnoTableHeader(header = "Apparatus Name")
   @AnnoHtmlFormField(label = "apparatus-Name")
   private String apparatusName;
 
-  // @DbTableColumn(name = "quantity")
   @Column(name = "quantity")
   @AnnoTableHeader(header = "Quantity")
   @AnnoHtmlFormField(label = "quantity")

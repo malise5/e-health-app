@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.malise.app.model.entity.User;
-import com.malise.app.utils.EncryptSha256;
+// import com.malise.app.utils.EncryptSha256;
 import com.malise.app.utils.EncryptTextI;
 // import com.malise.database.MysqlDb;
 
@@ -58,6 +58,12 @@ public class AuthBean implements AuthBeanI, Serializable {
     // }
 
     // return user;
+
+    // List<User> users = em.createQuery("FROM User u WHERE u.password=:password AND
+    // u.email=:email", User.class)
+    // .setParameter("password", loginUser.getPassword())
+    // .setParameter("email", loginUser.getEmail())
+    // .getResultList();
 
     String jpql = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
     Query query = em.createQuery(jpql, User.class);
