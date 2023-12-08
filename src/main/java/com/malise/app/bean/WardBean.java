@@ -37,5 +37,4 @@ public class WardBean extends GenericBean<Ward> implements WardBeanI {
     }
     return null;
   }
-
 }

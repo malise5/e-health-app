@@ -9,13 +9,9 @@ import javax.persistence.PersistenceContext;
 
 import com.malise.app.dao.GenericDao;
 import com.malise.app.dao.GenericDaoI;
-// import com.malise.database.Database;
-// import com.malise.database.MysqlDb;
 
 public abstract class GenericBean<T> implements GenericBeanI<T> {
 
-  // @EJB
-  // MysqlDb database;
   @PersistenceContext
   private EntityManager em;
 
@@ -24,7 +20,6 @@ public abstract class GenericBean<T> implements GenericBeanI<T> {
 
   @Override
   public List<T> getList(T entity) {
-    // genericDao.setDatabase(database);
     genericDao.setEm(em);
     return genericDao.getList(entity);
 
@@ -32,7 +27,6 @@ public abstract class GenericBean<T> implements GenericBeanI<T> {
 
   @Override
   public void add(T entity) {
-    // genericDao.setDatabase(database);
     genericDao.setEm(em);
     genericDao.add(entity);
   }
@@ -40,14 +34,12 @@ public abstract class GenericBean<T> implements GenericBeanI<T> {
   // changed
   @Override
   public void delete(T entity) {
-    // genericDao.setDatabase(database);
     genericDao.setEm(em);
     genericDao.delete(entity);
 
   }
 
   public GenericDao<T> getDao() {
-    // genericDao.setDatabase(database);
     genericDao.setEm(em);
     return (GenericDao<T>) genericDao;
 

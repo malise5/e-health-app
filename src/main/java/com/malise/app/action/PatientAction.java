@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.EJB;
+// import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,54 +12,56 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.malise.app.bean.WardBeanI;
-import com.malise.app.model.entity.Ward;
+import com.malise.app.bean.PatientBeanI;
+import com.malise.app.model.entity.Patient;
 import com.malise.app.view.html.HtmlComponent;
 
-@WebServlet(urlPatterns = "/ward")
-public class WardAction extends BaseAction {
+@WebServlet("/patient")
+public class PatientAction extends BaseAction {
 
   @EJB
-  private WardBeanI wardBean;
+  PatientBeanI patientBean;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     String type = StringUtils.trimToEmpty(req.getParameter("type"));
     String mode = StringUtils.trimToEmpty(req.getParameter("mode"));
+    // PrintWriter printWriter = resp.getWriter();
 
-    if (type.equals("ward") && mode.equals("remove")) {
-      if (StringUtils.isNotBlank(req.getParameter("wardID"))) {
-        int wardID = Integer.parseInt(req.getParameter("wardID"));
+    if (type.equals("patient") && mode.equals("remove")) {
+      // get the id that has been passede
+      if (StringUtils.isNotBlank(req.getParameter("patientID"))) {
+        int patientID = Integer.parseInt(req.getParameter("patientID"));
+        // remove by the id
+        // get the product by ID
+        Patient patient = patientBean.getPatientID(patientID);
+        System.out.println("############## Patient Name " + patient.getName());
 
-        Ward ward = wardBean.getWardByID(wardID);
-        System.out.println("############# Ward Name " + ward.getWardName());
-
-        wardBean.delete(ward);
+        patientBean.delete(patient);
         try {
           Thread.sleep(2000);
-
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
       }
     }
 
-    List<Ward> ward = wardBean.getList(new Ward());
+    List<Patient> patients = patientBean.getList(new Patient());
 
-    String wardTables = HtmlComponent.table(ward);
+    String patientTable = HtmlComponent.table(patients);
 
-    renderPage(req, resp, 2, "<header><h1>Ward Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 1, "<header><h1>Patient Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //
         "\n" + //
-        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Ward</button>\n" + //
+        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Patient</button>\n" + //
         "\n" + //
         "<div id=\"myModal\" class=\"modal\">\n" + //
         "    <div class=\"modal-content\">\n" + //
         "        <span class=\"close\" id=\"closeModal\" onclick=\"closeModal()\">&times;</span>\n" + //
-        HtmlComponent.form(Ward.class) +
+        HtmlComponent.form(Patient.class) +
         "    </div>\n" + //
         "</div>\n" + //
         "\n" + //
@@ -84,47 +87,33 @@ public class WardAction extends BaseAction {
         "</script>\n" + //
         "\n" + //
         "</body>"
-        // + wardBean.getWardTableHTML()
-        + wardTables
+        // + doctorBean.getDoctorTableHTML()
+        + patientTable
         + "</div>");
+
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    // The code snippet is handling the POST request in the `doPost` method of the
-    // `WardAction` class.
-    // Here's what it does:
-    Ward ward = new Ward();
 
-    serializeForm(ward, req.getParameterMap());
+    Patient patient = new Patient();
 
-    wardBean.add(ward);
+    serializeForm(patient, req.getParameterMap());
 
-    resp.sendRedirect("./ward");
+    patientBean.add(patient);
+
+    resp.sendRedirect("./patient");
+
   }
 
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    // String wardIdToDelete = req.getParameter("wardId");
+    Patient patient = new Patient();
 
-    // if (wardIdToDelete != null && !wardIdToDelete.isEmpty()) {
-    // // Convert wardId to an integer (you might want to add error handling)
-    // int wardId = Integer.parseInt(wardIdToDelete);
+    patientBean.delete(patient);
 
-    // // Create a dummy Ward object with the given wardId
-    // Ward wardToDelete = new Ward();
-    // wardToDelete.setId(wardId); // Assuming Ward class has a setId method
-
-    // // Perform the delete operation
-    // wardBean.delete(wardToDelete);
-
-    // // Redirect back to the ward page
-    // resp.sendRedirect("./ward");
-    // } else {
-    // resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    // resp.getWriter().write("Invalid wardId for deletion");
-    // }
+    resp.sendRedirect("./patient");
 
   }
 

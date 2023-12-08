@@ -1,7 +1,5 @@
 package com.malise.app.model.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,8 +8,6 @@ import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
 import com.malise.app.view.html.HtmlTable;
-import com.malise.database.helper.DbTable;
-import com.malise.database.helper.DbTableColumn;
 
 // @WebServlet("ward")
 @Entity

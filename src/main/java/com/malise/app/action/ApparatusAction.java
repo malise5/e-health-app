@@ -54,7 +54,7 @@ public class ApparatusAction extends BaseAction {
 
     // HttpSession httpSession = req.getSession();
 
-    renderPage(req, resp, 2, "<header><h1>Apparatus Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 3, "<header><h1>Apparatus Information Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //
