@@ -8,6 +8,8 @@ public interface UserBeanI extends GenericBeanI<User> {
 
   boolean register(User user) throws SQLException;
 
+  boolean changePassword(User user) throws SQLException;
+
   boolean unRegister(User user);
 
 }

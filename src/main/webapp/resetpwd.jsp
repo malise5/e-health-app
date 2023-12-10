@@ -1,7 +1,6 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +26,7 @@
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 width: 50%;
-                max-width: 465px;
+                max-width: 400px;
             }
 
             input[type="text"],
@@ -82,37 +81,62 @@
         </style>
     </head>
     <body>
+       
+
         <div class="login-container">
-            <%-- <h2>Hospital App</h2> --%>
-            <%-- <h2><%= application.getInitParameter("AppName") %></h2> --%>
-            <h2>${initParam.AppName}</h2>
+         <h2>${initParam.AppName}</h2>
+            <h2>Reset Account Password</h2>
 
-
-            <form action="./login" method="post">
-
-            <jsp:useBean id="loginForm" class="com.malise.app.userBean.LoginForm" />
-
+            <form action="./resetPassword" method="post">
                 <div class="container">
                     <label for="username"><b>Username</b></label>
-                    <%-- <input type="text" placeholder="Enter Username" name="username" required /> --%>
-                    <input type="text" placeholder="${loginForm.usernamePlaceHolder}" name="username" required />
+                    <input
+                        type="text"
+                        placeholder="Enter Username"
+                        name="username"
+                        required
+                    />
 
-                    <label for="password"><b>Password</b></label>
-                    <%-- <input type="password" placeholder="Enter Password" name="password" required /> --%>
-                    <input type="password" placeholder="${loginForm.passwordPlaceHolder}" name="password" required />
+                    <label for="password"><b>Old Password</b></label>
+                    <input
+                        type="password"
+                        placeholder="Enter Old Password"
+                        name="oldpassword"
+                        required
+                    />
 
-                    <button type="submit">Login</button>
+                    <%-- sdfsdfgklsghdkl --%>
+
+                    <label for="password"><b>New Password</b></label>
+                    <input
+                        type="password"
+                        placeholder="Enter New Password"
+                        name="password"
+                        required
+                    />
+
+                    <label for="confirm_password"
+                        ><b>Confirm New Password</b></label
+                    >
+                    <input
+                        type="password"
+                        placeholder="Confirm New Password"
+                        name="confirm_password"
+                        required
+                    />
+
+                    <%-- sdkfsdjkfsjdfhjsdfhjsdfhsjd --%>
+
+                    <button type="submit">Reset Password</button>
                 </div>
 
                 <div class="container-end">
-                    <span class="psw" >Don't have an Account? <a href="./signup.jsp">Create New</a></span >
-                    <span class="psw">Forgot password? <a href="./resetpwd.jsp">reset</a></span>
+                    <span class="psw"
+                        >have an Account?
+                        <a href="./index.jsp">Login here</a></span
+                    >
                 </div>
-                
             </form>
         </div>
-
-        <br />
-        <br />
     </body>
 </html>

@@ -25,6 +25,9 @@ public class User extends BaseEntity {
   @Transient
   private String confirm_password;
 
+  @Transient
+  private String oldpassword;
+
   public User() {
   }
 
@@ -35,13 +38,10 @@ public class User extends BaseEntity {
     this.password = password;
   }
 
-  // public Long getId() {
-  // return id;
-  // }
-
-  // public void setId(Long id) {
-  // this.id = id;
-  // }
+  public User(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
 
   public String getUsername() {
     return username;
@@ -65,6 +65,14 @@ public class User extends BaseEntity {
 
   public void setConfirm_password(String confirm_password) {
     this.confirm_password = confirm_password;
+  }
+
+  public String getOldpassword() {
+    return oldpassword;
+  }
+
+  public void setOldpassword(String oldpassword) {
+    this.oldpassword = oldpassword;
   }
 
 }

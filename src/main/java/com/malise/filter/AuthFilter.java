@@ -26,61 +26,47 @@ public class AuthFilter implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    // Initialization method, called when the filter is first created
     Filter.super.init(filterConfig);
   }
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    // Filtering logic to check and control access based on authentication status
 
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
     HttpSession httpSession = httpRequest.getSession();
 
-    // Get information about the requested servlet path
     String servletPath = httpRequest.getServletPath();
     System.out.println("servletpath is " + servletPath);
     System.out.println("context path path " + httpRequest.getContextPath());
     System.out.println("context path uri " + httpRequest.getRequestURI());
 
-    // Check if the session is new or if the user is not logged in
     if (httpSession.isNew() || StringUtils.isBlank((String) httpSession.getAttribute("LoginId"))) {
 
-      // If it's a new session, invalidate it
       httpSession.invalidate();
 
-      // if (servletPath.equals("/login") || servletPath.equals("/user") || ||
-      // servletPath.equals("/index.jsp") || || servletPath.equals("/signup.jsp") )
+      if (servletPath.equals("/login") || servletPath.equals("/resetPassword") || servletPath.equals("/user")
+          || servletPath.contains(".jsp")) {
 
-      // Check if the user is trying to access login or the home page
-      if (servletPath.equals("/login") || servletPath.equals("/user") || servletPath.contains(".jsp")) {
-
-        // Allow access to the requested page
         chain.doFilter(request, response);
 
       } else {
 
-        // Redirect to the home page if not logged in and trying to access other pages
         httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
         response.getWriter().flush();
       }
 
     } else {
 
-      // If the session is not new, check if the user is authenticated
       if (StringUtils.isNotBlank((String) httpSession.getAttribute("LoginId"))) {
 
-        // Add header with authentication timestamp
         httpResponse.addHeader("AuthTime", DateFormat.getDateTimeInstance().format(new Date()));
 
-        // User is authenticated, allow access to requested pages
         chain.doFilter(request, response);
 
       } else {
 
-        // User is not authenticated, redirect to the home page
         httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
         response.getWriter().flush();
       }
@@ -89,8 +75,6 @@ public class AuthFilter implements Filter {
 
   @Override
   public void destroy() {
-    // Destruction method, called when the filter is being removed from service
-    // TODO Auto-generated method stub
     Filter.super.destroy();
   }
 

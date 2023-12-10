@@ -1,6 +1,7 @@
 package com.malise.app.model.entity;
 
 import javax.persistence.Column;
+// import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -29,6 +30,9 @@ public class Patient extends BaseEntity {
   @AnnoTableHeader(header = "Patient Disease")
   @AnnoHtmlFormField(label = "Disease")
   private String disease;
+
+  // @Embedded
+  // private Contact contact;
 
   public Patient() {
   }
@@ -62,5 +66,13 @@ public class Patient extends BaseEntity {
   public void setDisease(String disease) {
     this.disease = disease;
   }
+
+  // public Contact getContact() {
+  // return contact;
+  // }
+
+  // public void setContact(Contact contact) {
+  // this.contact = contact;
+  // }
 
 }

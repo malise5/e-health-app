@@ -46,6 +46,34 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
   }
 
   @Override
+  public boolean changePassword(User user) throws SQLException {
+
+    if (!user.getPassword().equals(user.getConfirm_password())) {
+      throw new RuntimeException("Password & confirm password do not match");
+    }
+
+    // List<User> existingUsers = getList(User.class);
+    // if (!existingUsers.isEmpty()) {
+    // throw new RuntimeException("User Already exists");
+    // }
+    List<User> checkUser = getList(new User(user.getUsername(), user.getOldpassword()));
+    if (checkUser.isEmpty()) {
+
+      throw new RuntimeException("User does not exist");
+
+    }
+
+    try {
+      checkUser.get(0).setPassword(hashText.hash(user.getPassword()));
+    } catch (Exception e) {
+      throw new RuntimeException(e.getMessage());
+    }
+
+    getDao().add(checkUser.get(0));
+    return false;
+  }
+
+  @Override
   public boolean unRegister(User user) {
 
     return true;
