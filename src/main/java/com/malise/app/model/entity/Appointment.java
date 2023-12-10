@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.malise.app.view.html.AnnoHtmlForm;
@@ -21,5 +24,13 @@ public class Appointment extends BaseEntity {
   @AnnoTableHeader(header = "Appointment Date")
   @AnnoHtmlFormField(label = "Appointment Date")
   private Date appointmentDate;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "doctor_id")
+  private Doctor doctor;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "patient_id")
+  private Patient patient;
 
 }

@@ -48,7 +48,7 @@ public class WardAction extends BaseAction {
 
     String wardTables = HtmlComponent.table(ward);
 
-    renderPage(req, resp, 2, "<header><h1>Ward Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 2, "<header><h1>Ward Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //

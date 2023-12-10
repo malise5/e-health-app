@@ -6,6 +6,7 @@ package com.malise.app.action;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -55,6 +56,11 @@ public class BaseAction extends HttpServlet {
       dateConverter.setPattern("yyyy-MM-dd");
 
       ConvertUtils.register(dateConverter, Date.class);
+
+      // if (bean == Date.class) {
+      // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      // return dateFormat.parse(bean);
+      // }
 
       // Populating the bean using BeanUtils
       BeanUtils.populate(bean, requestMap);

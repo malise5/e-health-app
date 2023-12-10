@@ -1,9 +1,15 @@
 package com.malise.app.model.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 // import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Formula;
 
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
@@ -21,6 +27,11 @@ public class Patient extends BaseEntity {
   @AnnoHtmlFormField(label = "Name")
   private String name;
 
+  @Column(name = "phone_number")
+  @AnnoTableHeader(header = "Phone Number")
+  @AnnoHtmlFormField(label = "Phone Number")
+  private String phoneNumber;
+
   @Column(name = "patient_gender")
   @AnnoTableHeader(header = "Patient Gender")
   @AnnoHtmlFormField(label = "Gender")
@@ -31,8 +42,18 @@ public class Patient extends BaseEntity {
   @AnnoHtmlFormField(label = "Disease")
   private String disease;
 
-  // @Embedded
-  // private Contact contact;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "doctor_id")
+  private Doctor doctor;
+
+  @AnnoTableHeader(header = "Doctor's Appontment")
+  @AnnoHtmlFormField(label = "Doctor's Appontment")
+  @Formula("(doctor_id)")
+  private Long doctorId;
+
+  @AnnoTableHeader(header = "Doctor")
+  @Formula("(select c.doctor_name  from doctors c where c.id=doctor_id)")
+  private String doctorName;
 
   public Patient() {
   }
@@ -66,6 +87,46 @@ public class Patient extends BaseEntity {
   public void setDisease(String disease) {
     this.disease = disease;
   }
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
+
+  public Long getDoctorId() {
+    return doctorId;
+  }
+
+  public void setDoctorId(Long doctorId) {
+    this.doctorId = doctorId;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public String getDoctorName() {
+    return doctorName;
+  }
+
+  public void setDoctorName(String doctorName) {
+    this.doctorName = doctorName;
+  }
+
+  // public String getDoctorName() {
+  // return doctorName;
+  // }
+
+  // public void setDoctorName(String doctorName) {
+  // this.doctorName = doctorName;
+  // }
 
   // public Contact getContact() {
   // return contact;

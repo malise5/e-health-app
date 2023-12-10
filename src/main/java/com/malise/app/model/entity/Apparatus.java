@@ -8,8 +8,8 @@ import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
 import com.malise.app.view.html.HtmlTable;
-import com.malise.database.helper.DbTable;
-import com.malise.database.helper.DbTableColumn;
+// import com.malise.database.helper.DbTable;
+// import com.malise.database.helper.DbTableColumn;
 
 @Entity
 // @DbTable(nameOfTable = "apparatus")
@@ -20,7 +20,7 @@ public class Apparatus extends BaseEntity {
 
   @Column(name = "apparatus_name")
   @AnnoTableHeader(header = "Apparatus Name")
-  @AnnoHtmlFormField(label = "apparatus-Name")
+  @AnnoHtmlFormField(label = "Apparatus/Medics Name")
   private String apparatusName;
 
   @Column(name = "quantity")

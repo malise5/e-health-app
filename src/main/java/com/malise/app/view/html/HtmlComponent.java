@@ -123,7 +123,7 @@ public class HtmlComponent implements Serializable {
 
     }
 
-    htmlForm += "<button type=\"submit\">Add Doctor</button>\n";
+    htmlForm += "<button type=\"submit\">Add</button>\n";
     htmlForm += " </form>\n";//
 
     return htmlForm;

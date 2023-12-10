@@ -64,7 +64,7 @@
 
         /* Styles for the container */
         .container {
-            max-width: 1080px;
+            max-width: 1208px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -82,7 +82,10 @@
         th,
         td {
             padding: 12px 15px;
-            text-align: left;
+            text-align: center;
+        }
+        td{
+            text-align: center;
         }
 
         th {

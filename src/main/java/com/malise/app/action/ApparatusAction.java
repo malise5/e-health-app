@@ -54,12 +54,12 @@ public class ApparatusAction extends BaseAction {
 
     // HttpSession httpSession = req.getSession();
 
-    renderPage(req, resp, 3, "<header><h1>Apparatus Information Dashboard</h1></header> <div class=container>" +
+    renderPage(req, resp, 3, "<header><h1>Apparatus/Medics Dashboard</h1></header> <div class=container>" +
         "<div class=container>" +
         "\n" + //
         "<body>\n" + //
         "\n" + //
-        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Apparatus</button>\n" + //
+        "<button id=\"openModalButton\" onclick=\"openModal()\">Add Apparatus/Medics</button>\n" + //
         "\n" + //
         "<div id=\"myModal\" class=\"modal\">\n" + //
         "    <div class=\"modal-content\">\n" + //
