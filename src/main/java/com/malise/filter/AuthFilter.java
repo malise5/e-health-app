@@ -47,7 +47,7 @@ public class AuthFilter implements Filter {
       httpSession.invalidate();
 
       if (servletPath.equals("/login") || servletPath.equals("/resetPassword") || servletPath.equals("/user")
-          || servletPath.contains(".jsp")) {
+          || servletPath.equals("/rest") || servletPath.contains(".jsp")) {
 
         chain.doFilter(request, response);
 

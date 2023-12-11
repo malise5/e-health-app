@@ -1,5 +1,7 @@
 package com.malise.app.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 // import javax.persistence.Embedded;
@@ -8,18 +10,22 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Formula;
 
 import com.malise.app.view.html.AnnoHtmlForm;
 import com.malise.app.view.html.AnnoHtmlFormField;
 import com.malise.app.view.html.AnnoTableHeader;
-import com.malise.app.view.html.HtmlTable;
+// import com.malise.app.view.html.DateTypeAnnotations;
+// import com.malise.app.view.html.HtmlTable;
 
 @Entity
 @Table(name = "patients")
 @AnnoHtmlForm(label = "Patient", url = "./patient")
-@HtmlTable(addUrl = "./patient", deleteUrl = "./patient?type=patient&mode=remove&patientID=")
+// @HtmlTable(addUrl = "./patient", deleteUrl =
+// "./patient?type=patient&mode=remove&patientID=")
 public class Patient extends BaseEntity {
 
   @Column(name = "patient_name")
@@ -29,13 +35,8 @@ public class Patient extends BaseEntity {
 
   @Column(name = "phone_number")
   @AnnoTableHeader(header = "Phone Number")
-  @AnnoHtmlFormField(label = "Phone Number")
+  @AnnoHtmlFormField(label = "Phon Number")
   private String phoneNumber;
-
-  @Column(name = "patient_gender")
-  @AnnoTableHeader(header = "Patient Gender")
-  @AnnoHtmlFormField(label = "Gender")
-  private String gender;
 
   @Column(name = "patient_disease")
   @AnnoTableHeader(header = "Patient Disease")
@@ -46,21 +47,22 @@ public class Patient extends BaseEntity {
   @JoinColumn(name = "doctor_id")
   private Doctor doctor;
 
-  @AnnoTableHeader(header = "Doctor's Appontment")
-  @AnnoHtmlFormField(label = "Doctor's Appontment")
+  // @Column(name = "doctor's_id")
+  // @AnnoTableHeader(header = "Doctor's Id")
+  @AnnoHtmlFormField(label = "Doctor", selectList = "customers", selectValue = "id", selectValueInSuper = true, selectDisplay = "name")
   @Formula("(doctor_id)")
   private Long doctorId;
 
-  @AnnoTableHeader(header = "Doctor")
+  @AnnoTableHeader(header = "Doctor's Appointment")
   @Formula("(select c.doctor_name  from doctors c where c.id=doctor_id)")
   private String doctorName;
 
   public Patient() {
   }
 
-  public Patient(String name, String gender, String disease) {
+  public Patient(String name, String disease) {
     this.name = name;
-    this.gender = gender;
+    // this.gender = gender;
     this.disease = disease;
   }
 
@@ -70,14 +72,6 @@ public class Patient extends BaseEntity {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getGender() {
-    return gender;
-  }
-
-  public void setGender(String gender) {
-    this.gender = gender;
   }
 
   public String getDisease() {
@@ -104,14 +98,6 @@ public class Patient extends BaseEntity {
     this.doctorId = doctorId;
   }
 
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
   public String getDoctorName() {
     return doctorName;
   }
@@ -120,20 +106,12 @@ public class Patient extends BaseEntity {
     this.doctorName = doctorName;
   }
 
-  // public String getDoctorName() {
-  // return doctorName;
-  // }
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
-  // public void setDoctorName(String doctorName) {
-  // this.doctorName = doctorName;
-  // }
-
-  // public Contact getContact() {
-  // return contact;
-  // }
-
-  // public void setContact(Contact contact) {
-  // this.contact = contact;
-  // }
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
 }

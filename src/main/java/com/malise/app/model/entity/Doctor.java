@@ -1,7 +1,12 @@
 package com.malise.app.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.malise.app.view.html.AnnoHtmlForm;
@@ -37,6 +42,9 @@ public class Doctor extends BaseEntity {
   @AnnoHtmlFormField(label = "specialization")
   private String specialization;
   // private String profile;
+
+  @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+  private List<Patient> patients = new ArrayList<>();
 
   public Doctor() {
   }
