@@ -65,7 +65,8 @@ public class HtmlComponent implements Serializable {
       // Add edit and delete buttons for each row
       // Inside your Java code where you generate the HTML
       trBuilder.append("<td class=\"action-buttons\">");
-      trBuilder.append("<button class=\"edit-button\" onclick=\"openModal()\">Edit</button>");
+      // trBuilder.append("<button class=\"edit-button\"
+      // onclick=\"openModal()\">Edit</button>");
       if (models.get(0).getClass().isAnnotationPresent(HtmlTable.class)) {
         HtmlTable htmltable = models.get(0).getClass().getAnnotation(HtmlTable.class);
         trBuilder

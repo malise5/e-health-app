@@ -118,6 +118,7 @@ public class DoctorAction extends BaseAction {
     Doctor doctor = new Doctor();
 
     serializeForm(doctor, req.getParameterMap());
+    // int Id = Integer.parseInt(req.getParameter())
 
     doctorBean.add(doctor);
 
