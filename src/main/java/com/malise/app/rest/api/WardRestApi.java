@@ -1,5 +1,6 @@
 package com.malise.app.rest.api;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +15,7 @@ import com.malise.app.model.entity.Ward;
 @Path("/wards")
 public class WardRestApi extends BaseRestApi {
 
+  @EJB
   private WardBeanI wardBean;
 
   @Path("/add")
