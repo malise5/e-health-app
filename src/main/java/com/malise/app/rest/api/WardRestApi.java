@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -32,6 +33,29 @@ public class WardRestApi extends BaseRestApi {
   @Produces(MediaType.APPLICATION_JSON)
   public Response list() {
     return respond(wardBean.getList(new Ward()));
+  }
+
+  // @Path("/list/{id}")
+  // @GET
+  // @Produces(MediaType.APPLICATION_JSON)
+  // public Response list(@PathParam("id") Long id) {
+  // Ward ward = new Ward();
+  // ward.setId(id);
+  // return respond(wardBean.getList(ward));
+  // }
+
+  @Path("/list/{id}")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response list(@PathParam("id") Long id) {
+    Ward ward = wardBean.getWardByID(id.intValue());
+    if (ward != null) {
+      return respond(ward);
+    } else {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    // ward.setId(id);
+    // return respond(wardBean.getList(ward));
   }
 
 }

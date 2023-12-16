@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,7 +25,7 @@ public class DoctorRestApi extends BaseRestApi {
   @Produces(MediaType.APPLICATION_JSON)
   public Response add(Doctor doctor) {
     doctorBean.add(doctor);
-    return respond();
+    return respond(doctor);
   }
 
   @Path("/list")
@@ -32,6 +33,21 @@ public class DoctorRestApi extends BaseRestApi {
   @Produces(MediaType.APPLICATION_JSON)
   public Response list() {
     return respond(doctorBean.getList(new Doctor()));
+  }
+
+  @Path("/list/{id}")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response list(@PathParam("id") Long id) {
+    Doctor doctor = doctorBean.getDoctorById(id.intValue());
+    if (doctor != null) {
+      return respond(doctor);
+    } else {
+      // Handle the case where the doctor with the specified ID is not found
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    // doctor.setId(id);
+    // return respond(doctorBean.getList(doctor));
   }
 
 }
