@@ -31,4 +31,6 @@ public @interface AnnoHtmlFormField {
 
   boolean required() default false;
 
+  // Object id();
+
 }

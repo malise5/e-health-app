@@ -3,11 +3,16 @@ package com.malise.app.view.html;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.enterprise.inject.spi.CDI;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.malise.app.utils.Selector;
 
 public class HtmlComponent implements Serializable {
 
@@ -120,6 +125,49 @@ public class HtmlComponent implements Serializable {
           + (StringUtils.isBlank(formField.name()) ? fieldName
               : formField.name())
           + "\">\n";
+
+      // ==========3333
+      if (StringUtils.isNotBlank(formField.selectList())
+          && StringUtils.isNotBlank(formField.selectValue())
+          && StringUtils.isNotBlank(formField.selectDisplay())) {
+        try {
+          StringBuilder stringBuilder = new StringBuilder()
+              .append("<select")
+              .append(" id=\"").append(fieldName)
+              .append("\" name=\"").append(fieldName).append("\" ")
+              .append(formField.required() ? "required" : "")
+              .append(">\n");
+
+          Selector genericCombo = CDI.current().select(Selector.class).get();
+
+          Method selectListMethod = Selector.class.getDeclaredMethod(formField.selectList());
+
+          List<?> options = (List<?>) selectListMethod.invoke(genericCombo);
+
+          System.out.println("TENANT>>>>>>>>>" + options.toString());
+          for (Object option : options) {
+            Field valueField = formField.selectValueInSuper()
+                ? option.getClass().getSuperclass().getDeclaredField(formField.selectValue())
+                : option.getClass().getDeclaredField(formField.selectValue());
+            valueField.setAccessible(true);
+
+            Field displayField = formField.selectDisplayInSuper()
+                ? option.getClass().getSuperclass().getDeclaredField(formField.selectDisplay())
+                : option.getClass().getDeclaredField(formField.selectDisplay());
+            displayField.setAccessible(true);
+
+            stringBuilder.append("<option value=\"").append(valueField.get(option)).append("\">")
+                .append(displayField.get(option)).append("</option>\n");
+          }
+
+          stringBuilder.append("</select> <br>\n");
+          htmlForm += stringBuilder.toString();
+          continue;
+        } catch (NoSuchFieldException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ex) {
+          System.out.println(ex.getMessage());
+        }
+      }
+      // ==========3333
 
     }
 

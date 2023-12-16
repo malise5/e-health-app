@@ -49,12 +49,12 @@ public class Patient extends BaseEntity {
 
   // @Column(name = "doctor's_id")
   // @AnnoTableHeader(header = "Doctor's Id")
-  @AnnoHtmlFormField(label = "Doctor", selectList = "customers", selectValue = "id", selectValueInSuper = true, selectDisplay = "name")
+  @AnnoHtmlFormField(label = "Doctor", selectList = "doctors", selectValue = "idTag", selectValueInSuper = true, selectDisplay = "name")
   @Formula("(doctor_id)")
   private Long doctorId;
 
   @AnnoTableHeader(header = "Doctor's Appointment")
-  @Formula("(select c.doctor_name  from doctors c where c.id=doctor_id)")
+  @Formula("(select c.doctor_name from doctors c where c.id=doctor_id)")
   private String doctorName;
 
   public Patient() {

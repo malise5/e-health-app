@@ -65,11 +65,11 @@
         /* Styles for the container */
         .container {
             max-width: 1208px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 5px auto;
+            padding: 10px;
             background-color: #fff;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
         }
 
         /* Styles for the table */
@@ -184,5 +184,42 @@
             color: #fff;
             border: none;
         }
+
+        /* Style for the select element */
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Style for the option elements */
+option {
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #fff; /* Background color of each option */
+    color: #333; /* Text color of each option */
+}
+
+/* Style for when an option is hovered */
+option:hover {
+    background-color: #f0f0f0; /* Background color change on hover */
+}
+
+/* Style for when the select element is focused */
+select:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+
+/* Additional spacing for better visual separation */
+br {
+    margin-bottom: 10px;
+}
+
 
       </style>
