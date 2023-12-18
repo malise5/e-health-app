@@ -37,4 +37,12 @@ public class WardBean extends GenericBean<Ward> implements WardBeanI {
     }
     return null;
   }
+
+  @Override
+  public void delete(int wardId) {
+    Ward deleteWard = getWardByID(wardId);
+    if (deleteWard != null) {
+      getDao().delete(deleteWard);
+    }
+  }
 }

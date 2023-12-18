@@ -30,4 +30,13 @@ public class ApparatusBean extends GenericBean<Apparatus> implements ApparatusBe
     return null;
   }
 
+  @Override
+  public void delete(int apparatusId) {
+    Apparatus apparatusToDelete = getApparatusByID(apparatusId);
+
+    if (apparatusToDelete != null) {
+      getDao().delete(apparatusToDelete);
+    }
+  }
+
 }

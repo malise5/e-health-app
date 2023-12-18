@@ -9,4 +9,6 @@ public interface WardBeanI extends GenericBeanI<Ward> {
   // String getWardTableHTML();
   Ward getWardByID(int id);
 
+  void delete(int wardId);
+
 }

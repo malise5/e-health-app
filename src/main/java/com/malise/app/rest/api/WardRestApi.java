@@ -3,6 +3,7 @@ package com.malise.app.rest.api;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -45,6 +46,20 @@ public class WardRestApi extends BaseRestApi {
     Ward ward = wardBean.getWardByID(id.intValue());
     if (ward != null) {
       return respond(ward);
+    } else {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+  }
+
+  @RolesAllowed("LOGGED_IN")
+  @Path("/delete/{id}")
+  @DELETE
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response delete(@PathParam("id") Long id) {
+    Ward ward = wardBean.getWardByID(id.intValue());
+    if (ward != null) {
+      wardBean.delete(id.intValue());
+      return respond("Ward deleted successfully");
     } else {
       return Response.status(Response.Status.NOT_FOUND).build();
     }

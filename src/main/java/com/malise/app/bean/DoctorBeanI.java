@@ -9,4 +9,6 @@ public interface DoctorBeanI extends GenericBeanI<Doctor> {
 
   Doctor getDoctorById(int id);
 
+  void delete(int doctorId);
+
 }

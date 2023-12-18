@@ -4,6 +4,7 @@ import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -51,6 +52,23 @@ public class DoctorRestApi extends BaseRestApi {
   @Produces(MediaType.APPLICATION_JSON)
   public Response list() {
     return respond(doctorBean.getList(new Doctor()));
+  }
+
+  @RolesAllowed("LOGGED_IN")
+  @Path("/delete/{id}")
+  @DELETE
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response delete(@PathParam("id") Long id) {
+    // Check if the doctor with the specified ID exists
+    Doctor doctor = doctorBean.getDoctorById(id.intValue());
+    if (doctor != null) {
+      // If the doctor exists, delete it
+      doctorBean.delete(id.intValue());
+      return respond("Doctor deleted successfully");
+    } else {
+      // Handle the case where the doctor with the specified ID is not found
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
   }
 
 }

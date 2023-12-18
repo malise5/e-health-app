@@ -37,4 +37,12 @@ public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI {
     return null;
   }
 
+  @Override
+  public void delete(int doctorId) {
+    Doctor doctorToDelete = getDoctorById(doctorId);
+    if (doctorToDelete != null) {
+      getDao().delete(doctorToDelete);
+    }
+  }
+
 }
