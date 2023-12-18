@@ -1,11 +1,11 @@
 package com.malise.app.rest.api;
 
-import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,6 +17,7 @@ import com.malise.app.bean.DoctorBeanI;
 import com.malise.app.model.entity.Doctor;
 
 @Path("/doctors")
+
 public class DoctorRestApi extends BaseRestApi {
 
   @EJB
@@ -27,6 +28,8 @@ public class DoctorRestApi extends BaseRestApi {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
+  // @ApiOperation(value = "Add a new doctor", notes = "Add a new doctor to the
+  // system")
   public Response add(Doctor doctor) {
     doctorBean.add(doctor);
     return respond(doctor);

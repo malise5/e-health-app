@@ -44,26 +44,6 @@ public class GenericDao<T> implements GenericDaoI<T> {
     this.em = em;
   }
 
-  // @Override // add or update
-  // public void add(T entity) {
-  // database.insert(entity);
-  // }
-
-  // // changed
-  // @Override
-  // public void delete(T entity) {
-  // }
-
-  // @Override
-  // public MysqlDb getDatabase() {
-  // return database;
-  // }
-
-  // @Override
-  // public void setDatabase(MysqlDb database) {
-  // this.database = database;
-  // }
-
 }
 
 // Class<?> clazz = entity.getClass();

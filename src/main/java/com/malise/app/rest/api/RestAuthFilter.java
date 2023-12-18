@@ -13,6 +13,8 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -99,5 +101,22 @@ public class RestAuthFilter implements ContainerRequestFilter {
     }
 
   }
+
+  // @Override
+  // public void filter(ContainerRequestContext requestContext,
+  // ContainerResponseContext responseContext)
+  // throws IOException {
+
+  // // Add CORS headers to the response
+  // MultivaluedMap<String, Object> headers = responseContext.getHeaders();
+  // headers.add("Access-Control-Allow-Origin", "*"); // Adjust based on your
+  // needs
+  // headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE,
+  // OPTIONS");
+  // headers.add("Access-Control-Allow-Headers", "Origin, Content-Type, Accept,
+  // Authorization");
+  // headers.add("Access-Control-Allow-Credentials", "true");
+  // headers.add("Access-Control-Max-Age", "86400"); // 24 hours
+  // }
 
 }
