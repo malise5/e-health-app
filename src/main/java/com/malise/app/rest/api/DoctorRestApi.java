@@ -1,5 +1,7 @@
 package com.malise.app.rest.api;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +21,7 @@ public class DoctorRestApi extends BaseRestApi {
   @EJB
   private DoctorBeanI doctorBean;
 
+  @RolesAllowed("LOGGED_IN")
   @Path("/add")
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -28,13 +31,7 @@ public class DoctorRestApi extends BaseRestApi {
     return respond(doctor);
   }
 
-  @Path("/list")
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response list() {
-    return respond(doctorBean.getList(new Doctor()));
-  }
-
+  @RolesAllowed("LOGGED_IN")
   @Path("/list/{id}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -46,8 +43,14 @@ public class DoctorRestApi extends BaseRestApi {
       // Handle the case where the doctor with the specified ID is not found
       return Response.status(Response.Status.NOT_FOUND).build();
     }
-    // doctor.setId(id);
-    // return respond(doctorBean.getList(doctor));
+  }
+
+  @RolesAllowed("LOGGED_IN")
+  @Path("/list")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response list() {
+    return respond(doctorBean.getList(new Doctor()));
   }
 
 }

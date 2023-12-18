@@ -1,5 +1,6 @@
 package com.malise.app.rest.api;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +20,7 @@ public class ApparatusRestApi extends BaseRestApi {
   @EJB
   private ApparatusBeanI apparatusBean;
 
+  @RolesAllowed("LOGGED_IN")
   @Path("/add")
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -28,6 +30,7 @@ public class ApparatusRestApi extends BaseRestApi {
     return respond();
   }
 
+  @RolesAllowed("LOGGED_IN")
   @Path("/list")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -35,6 +38,7 @@ public class ApparatusRestApi extends BaseRestApi {
     return respond(apparatusBean.getList(new Apparatus()));
   }
 
+  @RolesAllowed("LOGGED_IN")
   @Path("/list/{id}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
