@@ -35,15 +35,6 @@ public class WardRestApi extends BaseRestApi {
     return respond(wardBean.getList(new Ward()));
   }
 
-  // @Path("/list/{id}")
-  // @GET
-  // @Produces(MediaType.APPLICATION_JSON)
-  // public Response list(@PathParam("id") Long id) {
-  // Ward ward = new Ward();
-  // ward.setId(id);
-  // return respond(wardBean.getList(ward));
-  // }
-
   @Path("/list/{id}")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -54,8 +45,6 @@ public class WardRestApi extends BaseRestApi {
     } else {
       return Response.status(Response.Status.NOT_FOUND).build();
     }
-    // ward.setId(id);
-    // return respond(wardBean.getList(ward));
   }
 
 }

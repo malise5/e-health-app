@@ -127,46 +127,50 @@ public class HtmlComponent implements Serializable {
           + "\">\n";
 
       // ==========3333
-      if (StringUtils.isNotBlank(formField.selectList())
-          && StringUtils.isNotBlank(formField.selectValue())
-          && StringUtils.isNotBlank(formField.selectDisplay())) {
-        try {
-          StringBuilder stringBuilder = new StringBuilder()
-              .append("<select")
-              .append(" id=\"").append(fieldName)
-              .append("\" name=\"").append(fieldName).append("\" ")
-              .append(formField.required() ? "required" : "")
-              .append(">\n");
+      // if (StringUtils.isNotBlank(formField.selectList())
+      // && StringUtils.isNotBlank(formField.selectValue())
+      // && StringUtils.isNotBlank(formField.selectDisplay())) {
+      // try {
+      // StringBuilder stringBuilder = new StringBuilder()
+      // .append("<select")
+      // .append(" id=\"").append(fieldName)
+      // .append("\" name=\"").append(fieldName).append("\" ")
+      // .append(formField.required() ? "required" : "")
+      // .append(">\n");
 
-          Selector genericCombo = CDI.current().select(Selector.class).get();
+      // Selector genericCombo = CDI.current().select(Selector.class).get();
 
-          Method selectListMethod = Selector.class.getDeclaredMethod(formField.selectList());
+      // Method selectListMethod =
+      // Selector.class.getDeclaredMethod(formField.selectList());
 
-          List<?> options = (List<?>) selectListMethod.invoke(genericCombo);
+      // List<?> options = (List<?>) selectListMethod.invoke(genericCombo);
 
-          System.out.println("TENANT>>>>>>>>>" + options.toString());
-          for (Object option : options) {
-            Field valueField = formField.selectValueInSuper()
-                ? option.getClass().getSuperclass().getDeclaredField(formField.selectValue())
-                : option.getClass().getDeclaredField(formField.selectValue());
-            valueField.setAccessible(true);
+      // System.out.println(">>>>>>>>>" + options.toString());
+      // for (Object option : options) {
+      // Field valueField = formField.selectValueInSuper()
+      // ? option.getClass().getSuperclass().getDeclaredField(formField.selectValue())
+      // : option.getClass().getDeclaredField(formField.selectValue());
+      // valueField.setAccessible(true);
 
-            Field displayField = formField.selectDisplayInSuper()
-                ? option.getClass().getSuperclass().getDeclaredField(formField.selectDisplay())
-                : option.getClass().getDeclaredField(formField.selectDisplay());
-            displayField.setAccessible(true);
+      // Field displayField = formField.selectDisplayInSuper()
+      // ?
+      // option.getClass().getSuperclass().getDeclaredField(formField.selectDisplay())
+      // : option.getClass().getDeclaredField(formField.selectDisplay());
+      // displayField.setAccessible(true);
 
-            stringBuilder.append("<option value=\"").append(valueField.get(option)).append("\">")
-                .append(displayField.get(option)).append("</option>\n");
-          }
+      // stringBuilder.append("<option
+      // value=\"").append(valueField.get(option)).append("\">")
+      // .append(displayField.get(option)).append("</option>\n");
+      // }
 
-          stringBuilder.append("</select> <br>\n");
-          htmlForm += stringBuilder.toString();
-          continue;
-        } catch (NoSuchFieldException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ex) {
-          System.out.println(ex.getMessage());
-        }
-      }
+      // stringBuilder.append("</select> <br>\n");
+      // htmlForm += stringBuilder.toString();
+      // continue;
+      // } catch (NoSuchFieldException | NoSuchMethodException |
+      // IllegalAccessException | InvocationTargetException ex) {
+      // System.out.println(ex.getMessage());
+      // }
+      // }
       // ==========3333
 
     }
