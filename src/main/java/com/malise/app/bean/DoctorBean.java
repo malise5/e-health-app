@@ -15,11 +15,9 @@ import com.malise.app.utils.DoctorNoI;
 public class DoctorBean extends GenericBean<Doctor> implements DoctorBeanI {
 
   @Inject
-  // @DoctorNo
   @Named("DoctorNumber")
   private DoctorNoI doctorNo;
 
-  // overiding
   @Override // add or update
   public void add(Doctor doctor) {
     doctor.setIndex(doctorNo.generate());

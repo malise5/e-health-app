@@ -19,6 +19,9 @@ a:hover {
     color: #0056b3;
     text-decoration: underline;
 }
+h2 {
+    text-align: center;
+}
 
 img {
     max-width: 100%;

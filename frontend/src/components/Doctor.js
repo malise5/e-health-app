@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Doctor = () => {
     const [doctors, setDoctors] = useState([]);
 
-    const apiUrl = "http://127.0.0.1:8081/e-health-app/rest/doctors/list";
+    const apiUrl = "/e-health-app/rest/doctors/list";
 
     useEffect(() => {
         const username = "malise";
@@ -25,8 +25,16 @@ const Doctor = () => {
 
     return (
         <div className="table-container">
-            <h2>Doctors</h2>
+            <h2>Doctors Information Dashboard</h2>
             <table>
+                <thead>
+                    <tr>
+                        <th>Service Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Specialization</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {doctors.map((doctor) => (
                         <tr key={doctor.id}>
