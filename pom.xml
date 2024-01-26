@@ -173,13 +173,6 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.16.1</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
       <version>4.17.0</version>
     </dependency>
 
@@ -188,13 +181,6 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.10.1</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
       <scope>compile</scope>
     </dependency>
 
