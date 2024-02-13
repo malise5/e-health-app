@@ -1,4 +1,4 @@
-# Dockerfile Explanation as follows
+# Dockerfile Explanation
 
 This Dockerfile is a set of instructions that tells Docker how to build and run your Java application using Maven, OpenJDK, and WildFly.
 
