@@ -8,8 +8,8 @@ WORKDIR /app
 # Copy the entire current directory (.) into the container at /app
 COPY . .
 
-RUN curl -o mysql-connector-jar-8.2.0.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.2.0/mysql-connector-java-8.2.0.jar
-
+# Download the MySQL connector JAR file
+RUN curl -o mysql-connector-j-8.2.0.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.2.0/mysql-connector-java-8.2.0.jar
 
 # Run Maven to clean, build, and install the project, skipping tests
 RUN mvn clean install -DskipTests -X
