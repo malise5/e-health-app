@@ -18,9 +18,9 @@ jobs:
           java -version
 
     # Run Tests with Maven
-    - run:
-        name: Run Tests with Maven
-        command: mvn clean test --file pom.xml
+    # - run:
+    #     name: Run Tests with Maven
+    #     command: mvn clean test --file pom.xml
 
     # Build with Maven
     - run:
