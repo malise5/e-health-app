@@ -3,43 +3,33 @@ version: 2.1
 jobs:
   build:
     docker:
-    - image: circleci/openjdk:17-jdk
-    working_directory: ~/repo
+    - image: maven:3.8.3-jdk-11
+    working_directory: ~/app
 
     steps:
     - checkout
 
-    # Add any additional setup steps here, such as setting up JDK 11.
-
-    - run:
-        name: Set up JDK 17
-        command: |
-          sdk use java 17.0.1-open
-          java -version
-
-    # Run Tests with Maven
-    # - run:
-    #     name: Run Tests with Maven
-    #     command: mvn clean test --file pom.xml
-
-    # Build with Maven
     - run:
         name: Build with Maven
         command: mvn -B package --file pom.xml
 
+    - setup_remote_docker
+
     - run:
         name: Build & push Docker image
         command: |
-          docker build -t tatu333/my-webapp:latest .
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          docker push tatu333/my-webapp:latest
+          docker build -t malise/hospital .
+          docker tag malise/hospital:latest
+          docker push malise/hospital:latest
 
 workflows:
   version: 2
-  main:
+  build:
     jobs:
     - build:
         filters:
           branches:
             only:
             - main
+
