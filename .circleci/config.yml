@@ -51,10 +51,12 @@ workflows:
     - build:
         filters:
           branches:
-            only: main
+            only:
+            - main
     - publish-latest:
         requires:
         - build
         filters:
           branches:
-            only: main
+            only:
+            - main
