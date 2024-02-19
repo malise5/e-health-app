@@ -15,8 +15,6 @@ public class SeleniumTest {
 
   @Before
   public void setUp() {
-    // Set the path to the chromedriver executable
-    // System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
     driver = new ChromeDriver();
     driver.manage().window().maximize();
 
@@ -36,17 +34,9 @@ public class SeleniumTest {
 
   @Test
   public void testLogin() {
-    // getLoginButton();
+    // String expectedURL = "http://127.0.0.1:8081/e-health-app/doctor";
+    String expectedURL = "http://192.168.49.2:31000/e-health-app/doctor";
 
-    // Verify that login was successful (you might need to adjust this based on your
-    // application)
-    // WebElement welcomeMessage =
-    // driver.findElement(By.xpath("//h3[normalize-space()='Welcome: admin']"));
-    // Assert.assertEquals("Welcome message not found", "Welcome: admin",
-    // welcomeMessage.getText());
-
-    // Check if the URL path is as expected
-    String expectedURL = "http://127.0.0.1:8081/e-health-app/doctor";
     Assert.assertTrue("URL path is not as expected", driver.getCurrentUrl().contains(expectedURL));
 
     // Perform additional test logic, e.g., testAddDoctor
@@ -101,7 +91,8 @@ public class SeleniumTest {
   }
 
   private void login() {
-    driver.get("http://127.0.0.1:8081/e-health-app");
+    // driver.get("http://127.0.0.1:8081/e-health-app");
+    driver.get("http://192.168.49.2:31000/e-health-app");
 
     // Find the username and password fields by their HTML attributes
     WebElement usernameInput = driver.findElement(By.xpath("//input[@placeholder='Enter Username ? ']"));

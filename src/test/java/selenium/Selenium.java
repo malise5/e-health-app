@@ -7,13 +7,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Selenium {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
     WebDriver driver = new ChromeDriver();
 
     try {
+      // Login
       getLoginButton(driver);
+      // Perform actions after login
+      Thread.sleep(5000);
       addDoctor(driver);
+      // Logout
+      Thread.sleep(5000);
+      logout(driver);
 
     } finally {
       try {
@@ -47,7 +53,8 @@ public class Selenium {
 
   private static void getLoginButton(WebDriver driver) {
     // Open the website
-    driver.get("http://127.0.0.1:8081/e-health-app");
+    // driver.get("http://127.0.0.1:8081/e-health-app");
+    driver.get("http://192.168.49.2:31000/e-health-app");
 
     // Maximize the browser window
     driver.manage().window().maximize();
@@ -66,5 +73,11 @@ public class Selenium {
 
     // You can add additional steps here, such as verifying if the login was
     // successful
+  }
+
+  private static void logout(WebDriver driver) {
+    // Find and click the logout button
+    WebElement logoutButton = driver.findElement(By.xpath("//a[normalize-space()='SignOut']"));
+    logoutButton.click();
   }
 }
