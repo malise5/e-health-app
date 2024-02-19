@@ -11,15 +11,30 @@ services:
             MYSQL_PORT: "3306"
         volumes:
             - mysql-data:/var/lib/mysql
+        healthcheck:
+            test:
+                ["CMD-SHELL", "mysqladmin ping -uroot -p${MYSQL_ROOT_PASSWORD}"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
 
     e-health-app:
-        image: malise/hospital:latest
+        # image: malise/hospital:latest
+        image: malise/hospital:v1
         ports:
             - "8081:8081"
         depends_on:
             - mysqld
         environment:
             MYSQL_HOST: mysqld
+        healthcheck:
+            test:
+                ["CMD", "curl", "-f", "http://localhost:8081/health || exit 1"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
 
 volumes:
     mysql-data:

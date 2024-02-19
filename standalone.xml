@@ -127,7 +127,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:7.0">
             <datasources>
                 <datasource jndi-name="java:jboss/datasources/hospital" pool-name="hospital" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
-                    <!-- <connection-url>jdbc:mysql://localhost:3306/hospital</connection-url> -->
+                    
                     <connection-url>jdbc:mysql://mysqld:3306/hospital</connection-url>
                     <driver>mysql</driver>
                     <security>

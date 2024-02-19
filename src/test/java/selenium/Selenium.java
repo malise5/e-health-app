@@ -9,10 +9,6 @@ public class Selenium {
 
   public static void main(String[] args) {
 
-    // Set the path to the chromedriver executable
-    // System.setProperty("webdriver.chrome.driver",
-    // "/home/kudez/Engineer/java/chromedriver");
-
     WebDriver driver = new ChromeDriver();
 
     try {
@@ -29,17 +25,6 @@ public class Selenium {
       driver.quit();
     }
   }
-
-  // public void testLogin() {
-  // // getLoginButton();
-
-  // // Verify that login was successful (you might need to adjust this based on
-  // your application)
-  // WebElement welcomeMessage =
-  // driver.findElement(By.xpath("//div[@id='welcome-message']"));
-  // Assert.assertEquals("Welcome message not found", "Welcome, Admin!",
-  // welcomeMessage.getText());
-  // }
 
   private static void addDoctor(WebDriver driver) {
 

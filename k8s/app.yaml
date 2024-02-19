@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital-app
+  labels:
+    app: hospital-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hospital-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hospital-app
+    spec:
+      containers:
+      - name: hospital-app
+        image: malise/hospital:v1
+
+        ports:
+        - name: web
+          containerPort: 8081
+        env:
+        - name: MYSQL_HOST
+          value: mysqldb
+        volumeMounts:
+        - name: mysql-driver
+          mountPath: /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
+      volumes:
+      - name: mysql-driver
+        emptyDir: {}
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hospital-app-service
+spec:
+  selector:
+    app: hospital-app
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+  type: NodePort
+
+
+
