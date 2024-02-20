@@ -9,4 +9,5 @@ spec:
   - protocol: TCP
     port: 8081
     targetPort: 8081
-  type: NodePort # Use NodePort if you want to access the service from outside the cluster
+    nodePort: 31000
+  type: NodePort # want to access the service from outside the cluster

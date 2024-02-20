@@ -39,10 +39,27 @@ jobs:
         name: Publish Docker Image to Docker Hub
         command: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
+          # IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
+          IMAGE_TAG="2.1.${CIRCLE_BUILD_NUM}" # 2.1.X where X is the build number
           docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$IMAGE_TAG
+deploy:
+  docker:
+  - image: python:3.8
+  steps:
+  - checkout
+  - add_ssh_keys:
+      fingerprints:
+      - "SHA256:6uvl2IL+7B3LcbP7X07Zi4WJVHM+TeQQ208i66OwXZU"
+  - run:
+      name: Install Ansible
+      command: pip install ansible
+  - run:
+      name: Run Ansible Playbook
+      command: ansible-playbook playbook.yaml
+
+
 
 workflows:
   version: 2
@@ -53,6 +70,7 @@ workflows:
           branches:
             only:
             - main
+            - dev
     - publish-latest:
         requires:
         - build
@@ -60,3 +78,12 @@ workflows:
           branches:
             only:
             - main
+            - dev
+    - deploy:
+        requires:
+        - publish-latest
+        filters:
+          branches:
+            only:
+            - main
+            - dev
