@@ -85,14 +85,15 @@ workflows:
   version: 2
   build-main:
     jobs:
-    - test:
-        requires:
-        - build
+
+    - build:
         filters:
           branches:
             only:
             - main
-    - build:
+    - test:
+        requires:
+        - build
         filters:
           branches:
             only:
