@@ -4,6 +4,9 @@
 .settings/
 .externalToolBuilders/
 
+#secret
+.env
+
 # Intellij
 .idea/
 *.iml

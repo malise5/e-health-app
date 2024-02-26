@@ -53,6 +53,8 @@ jobs:
         root: .
         paths:
         - ./image.tar
+
+
   publish-latest:
     executor: docker-publisher
     steps:
@@ -72,6 +74,8 @@ jobs:
           docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:$IMAGE_TAG
+
+
   deploy:
     docker:
     - image: python:3.8
