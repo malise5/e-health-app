@@ -1,4 +1,10 @@
 version: 2.1
+
+services:
+  docker:
+    image: docker:20.10.11
+
+
 executors:
   docker-publisher:
     environment:
@@ -13,6 +19,9 @@ jobs:
     steps:
     - attach_workspace:
         at: /tmp/workspace
+    - run:
+        name: Load archived Docker
+        command: docker load -i /tmp/workspace/image.tar
     - run:
         name: Load archived Docker
         command: docker load -i /tmp/workspace/image.tar
