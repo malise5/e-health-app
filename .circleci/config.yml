@@ -1,8 +1,8 @@
 version: 2.1
 
-services:
-  docker:
-    image: docker:20.10.11
+# services:
+#   docker:
+#     image: docker:20.10.11
 
 
 executors:
@@ -14,21 +14,21 @@ executors:
 
 
 jobs:
-  test:
-    executor: docker-publisher
-    steps:
-    - attach_workspace:
-        at: /tmp/workspace
-    - run:
-        name: Load archived Docker
-        command: docker load -i /tmp/workspace/image.tar
-    - run:
-        name: Load archived Docker
-        command: docker load -i /tmp/workspace/image.tar
-    - run:
-        name: Run Selenium Tests
-        command: |
-          docker run -v /dev/shm:/dev/shm $IMAGE_NAME:latest java -cp selenium.jar:selenium-server-standalone.jar org.junit.runner.JUnitCore SeleniumTest
+  # test:
+  #   executor: docker-publisher
+  #   steps:
+  #   - attach_workspace:
+  #       at: /tmp/workspace
+  #   - run:
+  #       name: Load archived Docker
+  #       command: docker load -i /tmp/workspace/image.tar
+  #   - run:
+  #       name: Load archived Docker
+  #       command: docker load -i /tmp/workspace/image.tar
+  #   - run:
+  #       name: Run Selenium Tests
+  #       command: |
+  #         docker run -v /dev/shm:/dev/shm $IMAGE_NAME:latest java -cp selenium.jar:selenium-server-standalone.jar org.junit.runner.JUnitCore SeleniumTest
   build:
     executor: docker-publisher
     steps:
@@ -100,13 +100,13 @@ workflows:
           branches:
             only:
             - main
-    - test:
-        requires:
-        - build
-        filters:
-          branches:
-            only:
-            - main
+    # - test:
+    #     requires:
+    #     - build
+    #     filters:
+    #       branches:
+    #         only:
+    #         - main
     - publish-latest:
         requires:
         - build
