@@ -3,11 +3,13 @@
   hosts: all
   become: true
   tasks:
+      # Create a test file
       - name: Create file
         copy:
             content: Create \n
             dest: /tmp/test.txt
 
+      # Increase the number of open files
       - name: Increase no. of open files
         sysctl:
             name: fs.file-max
@@ -31,18 +33,21 @@
             - "python3-setuptools"
         become: true
 
+      # Add Docker GPG apt Key
       - name: Add Docker GPG apt Key
         apt_key:
             url: https://download.docker.com/linux/ubuntu/gpg
             state: present
         become: true
 
+      # Add Docker Repository
       - name: Add Docker Repository
         apt_repository:
             repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
             state: present
         become: true
 
+      # Install Docker and Docker-Compose
       - name: Install Docker and Docker-Compose
         apt:
             pkg:
@@ -53,6 +58,7 @@
             update_cache: yes
         become: true
 
+      # Running Docker without root and add it to user groups
       - name: Running Docker without root and add it to user groups
         shell: |
             usermod -aG docker $USER
@@ -72,12 +78,8 @@
             dest: /home/kudez/Hospital/docker-compose.yml # Replace with the destination path on the remote server
             owner: kudez
             group: kudez
-            mode: 0755 # Adjusting the file permissions as needed
+            mode: 755 # Adjusting the file permissions as needed
         become: true
 
       - name: Start Docker Compose
         command: docker-compose -f /home/kudez/Hospital/docker-compose.yml up -d
-#monitoring like new relic
-# traces
-# logs
-# metric

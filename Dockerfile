@@ -9,8 +9,6 @@ WORKDIR /app
 COPY . .
 
 # Download the MySQL connector JAR file
-# RUN curl -o mysql-connector-j-8.2.0.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.2.0/mysql-connector-java-8.2.0.jar
-
 RUN curl -o mysql-connector-java-8.0.17.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.17/mysql-connector-java-8.0.17.jar
 
 # Build the project
@@ -35,7 +33,6 @@ COPY --from=build /app/standalone.xml /opt/jboss/wildfly/standalone/configuratio
 # Create directories and copy MySQL module configuration and JDBC driver to WildFly modules directory
 RUN mkdir -p /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 COPY --from=build /app/module.xml /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
-# COPY --from=build /app/mysql-connector-j-8.2.0.jar /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 COPY --from=build /app/mysql-connector-java-8.0.17.jar /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 
 # Expose port 8080 for the application
