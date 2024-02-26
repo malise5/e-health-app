@@ -8,10 +8,29 @@ executors:
 
 
 jobs:
+  test:
+    executor: docker-publisher
+    steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - run:
+        name: Load archived Docker
+        command: docker load -i /tmp/workspace/image.tar
+    - run:
+        name: Run Selenium Tests
+        command: |
+          docker run -v /dev/shm:/dev/shm $IMAGE_NAME:latest java -cp selenium.jar:selenium-server-standalone.jar org.junit.runner.JUnitCore SeleniumTest
   build:
     executor: docker-publisher
     steps:
     - checkout
+    # Run Selenium Tests
+    # - run:
+    #     name: Run Selenium Tests
+    #     command: |
+    #       cd src/test/java/selenium
+    #       javac -cp ".*" SeleniumTest.java
+    #       java -cp ".:path/to/your/selenium-jars/*" org.junit.runner.JUnitCore SeleniumTest
     - setup_remote_docker:
         docker_layer_caching: true
     - run:
@@ -66,6 +85,13 @@ workflows:
   version: 2
   build-main:
     jobs:
+    - test:
+        requires:
+        - build
+        filters:
+          branches:
+            only:
+            - main
     - build:
         filters:
           branches:
